@@ -30,9 +30,29 @@ class SubCategoriesResponseMixinView(object):
             for obj in self.get_subcategories_query_set()])
 
 
+from .forms import ParamsValidationForm
+
 class MainPageView(CategoryResponseMixin, SubCategoriesResponseMixinView):
     template_name = "main-page.html"
 
-    def get(self, request):
-        pass
+    def initial_context_from_params(self):
+        """
+        Filter initial params from GET querystring.
+        """
 
+        initial_context = {}
+
+        form = ParamsValidationForm(self.request.GET)
+        if not form.is_valid():
+            return initial_context
+
+        initial_context.update(form.cleaned_data)
+        return initial_context
+
+    def get(self, request):
+        context = {
+            #"site_info":
+            "initial": self.initial_context_from_params()
+        }
+
+        return self.render_to_response(self.template_name, context)

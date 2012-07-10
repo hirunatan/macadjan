@@ -1,0 +1,26 @@
+{% extends "macadjan/base.html" %}
+{% load i18n %}
+
+{% block body %}
+<div class="main-container" data-initial-cat="{{ initial.cat }}" data-initial-subcat="{{ initial.subcat }}">
+    <div class="header-box"></div>
+    <div class="middle-menu-box"></div>
+    <div class="middle-box">
+        <div class="middle-box-header"></div>
+        <div class="middle-box-body">
+            <div class="left map-container">
+                {% include "macadjan/map-block.html" %}
+            </div>
+            <div class="left entity-container"></div>
+        </div>
+    </div>
+    <div class="footer-box"></div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+
+
+
+
+{% endblock %}
