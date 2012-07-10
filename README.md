@@ -1,5 +1,5 @@
 macadjan
 ========
 
-Mapping and Catalog with Django.
+Mapping and Catalog with Django...
 
