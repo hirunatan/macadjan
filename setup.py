@@ -22,6 +22,7 @@ CLASSIFIERS = [
 ]
 
 REQUIREMENTS = [
+    'Django >= 1.3',
 ]
 
 EXTRAS = {
