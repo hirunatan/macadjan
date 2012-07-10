@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from datetime import datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
@@ -8,9 +7,12 @@ from django.db.models import signals
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template import RequestContext, Context, loader
+
+from .utils import slugify_uniquely
+
 from haystack import query
-from utils import slugify_uniquely
-from macadjan_base.async_tasks import task__geolocalize_entity
+from datetime import datetime
+
 
 class EntityType(models.Model):
     '''
@@ -23,7 +25,6 @@ class EntityType(models.Model):
         return self.name
 
     class Meta:
-        app_label = 'macadjan_base'
         ordering = ['name']
         verbose_name = _(u'tipo de entidad')
         verbose_name_plural = _(u'tipos de entidad')
@@ -75,7 +76,6 @@ Si no se indica marcador, se usará el marcador por defecto definido en settings
         super(self.__class__, self).save(*args, **kwargs)
 
     class Meta:
-        app_label = 'macadjan_base'
         ordering = ['name']
         verbose_name = _(u'categoría')
         verbose_name_plural = _(u'categorías')
@@ -87,7 +87,7 @@ class SubCategory(models.Model):
     '''
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'))
-    category = models.ForeignKey(Category, related_name = 'subcategories', null = False, blank = False,
+    category = models.ForeignKey("macadjan.Category", related_name = 'subcategories', null = False, blank = False,
             on_delete = models.CASCADE,
             verbose_name = _(u'Categoría'))
     slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
@@ -116,7 +116,6 @@ Si no se indica marcador, se usará el marcador de la categoría a la que perten
         super(self.__class__, self).save(*args, **kwargs)
 
     class Meta:
-        app_label = 'macadjan_base'
         ordering = ['category', 'name']
         verbose_name = _(u'subcategoría')
         verbose_name_plural = _(u'subcategorías')
@@ -140,7 +139,6 @@ class TagCollection(models.Model):
         super(self.__class__, self).save(*args, **kwargs)
 
     class Meta:
-        app_label = 'macadjan_base'
         ordering = ['name']
         verbose_name = _(u'colección de etiquetas')
         verbose_name_plural = _(u'colecciones de etiquetas')
@@ -154,7 +152,7 @@ class EntityTag(models.Model):
             verbose_name = _(u'Nombre'))
     slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
             verbose_name = _(u'Slug'))
-    collection = models.ForeignKey(TagCollection, related_name = 'tags', null = False, blank = False,
+    collection = models.ForeignKey("macadjan.TagCollection", related_name = 'tags', null = False, blank = False,
             on_delete = models.CASCADE,
             verbose_name = _(u'Colección'))
 
@@ -167,7 +165,6 @@ class EntityTag(models.Model):
         super(self.__class__, self).save(*args, **kwargs)
 
     class Meta:
-        app_label = 'macadjan_base'
         ordering = ['collection', 'name']
         verbose_name = _(u'etiqueta')
         verbose_name_plural = _(u'etiquetas')
@@ -341,14 +338,14 @@ class Entity(models.Model):
             help_text = _(u'Indica si esta entidad está activa; si no lo está, no saldrá en el mapa ni en los listados.'))
 
     # Entity type (may be NULL in internal operations, but you must fill it in the forms)
-    entity_type = models.ForeignKey(EntityType, related_name = 'entities', null = True, blank = False,
+    entity_type = models.ForeignKey("macadjan.EntityType", related_name = 'entities', null = True, blank = False,
             on_delete = models.PROTECT,
             verbose_name = _(u'Tipo de entidad'),
             help_text = _(u'De qué tipo organizativo es la entidad, estructuralmente hablando.'))
 
     # Categories are associated transitively, through subcategories. If an entity does not have any specific
     # subcategory, link it to 'Others'. The main one may be NULL in internal operations, but you must fill it in the forms
-    main_subcategory = models.ForeignKey(SubCategory, related_name = 'entities_main', null = True, blank = False,
+    main_subcategory = models.ForeignKey("macadjan.SubCategory", related_name='entities_main', null=True, blank=False,
             on_delete = models.PROTECT,
             limit_choices_to = {'is_active': True},
             verbose_name = _(u'Categoría principal'),
@@ -359,7 +356,7 @@ class Entity(models.Model):
             verbose_name = _(u'Categorías'))
 
     # One entity can have as many tags as it wants.
-    tags = models.ManyToManyField('macadjan_base.EntityTag', related_name = 'entities', blank = True,
+    tags = models.ManyToManyField('macadjan.EntityTag', related_name = 'entities', blank = True,
             verbose_name = _(u'Etiquetas'))
 
     # Define two custom object managers
@@ -404,7 +401,6 @@ class Entity(models.Model):
 
     class Meta:
         abstract = True
-        app_label = 'macadjan'
         ordering = ['name']
         verbose_name = _(u'entidad')
         verbose_name_plural = _(u'entidades')

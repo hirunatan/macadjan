@@ -3,8 +3,9 @@
 from django.template.defaultfilters import slugify
 
 def slugify_uniquely(value, model, slugfield="slug"):
-    """Returns a slug on a name which is unique within a model's table
-       self.slug = SlugifyUniquely(self.name, self.__class__)
+    """
+    Returns a slug on a name which is unique within a model's table
+    self.slug = SlugifyUniquely(self.name, self.__class__)
     """
     suffix = 0
     potential = base = slugify(value)
