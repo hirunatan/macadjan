@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from django.utils.safestring import mark_safe
 from django.template.defaultfilters import slugify
+
+from superview.utils import LazyEncoder
 
 def slugify_uniquely(value, model, slugfield="slug"):
     """
@@ -19,3 +22,12 @@ def slugify_uniquely(value, model, slugfield="slug"):
         # we hit a conflicting slug, so bump the suffix & try again
         suffix += 1
 
+
+
+def to_json(iterable_obj):
+    """
+    Convert any iterable or list of dicts to json
+    with correct serialization of Promise and datetime objects.
+    """
+    data = json.dumps(iterable_obj, cls=LazyEncoder, sort_keys=False)
+    return mark_safe(data)

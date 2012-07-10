@@ -32,8 +32,10 @@ class EntityType(models.Model):
 
 class CategoryActiveManager(models.Manager):
     '''With this manager you only see active categories.'''
-    def get_query_set(self):
-        return super(CategoryActiveManager, self).get_query_set().filter(is_active = True)
+
+    def actives_only(self):
+        queryset = self.get_query_set()
+        return queryset.filter(is_active=True)
 
 
 class Category(models.Model):
@@ -60,11 +62,21 @@ Si no se indica marcador, se usará el marcador por defecto definido en settings
             help_text = _(u'Indica si esta categoría está activa; si no lo está, no saldrá en el árbol de clasificación del mapa.'))
 
     # Define one normal object manager and one custom
-    objects = models.Manager()
-    objects_active = CategoryActiveManager()
+    objects = CategoryActiveManager()
 
     def __unicode__(self):
         return self.name
+
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "slug": self.slug,
+            "description": self.description,
+            "markerUrl": self.marker_url,
+            "is_active": self.is_active,
+        }
 
     @property
     def active_subcategories(self):
