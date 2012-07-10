@@ -1,0 +1,143 @@
+[
+    {
+        "pk": 1, 
+        "model": "macadjan.category", 
+        "fields": {
+            "marker_url": "", 
+            "description": "", 
+            "is_active": true, 
+            "name": "Categoria1", 
+            "slug": "categoria1"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "macadjan.category", 
+        "fields": {
+            "marker_url": "", 
+            "description": "", 
+            "is_active": true, 
+            "name": "Categoria2", 
+            "slug": "categoria2"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "macadjan.category", 
+        "fields": {
+            "marker_url": "", 
+            "description": "", 
+            "is_active": false, 
+            "name": "Categoria3", 
+            "slug": "categoria3"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 1, 
+            "description": "", 
+            "is_active": true, 
+            "marker_url": "", 
+            "slug": "cat1-subcategoria1", 
+            "name": "Cat1 - Subcategoria1"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 1, 
+            "description": "", 
+            "is_active": true, 
+            "marker_url": "", 
+            "slug": "cat1-subcategoria2", 
+            "name": "Cat1 - Subcategoria2"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 1, 
+            "description": "", 
+            "is_active": true, 
+            "marker_url": "", 
+            "slug": "cat1-subcategoria3", 
+            "name": "Cat1 - Subcategoria3"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 2, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat2-subcategoria1", 
+            "name": "Cat2 - Subcategoria1"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 2, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat2-subcategoria2", 
+            "name": "Cat2 - Subcategoria2"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 2, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat2-subcategoria3", 
+            "name": "Cat2 - Subcategoria3"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 3, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat3-subcategoria1", 
+            "name": "Cat3 - Subcategoria1"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 3, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat3-subcategoria2", 
+            "name": "Cat3 - Subcategoria2"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "macadjan.subcategory", 
+        "fields": {
+            "category": 3, 
+            "description": "", 
+            "is_active": false, 
+            "marker_url": "", 
+            "slug": "cat3-subcategoria3", 
+            "name": "Cat3 - Subcategoria3"
+        }
+    }
+]
