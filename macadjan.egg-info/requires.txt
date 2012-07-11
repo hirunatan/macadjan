@@ -1,0 +1,2 @@
+distribute
+Django >= 1.3
