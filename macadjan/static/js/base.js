@@ -46,8 +46,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
         // Allow absolute or scheme relative URLs to same origin
         return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
             (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-            // or any other URL that isn't scheme relative or absolute i.e relative.
-            !(/^(\/\/|http:|https:).*/.test(url));
+            !('/^(\/\/|http:|https:).*\/'.test(url)); // or any other URL that isn't scheme relative or absolute i.e relative.
     }
 
     function safeMethod(method) {
@@ -132,7 +131,7 @@ Macadjan.Map = Backbone.View.extend({
         this.map = new OpenLayers.Map(this.$el.attr('id'), this.mapInitial);
 
         this.osm = this.createOsmLayer();
-        this.map.addLayer(osm);
+        this.map.addLayer(this.osm);
 
         // Center map to initial coords
         this.centerMap();
@@ -170,8 +169,9 @@ Macadjan.Map = Backbone.View.extend({
         var self = this;
 
         var popup = new OpenLayers.Popup.FramedCloud('featurePopup',
-            feature.geometry.getBounds().getCenterLonLat(), new OpenLayers.Size(300, 100),
-            content, feature.ikon, true,
+            feature.geometry.getBounds().getCenterLonLat(),
+            new OpenLayers.Size(300, 100),
+            content, null, true,
             function(evt) {
                 var feature = this.feature;
                 if (feature.layer) {
@@ -203,16 +203,16 @@ Macadjan.Map = Backbone.View.extend({
         var initialLat = this.$el.data('initial-lat');
         var initialZoom = this.$el.data('initial-zoom');
 
-        this.map.setCenter(new OpenLayers.LonLat(initial_lon, initial_lat).transform(
+        this.map.setCenter(new OpenLayers.LonLat(initialLon, initialLat).transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
-        ), initial_zoom);
+        ), initialZoom);
     },
 
     createOsmLayer: function() {
         return new OpenLayers.Layer.OSM({
             transitionEffect: 'resize'
-        }
+        })
     },
 
     createPointsLayer: function() {
@@ -226,7 +226,7 @@ Macadjan.Map = Backbone.View.extend({
             url: this.$el.data('api-url'),
             params: {},
             format: new OpenLayers.Format.Text(),
-        };
+        });
 
         var pointsLayerInitial = {
             strategies: [
@@ -251,6 +251,8 @@ Macadjan.Map = Backbone.View.extend({
     }
 });
 
+Macadjan.map = new Macadjan.Map();
+
 Macadjan.MainView = Backbone.View.extend({
     el: $("body"),
 
@@ -261,3 +263,6 @@ Macadjan.MainView = Backbone.View.extend({
         this.container = this.$(".main-container");
     },
 });
+
+Macadjan.main = new Macadjan.MainView();
+

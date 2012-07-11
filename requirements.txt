@@ -1,3 +1,4 @@
 django==1.4
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
+git+https://github.com/kaleidos/django-superview.git
 whoosh>=2.3.2

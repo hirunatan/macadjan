@@ -3,7 +3,9 @@
 from django import forms
 
 class ParamsValidationForm(forms.Form):
-    lat = forms.IntegerField(required=False)
-    lon = forms.IntegerField(required=False)
+    lat = forms.FloatField(required=False)
+    lon = forms.FloatField(required=False)
     cat = forms.IntegerField(required=False)
-    subcat = forms.IntegerField(required=False
+    subcat = forms.IntegerField(required=False)
+    zoom = forms.IntegerField(required=False)
+

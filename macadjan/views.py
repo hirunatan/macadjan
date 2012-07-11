@@ -18,7 +18,7 @@ class CategoryResponseMixin(object):
         return to_json([obj.to_dict() \
             for obj in self.get_categories_query_set()])
 
-class SubCategoriesResponseMixinView(object):
+class SubCategoriesResponseMixin(object):
     def get_subcategories_query_set(self):
         return SubCategory.objects.actives_only()
 
@@ -32,14 +32,21 @@ class SubCategoriesResponseMixinView(object):
 
 from .forms import ParamsValidationForm
 
-class MainPageView(CategoryResponseMixin, SubCategoriesResponseMixinView):
-    template_name = "main-page.html"
+class MainPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
+    template_name = "macadjan/main-page.html"
+
+    def get(self, request):
+        context = {
+            #"site_info":
+            "initial": self.initial_context_from_params()
+        }
+
+        return self.render_to_response(self.template_name, context)
 
     def initial_context_from_params(self):
         """
         Filter initial params from GET querystring.
         """
-
         initial_context = {}
 
         form = ParamsValidationForm(self.request.GET)
@@ -49,10 +56,3 @@ class MainPageView(CategoryResponseMixin, SubCategoriesResponseMixinView):
         initial_context.update(form.cleaned_data)
         return initial_context
 
-    def get(self, request):
-        context = {
-            #"site_info":
-            "initial": self.initial_context_from_params()
-        }
-
-        return self.render_to_response(self.template_name, context)
