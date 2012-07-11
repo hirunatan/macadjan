@@ -14,6 +14,127 @@ from haystack import query
 from datetime import datetime
 
 
+class SiteInfo(models.Model):
+    '''
+    General info of the website.
+    '''
+    # Link to the site that this SiteInfo apply
+    site = models.OneToOneField(Site, related_name = 'site_info',
+            verbose_name = _(u'Sitio'),
+            help_text = _(u'Dominio al que se aplica esta info.'))
+
+    # Website data
+    website_name = models.CharField(max_length = 100, null = False, blank = False,
+            verbose_name = _(u'Nombre del sitio'),
+            help_text = _(u'Nombre global del sitio, aparece en la parte superior de todas las páginas.'))
+
+    website_subtitle = models.CharField(max_length = 100, null = False, blank = True, default = '',
+            verbose_name = _(u'Subtítulo del sitio'),
+            help_text = _(u'Un subtítulo opcional, que aparecerá debajo del nombre global'))
+
+    website_description = models.TextField(null = False, blank = False,
+            verbose_name = _(u'Descripción del sitio'),
+            help_text = _(u'Texto plano que aparece en el head html de todas las páginas.'))
+
+    footer_line = models.TextField(null = False, blank = False,
+            verbose_name = _(u'Línea pie de página'),
+            help_text = _(u'Texto HTML que aparece en la línea de pie de todas las páginas.'))
+
+    # Maximum bounds of the map
+    map_bounds_left = models.FloatField(null = False, blank = False, default = -20037508.34,
+            verbose_name = _(u'Extensión izqda'),
+            help_text = _(u'Extensión máxima del mapa (por defecto, el planeta entero).'))
+
+    map_bounds_right = models.FloatField(null = False, blank = False, default = 20037508.34,
+            verbose_name = _(u'Extensión derecha'),
+            help_text = _(u'Extensión máxima del mapa (por defecto, el planeta entero).'))
+
+    map_bounds_bottom = models.FloatField(null = False, blank = False, default = -20037508.34,
+            verbose_name = _(u'Extensión inferior'),
+            help_text = _(u'Extensión máxima del mapa (por defecto, el planeta entero).'))
+
+    map_bounds_top = models.FloatField(null = False, blank = False, default = 20037508.34,
+            verbose_name = _(u'Extensión superior'),
+            help_text = _(u'Extensión máxima del mapa (por defecto, el planeta entero).'))
+
+    # Map configuration
+    map_zoom_levels = models.IntegerField(null = False, blank = False, default = 18,
+            verbose_name = _(u'Niveles de zoom'),
+            help_text = _(u'Número total de niveles del mapa.'))
+
+    map_max_resolution = models.IntegerField(null = False, blank = False, default = 156543,
+            verbose_name = _(u'Resolución máxima'),
+            help_text = _(u'Resolución máxima del mapa.'))
+
+    map_units = models.CharField(max_length = 50, null = False, blank = False, default = 'meters',
+            verbose_name = _(u'Unidades del mapa'),
+            help_text = _(u'Unidad usada en la extensión del mapa y otros sitios.'))
+
+    # Map initial position
+    map_initial_lon = models.FloatField(null = False, blank = False,
+            verbose_name = _(u'Inicial longitud'),
+            help_text = _(u'Posición inicial del mapa (longitud).'))
+
+    map_initial_lat = models.FloatField(null = False, blank = False,
+            verbose_name = _(u'Inicial latitud'),
+            help_text = _(u'Posición inicial del mapa (latitud).'))
+
+    map_initial_zoom = models.IntegerField(null = False, blank = False,
+            verbose_name = _(u'Inicial zoom'),
+            help_text = _(u'Posición inicial del mapa (zoom).'))
+
+    # Entry proposal forms
+    new_entity_proposal_enabled = models.BooleanField(null = False, blank = True, default = False,
+            verbose_name = _(u'Activar formulario de nueva entidad.'),
+            help_text = _(u'''
+Si está activo, podrás añadir una opción de menú con url /new_entity_proposal para
+ver el formulario de proponer nuevas entidades.
+'''))
+
+    entity_change_proposal_enabled = models.BooleanField(null = False, blank = True, default = False,
+            verbose_name = _(u'Activar formulario de modificar entidad.'),
+            help_text = _(u'''
+Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario de
+proponer cambios.
+'''))
+
+    description_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Descripción'))
+    goals_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Objetivo como entidad'))
+    finances_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Finanzas'))
+    social_values_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Valores sociales y medioambientales'))
+    how_to_access_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Forma de acceso'))
+    networks_member_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Redes de las que forma parte'))
+    networks_works_with_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Otras entidades con las que colabora'))
+    ongoing_projects_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Proyectos en marcha'))
+    needs_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Necesidades'))
+    offerings_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Qué ofrece'))
+    additional_info_hints = models.TextField(null = False, blank = True, default = '',
+            verbose_name = _(u'Ayuda para Información adicional'))
+
+    def __unicode__(self):
+        return self.website_name
+
+    def save(self, *args, **kwargs):
+        super(self.__class__, self).save(*args, **kwargs)
+        # When changing SiteInfo, force reloading the current Site
+        Site.objects.clear_cache()
+
+    class Meta:
+	ordering = ['website_name']
+	verbose_name = _(u'info sitio')
+	verbose_name_plural = _(u'info sitios')
+
+
 class EntityType(models.Model):
     '''
     The organization type of the entity, structurally speaking.

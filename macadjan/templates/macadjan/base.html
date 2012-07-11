@@ -21,7 +21,6 @@
 </head>
 <body>
     {% block body %}{% endblock %}
-
     {# TODO: ver qué es esto y si hay que activarlo <script src="{% url django.views.i18n.javascript_catalog %}"></script> #}
     <script src="{% static 'js/libs/jquery-1.7.2.min.js' %}"></script>
     <script src="{% static 'js/libs/doT.min.js' %}"></script>
@@ -30,6 +29,6 @@
     <script src="{% static 'js/libs/backbone-min.js' %}"></script>
     <script src="{% static 'js/libs/yepnope.1.5.4-min.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
-    {% block extrajs %} {% endblock %}
+    {% block extrajs %}{% endblock %}
 </body>
 </html>
