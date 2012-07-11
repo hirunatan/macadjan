@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+macadjan/__init__.py
+macadjan/models.py
+macadjan.egg-info/PKG-INFO
+macadjan.egg-info/SOURCES.txt
+macadjan.egg-info/dependency_links.txt
+macadjan.egg-info/not-zip-safe
+macadjan.egg-info/requires.txt
+macadjan.egg-info/top_level.txt
