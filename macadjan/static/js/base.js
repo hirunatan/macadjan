@@ -219,7 +219,7 @@ Macadjan.Map = Backbone.View.extend({
         this.bboxStrategy = new OpenLayers.Strategy.BBOX();
         this.clusterStrategy = new OpenLayers.Strategy.Cluster({
             distance: 50,
-            threshold: 5
+            threshold: 1
         });
         this.refreshStrategy = new OpenLayers.Strategy.Refresh({
             force: true,
