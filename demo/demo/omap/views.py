@@ -1,7 +1,7 @@
 # Create your views here.
 
 from macadjan.views import Entities
-from .models import Entity
+from .models import SampleEntity
 
-class EcozoomEntities(Entities):
-    model = Entity
+class SampleEntities(Entities):
+    model = SampleEntity
