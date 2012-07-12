@@ -13,6 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
         SubCategoryInline,
     ]
 
+admin.site.register(models.SiteInfo)
 admin.site.register(models.EntityType)
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.SubCategory)

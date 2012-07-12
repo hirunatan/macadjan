@@ -32,8 +32,8 @@ class SubCategoriesResponseMixin(object):
 
 from .forms import ParamsValidationForm
 
-class MainPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
-    template_name = "macadjan/main-page.html"
+class MapPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
+    template_name = "macadjan/map-page.html"
 
     def get(self, request):
         context = {

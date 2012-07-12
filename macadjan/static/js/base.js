@@ -78,7 +78,7 @@ Macadjan.categories = new Macadjan.CategoryCollection();
 Macadjan.subCategories = new Macadjan.SubCategoryCollection();
 
 Macadjan.Map = Backbone.View.extend({
-    el: $("#map-box"),
+    el: $("#map-block"),
 
     events: {},
 

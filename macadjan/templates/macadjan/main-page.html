@@ -1,32 +1,31 @@
 {% extends "macadjan/base.html" %}
 {% load i18n %}
 
+{% block title %}{{ current_site_info.website_name }}{% endblock %}
+
 {% block body %}
 <div class="main-container" data-initial-cat="{{ initial.cat }}" data-initial-subcat="{{ initial.subcat }}">
-    <div class="header-box">
-        <h1>{{ current_site_info.website_name }}</h1>
-        {% if current_site_info.website_subtitle %}
-            <h2>{{ current_site_info.website_subtitle }}</h2>
-        {% endif %}
-    </div>
-    <div class="middle-menu-box">
-    </div>
-    <div class="middle-box">
-        <div class="middle-box-header"></div>
-        <div class="middle-box-body">
-            <div class="left map-container">
-                {% include "macadjan/map-block.html" %}
-            </div>
-            <div class="left entity-container"></div>
+    <div id="header-wrapper">
+        <div id="header-box">
+            {% include "macadjan/page-header.html" %}
         </div>
     </div>
-    <div class="footer-box"></div>
+    <div id="menu-wrapper">
+        <div id="menu-box">
+            {% include "macadjan/page-menu.html" %}
+        </div>
+    </div>
+    <div id="content-wrapper">
+        <div id="content-box">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer-box">
+            {% include "macadjan/page-footer.html" %}
+        </div>
+    </div>
 </div>
 {% endblock %}
 
-{% block extrajs %}
-
-
-
-
-{% endblock %}

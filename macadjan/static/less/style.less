@@ -1,16 +1,136 @@
-body {  background-color: red; }
-@import "bootstrap/bootstrap.less";
+/*@import "bootstrap/bootstrap.less";*/
+
+/*********************
+ * Global definitions
+ *********************/
+
+@HeaderMarginBackground: #222222;
+@HeaderBackground: #222222 url("../img/banner.jpg") right no-repeat;
+@HeaderTextColor: #eeeeee;
+
+@MenuMarginBackground: #707070 url("../img/menu-background.png") top left repeat-x;
+@MenuBackground: #707070 url("../img/menu-background.png") top left repeat-x;
+@MenuTextColor: #ffffff;
+@MenuSelectedBackground: #909090 url("../img/menu-hover.png") top left repeat-x;
+@MenuSelectedTextColor: #505050;
+
+@ContentMarginBackground: #eeeeee;
+@ContentBackground: #ffffff;
+
+@FooterMarginBackground: #eeeeee;
+@FooterBackground: #404040 url('../img/menu-background.png') top left repeat-x;
+@FooterTextColor: #ffffff;
+
+@BoxBorder: 1px solid #707070;
+@UnderlineBorder: 1px solid #404040;
+
+@DefaultFont: verdana, tahoma, arial, helvetica, sans-serif;
+@DefaultTextColor: #000000;
+
+
+/************
+ * Structure
+ ************/
 
 body {
-  padding-bottom: 40px;
+    margin: 0 0 1em 0;
+    padding: 0;
+    color: @DefaultTextColor;
+    background: @ContentMarginBackground;
+    line-height: 130%;
+    font-family: @DefaultFont;
+    text-align: center;
 }
 
+#header-wrapper {
+    background: @HeaderMarginBackground;
+    #header-box {
+        background: @HeaderBackground;
+        width: 85%;
+        height: 125px;
+        margin: 0 auto;
+        border-left: @BoxBorder;
+        border-right: @BoxBorder;
+        text-align: left;
+        h1 {
+            margin: 0;
+            padding: 50px 0 0 10px;
+            color: @HeaderTextColor;
+            font-size: 220%;
+            letter-spacing: -1px;
+        }
+        h2 {
+            margin: 0;
+            padding: 10px 0 0 10px;
+            color: @HeaderTextColor;
+            font-size: 100%;
+            letter-spacing: -1px;
+            border: none;
+        }
+    }
+}
 
-/***************
- *
- * Structure
- *
- **************/
+#menu-wrapper {
+    .menu-box {
+    }
+}
+
+#content-wrapper {
+    background: @ContentMarginBackground;
+    #content-box {
+        width: 83%; /* 83% because it has 1% padding on each side, which brings it to 85% wide */
+        margin: 0 auto;
+        padding: 1%;
+        border-left: @BoxBorder;
+        border-right: @BoxBorder;
+        background: @ContentBackground;
+        font-size: 90%;
+        text-align: left;
+    }
+}
+
+* html #content-box { padding-top: 1.8em; } /* Set padding top in IE to 20px */
+
+#search-box {
+}
+
+#list-box {
+    width: 300px;
+    float: left;
+}
+
+#map-box {
+    margin-left: 300px;
+    #map-container {
+        border: @BoxBorder;
+        height: 600px;
+        margin: 0;
+        padding: 0;
+        #map-block {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+#footer-wrapper {
+    background: @ContentMarginBackground;
+    #footer-box {
+        margin: 0 auto;
+        padding: 2px 1%;
+        width: 83%;
+        text-align: right;
+        color: @FooterTextColor;
+        letter-spacing: 0.15em;
+        background: @FooterBackground;
+        border: @BoxBorder;
+        font-size: 80%;
+    }
+}
+
+/*---------------
 
 .container{
     width: 980px;
@@ -42,3 +162,4 @@ body {
     font-size: 16px;
     border: 1px solid;
 }
+*/

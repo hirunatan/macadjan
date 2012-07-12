@@ -139,5 +139,39 @@
             "slug": "cat3-subcategoria3", 
             "name": "Cat3 - Subcategoria3"
         }
+    },
+    {
+        "pk": 1, 
+        "model": "macadjan.siteinfo", 
+        "fields": {
+            "map_bounds_top": 20037508.34, 
+            "footer_line": "testing footer", 
+            "networks_works_with_hints": "", 
+            "site": 1, 
+            "website_name": "testing", 
+            "ongoing_projects_hints": "", 
+            "description_hints": "", 
+            "website_subtitle": "testing subtitle", 
+            "map_zoom_levels": 18, 
+            "map_initial_lat": -3.86, 
+            "additional_info_hints": "", 
+            "social_values_hints": "", 
+            "map_max_resolution": 156543, 
+            "how_to_access_hints": "", 
+            "goals_hints": "", 
+            "entity_change_proposal_enabled": false, 
+            "map_initial_zoom": 6, 
+            "map_bounds_right": 20037508.34, 
+            "website_description": "testing description", 
+            "finances_hints": "", 
+            "map_units": "meters", 
+            "map_initial_lon": 40.38, 
+            "networks_member_hints": "", 
+            "new_entity_proposal_enabled": false, 
+            "offerings_hints": "", 
+            "needs_hints": "", 
+            "map_bounds_left": -20037508.34, 
+            "map_bounds_bottom": -20037508.34
+        }
     }
 ]
