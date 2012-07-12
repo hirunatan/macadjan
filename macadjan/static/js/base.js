@@ -98,6 +98,7 @@ Macadjan.MapView = Backbone.View.extend({
 
         this.selectControl = this.createSelectControl(this.poiLayer);
         this.map.addControl(this.selectControl);
+        this.selectControl.activate();
         this.poiLayer.events.on({
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect,
@@ -266,14 +267,14 @@ Macadjan.MapView = Backbone.View.extend({
         popup.maxSize = new OpenLayers.Size(500, 300);
         feature.popup = popup;
         popup.feature = feature;
-        map.addPopup(popup, true);
+        this.map.addPopup(popup, true);
     },
 
     onFeatureUnselect: function(evt) {
         var feature = evt.feature;
         if (feature.popup) {
-            popup.feature = null;
-            map.removePopup(feature.popup);
+            feature.popup.feature = null;
+            this.map.removePopup(feature.popup);
             feature.popup.destroy();
             feature.popup = null;
         }
@@ -305,6 +306,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         Macadjan.categories.on('reset', this.onResetCategories);
         Macadjan.subCategories.on('reset', this.onResetSubCategories);
 
+        this.$('#id-category-block').hide();
         this.loadList();
     },
 
@@ -314,7 +316,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         var selectCategory = this.$('#id_category');
         selectCategory.empty();
 
-        var option = self.make("option", {'value': ''}, 'Selecciona uno');
+        var option = self.make("option", {'value': ''}, 'Todos los temas');
         selectCategory.append(option);
 
         Macadjan.categories.each(function(item) {
@@ -346,7 +348,7 @@ Macadjan.MapPageView = Backbone.View.extend({
             selectSubCategory.hide();
         } else {
             selectSubCategory.empty();
-            var option = self.make("option", {'value': ''}, 'Selecciona uno');
+            var option = self.make("option", {'value': ''}, 'Todos los temas');
             selectSubCategory.append(option);
 
             var subcategories = Macadjan.subCategories.filter(
@@ -363,7 +365,9 @@ Macadjan.MapPageView = Backbone.View.extend({
         }
 
         this.$el.data('initial-cat', currentCategoryId);
+        this.$el.data('initial-subcat', '');
         this.$('#map-block').data('initial-cat', currentCategoryId);
+        this.$('#map-block').data('initial-subcat', '');
         this.refresh();
     },
 
@@ -392,10 +396,10 @@ Macadjan.MapPageView = Backbone.View.extend({
         var subCategory = Macadjan.subCategories.find(function(item) {return item.get('id') == subCat;});
         var keywords = this.$el.data('initial-keywords');
         
-        var categoryBlock = this.$('#id_category_block');
-        var categoryHeader = this.$('#id_category_header');
-        var categoryTitle = this.$('#id_category_title');
-        var categoryDescription = this.$('#id_category_description');
+        var categoryBlock = this.$('#id-category-block');
+        var categoryHeader = this.$('#id-category-header');
+        var categoryTitle = this.$('#id-category-title');
+        var categoryDescription = this.$('#id-category-description');
         if (subCategory) {
             categoryHeader.text(subCategory.get('name'));
             categoryTitle.text(subCategory.get('name'));
@@ -432,7 +436,13 @@ Macadjan.MapPageView = Backbone.View.extend({
                 bbox: '',
             },
             function(data) {
-                self.$('#list-block').html(data);
+                var listBlock = self.$('#list-block');
+                var categoryBlock = self.$('#id-category-block:visible');
+                listBlock.html(data);
+                if (categoryBlock) {
+                    var categoryBlockHeight = categoryBlock.height() + 20;  // 20 is the padding of the block
+                    listBlock.height(600 - categoryBlockHeight);
+                }
             }
         );
     },

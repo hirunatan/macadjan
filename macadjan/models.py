@@ -574,13 +574,13 @@ class Entity(models.Model):
         verbose_name_plural = _(u'entidades')
 
 
-# NOTE: don't know very well why this method is necessary, and it's not enough with the save method.
-# I don't also know what exactly happens with the fact that when we call add in this method, the
-# signal fires again. But this seems to work.
-def entity_m2m_changed_event(sender, instance, action, reverse, model, pk_set, **kwargs):
-    if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
-        if not (instance.main_subcategory in instance.subcategories.all()):
-            instance.subcategories.add(instance.main_subcategory)
-
-signals.m2m_changed.connect(entity_m2m_changed_event, sender=Entity.subcategories.through)
+## NOTE: don't know very well why this method is necessary, and it's not enough with the save method.
+## I don't also know what exactly happens with the fact that when we call add in this method, the
+## signal fires again. But this seems to work.
+#def entity_m2m_changed_event(sender, instance, action, reverse, model, pk_set, **kwargs):
+#    if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
+#        if not (instance.main_subcategory in instance.subcategories.all()):
+#            instance.subcategories.add(instance.main_subcategory)
+#
+#signals.m2m_changed.connect(entity_m2m_changed_event, sender=Entity.subcategories.through)
 

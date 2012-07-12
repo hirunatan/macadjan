@@ -1,7 +1,8 @@
                     <ul>
                         {% for entity in entities_list %}
-                        <li class="{% if entity.latitude %}with-point{% else %}without-point{% endif %}"><strong>{{ entity.name }}</strong><br/>
-                            {{ entity.description }}</li>
+                        <li class="{% if entity.latitude %}with-point{% else %}without-point{% endif %}"><strong>{{ entity.name }}</strong>
+                            {% if entity.summary %}<br/>{{ entity.summary }}{% endif %}
+                        </li>
                         {% endfor %}
                     </ul>
 

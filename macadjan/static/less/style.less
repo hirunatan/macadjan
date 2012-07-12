@@ -42,6 +42,20 @@ body {
     text-align: center;
 }
 
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
 #header-wrapper {
     background: @HeaderMarginBackground;
     #header-box {
@@ -95,8 +109,25 @@ body {
 }
 
 #list-box {
-    width: 300px;
     float: left;
+    width: 290px;
+    margin-right: 10px;
+    height: 600px;
+    #id-category-block {
+        padding: 10px 0;
+        p {
+            margin: 0;
+        }
+    }
+    #list-block {
+        height: 100%;
+        overflow: auto;
+        padding-right: 1em;
+        ul {
+            margin: 0;
+            padding: 0 0 0 15px;
+        }
+    }
 }
 
 #map-box {
