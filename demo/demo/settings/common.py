@@ -57,6 +57,8 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+# Default marker image (used for categories or subcategories that not define their own marker).
+DEFAULT_MARKER_URL = 'img/markers/icons/cluster3.png'
 
 STATIC_ROOT = os.path.join(OUT_PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
