@@ -221,29 +221,56 @@ Macadjan.Map = Backbone.View.extend({
             distance: 50,
             threshold: 5
         });
+        this.refreshStrategy = new OpenLayers.Strategy.Refresh({
+            force: true,
+            active: true,
+        });
 
         this.protocol = new OpenLayers.Protocol.HTTP({
             url: this.$el.data('api-url'),
             params: {'features': '|||'},
             format: new OpenLayers.Format.Text(),
         });
+        
+        this.style = new OpenLayers.Style({
+            pointRadius: "${radius}",
+            //fillColor: "#cc6633",
+            fillColor: "#cc1111",
+            fillOpacity: 0.9,
+            //strokeColor: "#ffcc66",
+            strokeColor: "#cc1111",
+            strokeWidth: 10,
+            strokeOpacity: 0.4,
+            label: "${count}",
+            fontColor: "#ffffff",
+        },{
+            context: {
+                radius: function(feature) {
+                    return Math.min(Math.max(feature.attributes.count, 10), 50);
+                },
+                count: function(feature) {
+                    return feature.attributes.count;
+                }
+            }
+        });
 
-        var pointsLayerInitial = {
+        var pointsLayerArgs = {
             strategies: [
                 this.bboxStrategy,
-                this.clusterStrategy
+                this.clusterStrategy,
+                this.refreshStrategy,
             ],
             protocol: this.protocol,
-            //~ styleMap: new OpenLayers.StyleMap({
-                //~ "default": cluster_style,
-                //~ "select": {
-                    //~ fillColor: "#8aeeef",
-                    //~ strokeColor: "#32a8a9"
-                //~ }
-            //~ })
+             styleMap: new OpenLayers.StyleMap({
+                 "default": this.style,
+                 "select": {
+                     fillColor: "#8aeeef",
+                     strokeColor: "#32a8a9"
+                 }
+             })
         };
 
-        return new OpenLayers.Layer.Vector("POIs", pointsLayerInitial);
+        return new OpenLayers.Layer.Vector("POIs", pointsLayerArgs);
     },
 
     createSelectControl: function(layer) {
