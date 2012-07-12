@@ -2,5 +2,6 @@
 *.pot
 *.pyc
 *.swp
+*.swo
 local_settings.py
 demo/database.sqlite
