@@ -182,12 +182,10 @@ Si no se indica marcador, se usará el marcador por defecto definido en settings
             verbose_name = _(u'Activo'),
             help_text = _(u'Indica si esta categoría está activa; si no lo está, no saldrá en el árbol de clasificación del mapa.'))
 
-    # Define one normal object manager and one custom
     objects = CategoryActiveManager()
 
     def __unicode__(self):
         return self.name
-
 
     def to_dict(self):
         return {
@@ -212,6 +210,14 @@ Si no se indica marcador, se usará el marcador por defecto definido en settings
         ordering = ['name']
         verbose_name = _(u'categoría')
         verbose_name_plural = _(u'categorías')
+
+
+class SubCategoryActiveManager(models.Manager):
+    '''With this manager you only see active subcategories.'''
+
+    def actives_only(self):
+        queryset = self.get_query_set()
+        return queryset.filter(is_active=True)
 
 
 class SubCategory(models.Model):
@@ -240,6 +246,8 @@ Si no se indica marcador, se usará el marcador de la categoría a la que perten
             verbose_name = _(u'Activo'),
             help_text = _(u'Indica si esta subcategoría está activa; si no lo está, no saldrá en el árbol de clasificación del mapa.'))
 
+    objects = SubCategoryActiveManager()
+
     def __unicode__(self):
         return u'%s - %s' % (self.category.name, self.name)
 
@@ -247,6 +255,17 @@ Si no se indica marcador, se usará el marcador de la categoría a la que perten
         if not self.slug:
             self.slug = slugify_uniquely(self.name, self.__class__)
         super(self.__class__, self).save(*args, **kwargs)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "category_id": self.category.id,
+            "slug": self.slug,
+            "description": self.description,
+            "markerUrl": self.marker_url,
+            "is_active": self.is_active,
+        }
 
     class Meta:
         ordering = ['category', 'name']

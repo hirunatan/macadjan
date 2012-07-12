@@ -82,10 +82,41 @@ Macadjan.Map = Backbone.View.extend({
 
     events: {},
 
-    initializeControls: function() {
-        this.navigationControl = new OpenLayers.Control.Navigation();
-        this.layerSwitcherControl = new OpenLayers.Control.LayerSwitcher();
-        this.panZoomControl = new OpenLayers.Control.PanZoomBar();
+    initialize: function() {
+        _.bindAll(this);
+
+        this.mapArgs = {
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            controls: [
+                new OpenLayers.Control.Navigation(),
+                new OpenLayers.Control.LayerSwitcher(),
+                new OpenLayers.Control.PanZoomBar(),
+            ],
+            maxExtent: this.parseBounds(),
+            numZoomLevels: this.parseZoomLevels(),
+            units:this.parseUnits(),
+            maxResolution: this.parseMaxResolution()
+        };
+        this.map = new OpenLayers.Map(this.$el.attr('id'), this.mapArgs);
+
+        this.osm = this.createOsmLayer();
+        this.map.addLayer(this.osm);
+
+        // Center map to initial coords
+        this.centerMap();
+
+        // Create points layer
+        this.pointsLayer = this.createPointsLayer();
+        this.map.addLayer(this.pointsLayer);
+
+        // Create select control
+        this.selectControl = this.createSelectControl(this.pointsLayer);
+        this.map.addControl(this.selectControl);
+
+        this.pointsLayer.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect,
+        });
     },
 
     parseBounds: function() {
@@ -109,45 +140,6 @@ Macadjan.Map = Backbone.View.extend({
 
     parseMaxResolution: function() {
         return 156543;
-    },
-
-    initialize: function() {
-        _.bindAll(this);
-
-        this.initializeControls();
-        this.mapInitial = {
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            controls: [
-                this.navigationControl,
-                this.layerSwitcherControl,
-                this.panZoomControl
-            ],
-            maxExtent: this.parseBounds(),
-            numZoomLevels: this.parseZoomLevels(),
-            units:this.parseUnits(),
-            maxResolution: this.parseMaxResolution()
-        };
-
-        this.map = new OpenLayers.Map(this.$el.attr('id'), this.mapInitial);
-
-        this.osm = this.createOsmLayer();
-        this.map.addLayer(this.osm);
-
-        // Center map to initial coords
-        this.centerMap();
-
-        // Create points layer
-        this.pointsLayer = this.createPointsLayer();
-        this.map.addLayer(this.pointsLayer);
-
-        // Create select control
-        this.selectControl = this.createSelectControl(this.pointsLayer);
-        this.map.addControl(this.selectControl);
-
-        this.pointsLayer.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect,
-        });
     },
 
     onFeatureSelect: function(evt) {
@@ -283,12 +275,68 @@ Macadjan.map = new Macadjan.Map();
 Macadjan.MainView = Backbone.View.extend({
     el: $("body"),
 
-    events: {},
+    events: {
+        'change #id_category': 'onChangeCategory',
+    },
 
     initialize: function() {
         _.bindAll(this);
         this.container = this.$(".main-container");
+
+        Macadjan.categories.on('reset', this.onResetCategories);
+        Macadjan.subCategories.on('reset', this.onResetSubCategories);
     },
+
+    onResetCategories: function() {
+        var self = this;
+        var selectCategory = this.$('#id_category');
+        selectCategory.empty();
+        var option = self.make("option", {'value': ''}, 'Selecciona uno');
+        selectCategory.append(option);
+        Macadjan.categories.each(function(item) {
+            var option = self.make("option", {'value': item.get('id')}, item.get('name'));
+            selectCategory.append(option);
+        })
+    },
+
+    onResetSubCategories: function() {
+        var self = this;
+        var selectSubCategory = this.$('#id_subcategory');
+        selectSubCategory.empty();
+        selectSubCategory.hide();
+    },
+
+    onChangeCategory: function(evt) {
+        var self = this;
+
+        var selectCategory = this.$('#id_category');
+        var selectSubCategory = this.$('#id_subcategory');
+        var currentCategoryId = selectCategory.val();
+
+        if (!currentCategoryId) {
+            selectSubCategory.empty();
+            selectSubCategory.hide();
+        } else {
+            selectSubCategory.empty();
+            var option = self.make("option", {'value': ''}, 'Selecciona uno');
+            selectSubCategory.append(option);
+
+            var subcategories = Macadjan.subCategories.filter(
+                function(item){
+                    return item.get('category_id') == currentCategoryId
+                }
+            );
+            _.each(subcategories, function(item) {
+                var option = self.make("option", {'value': item.get('id')}, item.get('name'));
+                selectSubCategory.append(option);
+            })
+
+            selectSubCategory.show();
+        }
+
+        Macadjan.map.protocol.params['features'] = currentCategoryId + '||';
+        Macadjan.map.refreshStrategy.refresh();
+    }
 });
 
 Macadjan.main = new Macadjan.MainView();

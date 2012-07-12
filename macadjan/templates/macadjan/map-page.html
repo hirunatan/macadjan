@@ -14,3 +14,9 @@
             <div class="cleared"/>
             {% endblock %}
 
+{% block extrajs %}
+    <script>
+        Macadjan.categories.reset({{ view.categories_as_json }});
+        Macadjan.subCategories.reset({{ view.subcategories_as_json }});
+    </script>
+{% endblock %}

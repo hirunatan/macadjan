@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.core.exceptions import ImproperlyConfigured
 from superview.views import SuperView as View
 from django.contrib.sites.models import Site
@@ -10,7 +11,7 @@ from django.utils.translation import ugettext as _
 
 from .models import Category, SubCategory
 from .utils import to_json
-from .forms import OpenLayersTileArgumentsForm
+from .forms import OpenLayersTileArgumentsForm,  ParamsValidationForm
 
 class CategoryResponseMixin(object):
     def get_categories_query_set(self):
@@ -20,8 +21,8 @@ class CategoryResponseMixin(object):
         """
         Get categories list on json format.
         """
-        return to_json([obj.to_dict() \
-            for obj in self.get_categories_query_set()])
+        return to_json([obj.to_dict() for obj in self.get_categories_query_set()])
+
 
 class SubCategoriesResponseMixin(object):
     def get_subcategories_query_set(self):
@@ -31,21 +32,16 @@ class SubCategoriesResponseMixin(object):
         """
         Get subcategory list on json format.
         """
-        return to_json([obj.to_dict() \
-            for obj in self.get_subcategories_query_set()])
+        return to_json([obj.to_dict() for obj in self.get_subcategories_query_set()])
 
-
-from .forms import ParamsValidationForm
 
 class MapPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
     template_name = "macadjan/map-page.html"
 
     def get(self, request):
         context = {
-            #"site_info":
             "initial": self.initial_context_from_params()
         }
-
         return self.render_to_response(self.template_name, context)
 
     def initial_context_from_params(self):
@@ -69,7 +65,6 @@ class Entities(View):
     model = None
 
     def get(self, request, *args, **kwargs):
-        #~ from pdb import set_trace; set_trace()
         if not self.model:
             raise ImproperlyConfigured()
 
@@ -145,30 +140,24 @@ class OpenLayersFeatures(object):
 
         features_split = self.features_string.split('|')
         if len(features_split) > 0:
-            category_slug = features_split[0]
-            if category_slug:
-                category = get_object_or_404(models.Category, slug = category_slug)
+            category_id = features_split[0]
+            if category_id:
+                category = get_object_or_404(Category, id = category_id)
 
             if len(features_split) > 1:
-                subcategory_slug = features_split[1]
-                if subcategory_slug:
-                    subcategory = get_object_or_404(models.SubCategory, slug = subcategory_slug)
+                subcategory_id = features_split[1]
+                if subcategory_id:
+                    subcategory = get_object_or_404(SubCategory, id = subcategory_id)
 
                 if len(features_split) > 2:
-                    map_source_slug = features_split[2]
-                    if map_source_slug:
-                        map_source = get_object_or_404(models.MapSource, slug = map_source_slug)
-
-                    if len(features_split) > 3:
-                        keywords = features_split[3]
+                    keywords = features_split[2]
 
         return (category, subcategory, map_source, keywords)
 
     def make_features(self, category, subcategory, map_source, keywords):
-        self.features_string = '%s|%s|%s|%s' % (category.slug if category else '',
-                                                subcategory.slug if subcategory else '',
-                                                map_source.slug if map_source else '',
-                                                keywords)
+        self.features_string = '%s|%s|%s' % (category.id if category else '',
+                                             subcategory.id if subcategory else '',
+                                             keywords)
 
 
 class OpenLayersTileArguments(object):
