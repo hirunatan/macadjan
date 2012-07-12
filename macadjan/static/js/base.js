@@ -277,6 +277,7 @@ Macadjan.MainView = Backbone.View.extend({
 
     events: {
         'change #id_category': 'onChangeCategory',
+        'change #id_subcategory': 'onChangeSubCategory',
     },
 
     initialize: function() {
@@ -335,6 +336,18 @@ Macadjan.MainView = Backbone.View.extend({
         }
 
         Macadjan.map.protocol.params['features'] = currentCategoryId + '||';
+        Macadjan.map.refreshStrategy.refresh();
+    },
+
+    onChangeSubCategory: function(evt) {
+        var self = this;
+
+        var selectCategory = this.$('#id_category');
+        var selectSubCategory = this.$('#id_subcategory');
+        var currentCategoryId = selectCategory.val();
+        var currentSubCategoryId = selectSubCategory.val();
+
+        Macadjan.map.protocol.params['features'] = currentCategoryId + '|' + currentSubCategoryId + '|';
         Macadjan.map.refreshStrategy.refresh();
     }
 });
