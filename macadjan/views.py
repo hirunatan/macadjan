@@ -3,6 +3,10 @@
 from django.http import HttpResponse
 from django.core.exceptions import ImproperlyConfigured
 from superview.views import SuperView as View
+from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from .models import Category, SubCategory
 from .utils import to_json
@@ -88,9 +92,10 @@ class Entities(View):
 
             for entity in entities_list:
                 title, description = (
-                    u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
-                                                                  reverse('base:entity', kwargs={'entity_slug': entity.slug}),
-                                                              entity.name),
+                    #~ u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
+                                                                  #~ reverse('entity', kwargs={'entity_slug': entity.slug}),
+                                                              #~ entity.name),
+                    entity.name,
                     u'<br/>%s' % entity.summary
                 )
 
@@ -103,7 +108,7 @@ class Entities(View):
                 if not marker_url:
                     marker_url = getattr(settings, 'DEFAULT_MARKER_URL', '')
                 if not marker_url:
-                    raise ValueErorr(_(u'Debes definir el DEFAULT_MARKER_URL en los settings.'))
+                    raise ValueError(_(u'Debes definir el DEFAULT_MARKER_URL en los settings.'))
 
                 text += u'%f\t%f\t%s\t%d,%d\t%d,%d\t%s\t%s\t%d,%d\n' % (entity.latitude,
                                 entity.longitude, settings.STATIC_URL + marker_url,
