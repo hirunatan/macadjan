@@ -267,7 +267,12 @@ Macadjan.Map = Backbone.View.extend({
 
     createSelectControl: function(layer) {
         return new OpenLayers.Control.SelectFeature(layer);
-    }
+    },
+
+    refresh: function(categoryId, subCategoryId, keywords) {
+        Macadjan.map.protocol.params['features'] = (categoryId || '') + '|' + (subCategoryId || '') + '|' + keywords;
+        Macadjan.map.refreshStrategy.refresh();
+    },
 });
 
 Macadjan.map = new Macadjan.Map();
@@ -278,6 +283,7 @@ Macadjan.MainView = Backbone.View.extend({
     events: {
         'change #id_category': 'onChangeCategory',
         'change #id_subcategory': 'onChangeSubCategory',
+        'click #id_keywords_submit': 'onClickKeywords',
     },
 
     initialize: function() {
@@ -335,8 +341,7 @@ Macadjan.MainView = Backbone.View.extend({
             selectSubCategory.show();
         }
 
-        Macadjan.map.protocol.params['features'] = currentCategoryId + '||';
-        Macadjan.map.refreshStrategy.refresh();
+        this.refreshMap();
     },
 
     onChangeSubCategory: function(evt) {
@@ -347,9 +352,26 @@ Macadjan.MainView = Backbone.View.extend({
         var currentCategoryId = selectCategory.val();
         var currentSubCategoryId = selectSubCategory.val();
 
-        Macadjan.map.protocol.params['features'] = currentCategoryId + '|' + currentSubCategoryId + '|';
-        Macadjan.map.refreshStrategy.refresh();
-    }
+        this.refreshMap();
+    },
+
+    onClickKeywords: function(evt) {
+        this.refreshMap();
+    },
+
+    refreshMap: function() {
+        var self = this;
+
+        var selectCategory = this.$('#id_category');
+        var selectSubCategory = this.$('#id_subcategory');
+        var inputKeywords = this.$('#id_keywords');
+
+        var currentCategoryId = selectCategory.val();
+        var currentSubCategoryId = selectSubCategory.val();
+        var currentKeywords = inputKeywords.val();
+
+        Macadjan.map.refresh(currentCategoryId, currentSubCategoryId, currentKeywords);
+    },
 });
 
 Macadjan.main = new Macadjan.MainView();

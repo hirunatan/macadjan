@@ -1,0 +1,7 @@
+{{ object.name }}
+{{ object.alias }}
+{{ object.summary }}
+{% for tag in object.tags.all %}
+  {{ tag.name }}
+{% endfor %}
+

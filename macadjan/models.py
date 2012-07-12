@@ -369,6 +369,8 @@ class EntityManager(models.Manager):
         '''
         if not keywords:
             return list(entities)
+        if not entities:
+            return []
         entities_text = query.RelatedSearchQuerySet().filter(content=keywords).load_all()
         entities_text = entities_text.load_all_queryset(Entity, entities)
         return [result.object for result in entities_text]
