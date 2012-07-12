@@ -1,7 +1,11 @@
 # Create your views here.
 
-from macadjan.views import Entities
+from macadjan.views import EntitiesText, EntitiesList
 from .models import SampleEntity
 
-class SampleEntities(Entities):
+class SampleEntitiesText(EntitiesText):
     model = SampleEntity
+
+class SampleEntitiesList(EntitiesList):
+    model = SampleEntity
+

@@ -13,7 +13,8 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'^entities/$', SampleEntities.as_view(), name='entities'),
+    url(r'^entities-text/$', SampleEntitiesText.as_view(), name='entities-text'),
+    url(r'^entities-list/$', SampleEntitiesList.as_view(), name='entities-list'),
     url(r'', include('macadjan.urls', namespace='macadjan')),
     url(r'^admin/', include(admin.site.urls)),
 )

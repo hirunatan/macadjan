@@ -2,16 +2,21 @@
 {% load i18n %}
 
             {% block content %}
-            <div id="search-box">
-                {% include "macadjan/search-box.html" %}
+            <div id="map-page" class="map-page" data-entity-list-url="{% url entities-list %}"
+                 data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}" data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}" data-initial-keywords="{{ initial.keywords }}">
+
+                <div id="search-box">
+                    {% include "macadjan/search-box.html" %}
+                </div>
+                <div id="list-box">
+                    {% include "macadjan/list-box.html" %}
+                </div>
+                <div id="map-box">
+                    {% include "macadjan/map-box.html" %}
+                </div>
+                <div class="cleared"/>
+
             </div>
-            <div id="list-box">
-                {% include "macadjan/list-box.html" %}
-            </div>
-            <div id="map-box">
-                {% include "macadjan/map-box.html" %}
-            </div>
-            <div class="cleared"/>
             {% endblock %}
 
 {% block extrajs %}

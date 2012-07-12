@@ -77,7 +77,10 @@ Macadjan.SubCategoryCollection = Backbone.Collection.extend({
 Macadjan.categories = new Macadjan.CategoryCollection();
 Macadjan.subCategories = new Macadjan.SubCategoryCollection();
 
-Macadjan.Map = Backbone.View.extend({
+
+/* Map block view. */
+
+Macadjan.MapView = Backbone.View.extend({
     el: $("#map-block"),
 
     events: {},
@@ -85,7 +88,26 @@ Macadjan.Map = Backbone.View.extend({
     initialize: function() {
         _.bindAll(this);
 
-        this.mapArgs = {
+        this.map = this.createMap();
+
+        this.osm = this.createOSMLayer();
+        this.map.addLayer(this.osm);
+
+        this.poiLayer = this.createPOILayer();
+        this.map.addLayer(this.poiLayer);
+
+        this.selectControl = this.createSelectControl(this.poiLayer);
+        this.map.addControl(this.selectControl);
+        this.poiLayer.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect,
+        });
+
+        this.centerMap();
+    },
+
+    createMap: function() {
+        var mapArgs = {
             projection: new OpenLayers.Projection('EPSG:4326'),
             controls: [
                 new OpenLayers.Control.Navigation(),
@@ -97,26 +119,86 @@ Macadjan.Map = Backbone.View.extend({
             units:this.parseUnits(),
             maxResolution: this.parseMaxResolution()
         };
-        this.map = new OpenLayers.Map(this.$el.attr('id'), this.mapArgs);
+        return new OpenLayers.Map(this.$el.attr('id'), mapArgs);
+    },
 
-        this.osm = this.createOsmLayer();
-        this.map.addLayer(this.osm);
+    createOSMLayer: function() {
+        var layer = new OpenLayers.Layer.OSM();
+        layer.transitionEffect = 'resize';
+        return layer;
+    },
 
-        // Center map to initial coords
-        this.centerMap();
-
-        // Create points layer
-        this.pointsLayer = this.createPointsLayer();
-        this.map.addLayer(this.pointsLayer);
-
-        // Create select control
-        this.selectControl = this.createSelectControl(this.pointsLayer);
-        this.map.addControl(this.selectControl);
-
-        this.pointsLayer.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect,
+    createPOILayer: function() {
+        this.bboxStrategy = new OpenLayers.Strategy.BBOX();
+        this.clusterStrategy = new OpenLayers.Strategy.Cluster({
+            distance: 50,
+            threshold: 1
         });
+        this.refreshStrategy = new OpenLayers.Strategy.Refresh({
+            force: true,
+            active: true,
+        });
+
+        this.protocol = new OpenLayers.Protocol.HTTP({
+            url: this.$el.data('api-url'),
+            params: {'features': this.parseFilter()},
+            format: new OpenLayers.Format.Text(),
+        });
+        
+        this.style = new OpenLayers.Style({
+            pointRadius: "${radius}",
+            //fillColor: "#cc6633",
+            fillColor: "#cc1111",
+            fillOpacity: 0.9,
+            //strokeColor: "#ffcc66",
+            strokeColor: "#cc1111",
+            strokeWidth: 10,
+            strokeOpacity: 0.4,
+            label: "${count}",
+            fontColor: "#ffffff",
+        },{
+            context: {
+                radius: function(feature) {
+                    return Math.min(Math.max(feature.attributes.count, 10), 50);
+                },
+                count: function(feature) {
+                    return feature.attributes.count;
+                }
+            }
+        });
+
+        var poiLayerArgs = {
+            strategies: [
+                this.bboxStrategy,
+                this.clusterStrategy,
+                this.refreshStrategy,
+            ],
+            protocol: this.protocol,
+             styleMap: new OpenLayers.StyleMap({
+                 "default": this.style,
+                 "select": {
+                     fillColor: "#8aeeef",
+                     strokeColor: "#32a8a9"
+                 }
+             })
+        };
+
+        return new OpenLayers.Layer.Vector("POIs", poiLayerArgs);
+    },
+
+    createSelectControl: function(layer) {
+        return new OpenLayers.Control.SelectFeature(layer);
+    },
+
+    centerMap: function() {
+        var initialLon = this.$el.data('initial-lon');
+        var initialLat = this.$el.data('initial-lat');
+        var initialZoom = this.$el.data('initial-zoom');
+
+        this.map.setCenter(new OpenLayers.LonLat(initialLon, initialLat).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+        ), initialZoom);
     },
 
     parseBounds: function() {
@@ -140,6 +222,13 @@ Macadjan.Map = Backbone.View.extend({
 
     parseMaxResolution: function() {
         return 156543;
+    },
+
+    parseFilter: function() {
+        var cat = this.$el.data('initial-cat') || '';
+        var subcat = this.$el.data('initial-subcat') || '';
+        var keywords = this.$el.data('initial-keywords') || '';
+        return cat + '|' + subcat + '|' + keywords
     },
 
     onFeatureSelect: function(evt) {
@@ -190,95 +279,19 @@ Macadjan.Map = Backbone.View.extend({
         }
     },
 
-    centerMap: function() {
-        var initialLon = this.$el.data('initial-lon');
-        var initialLat = this.$el.data('initial-lat');
-        var initialZoom = this.$el.data('initial-zoom');
-
-        this.map.setCenter(new OpenLayers.LonLat(initialLon, initialLat).transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
-        ), initialZoom);
-    },
-
-    createOsmLayer: function() {
-        return new OpenLayers.Layer.OSM({
-            transitionEffect: 'resize'
-        })
-    },
-
-    createPointsLayer: function() {
-        this.bboxStrategy = new OpenLayers.Strategy.BBOX();
-        this.clusterStrategy = new OpenLayers.Strategy.Cluster({
-            distance: 50,
-            threshold: 1
-        });
-        this.refreshStrategy = new OpenLayers.Strategy.Refresh({
-            force: true,
-            active: true,
-        });
-
-        this.protocol = new OpenLayers.Protocol.HTTP({
-            url: this.$el.data('api-url'),
-            params: {'features': '|||'},
-            format: new OpenLayers.Format.Text(),
-        });
-        
-        this.style = new OpenLayers.Style({
-            pointRadius: "${radius}",
-            //fillColor: "#cc6633",
-            fillColor: "#cc1111",
-            fillOpacity: 0.9,
-            //strokeColor: "#ffcc66",
-            strokeColor: "#cc1111",
-            strokeWidth: 10,
-            strokeOpacity: 0.4,
-            label: "${count}",
-            fontColor: "#ffffff",
-        },{
-            context: {
-                radius: function(feature) {
-                    return Math.min(Math.max(feature.attributes.count, 10), 50);
-                },
-                count: function(feature) {
-                    return feature.attributes.count;
-                }
-            }
-        });
-
-        var pointsLayerArgs = {
-            strategies: [
-                this.bboxStrategy,
-                this.clusterStrategy,
-                this.refreshStrategy,
-            ],
-            protocol: this.protocol,
-             styleMap: new OpenLayers.StyleMap({
-                 "default": this.style,
-                 "select": {
-                     fillColor: "#8aeeef",
-                     strokeColor: "#32a8a9"
-                 }
-             })
-        };
-
-        return new OpenLayers.Layer.Vector("POIs", pointsLayerArgs);
-    },
-
-    createSelectControl: function(layer) {
-        return new OpenLayers.Control.SelectFeature(layer);
-    },
-
-    refresh: function(categoryId, subCategoryId, keywords) {
-        Macadjan.map.protocol.params['features'] = (categoryId || '') + '|' + (subCategoryId || '') + '|' + keywords;
-        Macadjan.map.refreshStrategy.refresh();
+    refresh: function() {
+        this.protocol.params['features'] = this.parseFilter();
+        this.refreshStrategy.refresh();
     },
 });
 
-Macadjan.map = new Macadjan.Map();
+Macadjan.mapView = new Macadjan.MapView();
 
-Macadjan.MainView = Backbone.View.extend({
-    el: $("body"),
+
+/* Search box view. */
+
+Macadjan.MapPageView = Backbone.View.extend({
+    el: $("#map-page"),
 
     events: {
         'change #id_category': 'onChangeCategory',
@@ -288,10 +301,11 @@ Macadjan.MainView = Backbone.View.extend({
 
     initialize: function() {
         _.bindAll(this);
-        this.container = this.$(".main-container");
 
         Macadjan.categories.on('reset', this.onResetCategories);
         Macadjan.subCategories.on('reset', this.onResetSubCategories);
+
+        this.loadList();
     },
 
     onResetCategories: function() {
@@ -315,6 +329,9 @@ Macadjan.MainView = Backbone.View.extend({
         var selectSubCategory = this.$('#id_subcategory');
         selectSubCategory.empty();
         selectSubCategory.hide();
+    },
+
+    getCategory: function() {
     },
 
     onChangeCategory: function(evt) {
@@ -345,38 +362,81 @@ Macadjan.MainView = Backbone.View.extend({
             selectSubCategory.show();
         }
 
-        this.refreshMap();
+        this.$el.data('initial-cat', currentCategoryId);
+        this.$('#map-block').data('initial-cat', currentCategoryId);
+        this.refresh();
     },
 
     onChangeSubCategory: function(evt) {
-        var self = this;
-
-        var selectCategory = this.$('#id_category');
         var selectSubCategory = this.$('#id_subcategory');
-        var currentCategoryId = selectCategory.val();
         var currentSubCategoryId = selectSubCategory.val();
 
-        this.refreshMap();
+        this.$el.data('initial-subcat', currentSubCategoryId);
+        this.$('#map-block').data('initial-subcat', currentSubCategoryId);
+        this.refresh();
     },
 
     onClickKeywords: function(evt) {
-        this.refreshMap();
-    },
-
-    refreshMap: function() {
-        var self = this;
-
-        var selectCategory = this.$('#id_category');
-        var selectSubCategory = this.$('#id_subcategory');
         var inputKeywords = this.$('#id_keywords');
-
-        var currentCategoryId = selectCategory.val();
-        var currentSubCategoryId = selectSubCategory.val();
         var currentKeywords = inputKeywords.val();
 
-        Macadjan.map.refresh(currentCategoryId, currentSubCategoryId, currentKeywords);
+        this.$el.data('initial-keywords', currentKeywords);
+        this.$('#map-block').data('initial-keywords', currentKeywords);
+        this.refresh();
+    },
+
+    refresh: function() {
+        var cat = this.$el.data('initial-cat');
+        var category = Macadjan.categories.find(function(item) {return item.get('id') == cat;});
+        var subCat = this.$el.data('initial-subcat');
+        var subCategory = Macadjan.subCategories.find(function(item) {return item.get('id') == subCat;});
+        var keywords = this.$el.data('initial-keywords');
+        
+        var categoryBlock = this.$('#id_category_block');
+        var categoryHeader = this.$('#id_category_header');
+        var categoryTitle = this.$('#id_category_title');
+        var categoryDescription = this.$('#id_category_description');
+        if (subCategory) {
+            categoryHeader.text(subCategory.get('name'));
+            categoryTitle.text(subCategory.get('name'));
+            categoryDescription.text(subCategory.get('description'));
+            categoryBlock.show();
+        } else if (category) {
+            categoryHeader.text(category.get('name'));
+            categoryTitle.text(category.get('name'));
+            categoryDescription.text(category.get('description'));
+            categoryBlock.show();
+        } else {
+            categoryHeader.text('todos los temas');
+            categoryTitle.text('');
+            categoryDescription.text('');
+            categoryBlock.hide();
+        }
+
+        Macadjan.mapView.refresh();
+
+        this.loadList();
+    },
+
+    loadList: function() {
+        var self = this;
+
+        var cat = this.$el.data('initial-cat');
+        var subCat = this.$el.data('initial-subcat');
+        var keywords = this.$el.data('initial-keywords');
+
+        $.get(
+            this.$el.data('entity-list-url'), 
+            {
+                features: (cat || '') + '|' + (subCat || '') + '|' + keywords,
+                bbox: '',
+            },
+            function(data) {
+                self.$('#list-block').html(data);
+            }
+        );
     },
 });
 
-Macadjan.main = new Macadjan.MainView();
-
+Macadjan.mapPage = new Macadjan.MapPageView();
+ 

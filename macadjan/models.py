@@ -553,6 +553,20 @@ class Entity(models.Model):
     def get_absolute_url(self):
         return ('base:entity', (), {'id_entity': self.id})
 
+    @property
+    def marker_url(self):
+        marker_url = ''
+        main_subcategory = self.main_subcategory
+        if main_subcategory:
+            marker_url = main_subcategory.marker_url
+            if not marker_url:
+                marker_url = main_subcategory.category.marker_url
+        if not marker_url:
+            marker_url = getattr(settings, 'DEFAULT_MARKER_URL', '')
+        if not marker_url:
+            raise ValueError(_(u'Debes definir el DEFAULT_MARKER_URL en los settings.'))
+        return marker_url
+
     class Meta:
         abstract = True
         ordering = ['name']
