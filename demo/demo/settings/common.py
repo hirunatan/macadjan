@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'haystack',
     'macadjan',
     'demo.omap',
 )
@@ -170,3 +171,4 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 HAYSTACK_DEFAULT_OPERATOR = 'AND'
+
