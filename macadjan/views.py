@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from django.http import HttpResponse
 from django.core.exceptions import ImproperlyConfigured
 from superview.views import SuperView as View
 
 from .models import Category, SubCategory
 from .utils import to_json
-
+from .forms import OpenLayersTileArgumentsForm
 
 class CategoryResponseMixin(object):
     def get_categories_query_set(self):
@@ -64,17 +65,16 @@ class Entities(View):
     model = None
 
     def get(self, request, *args, **kwargs):
-
+        #~ from pdb import set_trace; set_trace()
         if not self.model:
-            # TODO: Error
-            pass
+            raise ImproperlyConfigured()
 
         text = u'lat\tlon\ticon\ticonSize\ticonOffset\ttitle\tdescription\tpopupSize\n'
 
         tile_arguments = OpenLayersTileArguments(request)
         if tile_arguments.is_valid:
 
-            entities = model.objects_active.entities_in_area(
+            entities = self.model.objects_active.entities_in_area(
                             tile_arguments.left,
                             tile_arguments.right,
                             tile_arguments.top,
@@ -82,7 +82,7 @@ class Entities(View):
                             tile_arguments.category,
                             tile_arguments.subcategory,
                             tile_arguments.map_source)
-            entities_list = model.objects_active.filter_with_keywords(
+            entities_list = self.model.objects_active.filter_with_keywords(
                                    entities,
                                    tile_arguments.keywords)
 
@@ -174,7 +174,7 @@ class OpenLayersTileArguments(object):
     It can parse the arguments from the url and also generate the features string.
     '''
     def __init__(self, request):
-        arguments_form = forms.OpenLayersTileArgumentsForm(request.GET)
+        arguments_form = OpenLayersTileArgumentsForm(request.GET)
         if arguments_form.is_valid():
             self.is_valid = True
             self.left = arguments_form.cleaned_data['left']

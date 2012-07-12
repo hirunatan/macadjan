@@ -310,7 +310,7 @@ class EntityManager(models.Manager):
         Search all entities located inside a geographical area, optionally filtering
         by category or subcategory and map_source.
         '''
-        entities = super(EntityManager, self).get_query_set().filter(
+        entities = self.get_query_set().filter(
                             longitude__gte = left, longitude__lt = right,
                             latitude__gte = bottom, latitude__lt = top)
         return self._entities_filter(entities, category, subcategory, map_source)
@@ -320,7 +320,7 @@ class EntityManager(models.Manager):
         Search all entities without geographical area, optionally filtering by category
         or subcategory and map_source.
         '''
-        entities = super(EntityManager, self).get_query_set().filter(
+        entities = self.get_query_set().filter(
                             longitude__isnull = True, latitude__isnull = True)
         return self._entities_filter(entities, category, subcategory, map_source)
 
@@ -329,7 +329,7 @@ class EntityManager(models.Manager):
         Search all entities with geographical area, optionally filtering by category
         or subcategory and map_source.
         '''
-        entities = super(EntityManager, self).get_query_set().filter(
+        entities = self.get_query_set().filter(
                             longitude__isnull = False, latitude__isnull = False)
         return self._entities_filter(entities, category, subcategory, map_source)
 

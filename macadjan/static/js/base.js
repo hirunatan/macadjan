@@ -224,7 +224,7 @@ Macadjan.Map = Backbone.View.extend({
 
         this.protocol = new OpenLayers.Protocol.HTTP({
             url: this.$el.data('api-url'),
-            params: {},
+            params: {'features': '|||'},
             format: new OpenLayers.Format.Text(),
         });
 
@@ -233,17 +233,17 @@ Macadjan.Map = Backbone.View.extend({
                 this.bboxStrategy,
                 this.clusterStrategy
             ],
-            protocol: this.protocol
-            //styleMap: new OpenLayers.StyleMap({
-            //    "default": cluster_style,
-            //    "select": {
-            //        fillColor: "#8aeeef",
-            //        strokeColor: "#32a8a9"
-            //    }
-            //}
+            protocol: this.protocol,
+            //~ styleMap: new OpenLayers.StyleMap({
+                //~ "default": cluster_style,
+                //~ "select": {
+                    //~ fillColor: "#8aeeef",
+                    //~ strokeColor: "#32a8a9"
+                //~ }
+            //~ })
         };
 
-        return new OpenLayers.Layer.Vector("POIs", this.pointsLayerInitial);
+        return new OpenLayers.Layer.Vector("POIs", pointsLayerInitial);
     },
 
     createSelectControl: function(layer) {

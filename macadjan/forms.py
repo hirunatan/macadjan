@@ -23,16 +23,16 @@ class OpenLayersTileArgumentsForm(forms.Form):
         if bbox:
             bbox_split = bbox.split(',')
             if not len(bbox_split) == 4:
-                # TODO: Error
-                pass
+                msg = u"Bbox is incorrectly formatted, have to content 4 coordinates"
+                self._errors["bbox"] = self.error_class([msg])
 
             for i, name in enumerate(['left', 'bottom', 'right', 'top']):
                 coord = bbox_split[i]
                 try:
                     float(bbox_split[i])
-                    cleaned_date[name] = coord
-                except TypeError:
-                    # TODO: Error
-                    pass
+                    cleaned_data[name] = coord
+                except ValueError:
+                    msg = u"Can't convert to float"
+                    self._errors["bbox"] = self.error_class([msg])
 
         return cleaned_data
