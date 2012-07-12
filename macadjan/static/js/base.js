@@ -296,10 +296,13 @@ Macadjan.MainView = Backbone.View.extend({
 
     onResetCategories: function() {
         var self = this;
+
         var selectCategory = this.$('#id_category');
         selectCategory.empty();
+
         var option = self.make("option", {'value': ''}, 'Selecciona uno');
         selectCategory.append(option);
+
         Macadjan.categories.each(function(item) {
             var option = self.make("option", {'value': item.get('id')}, item.get('name'));
             selectCategory.append(option);
@@ -308,6 +311,7 @@ Macadjan.MainView = Backbone.View.extend({
 
     onResetSubCategories: function() {
         var self = this;
+
         var selectSubCategory = this.$('#id_subcategory');
         selectSubCategory.empty();
         selectSubCategory.hide();

@@ -1,41 +1,43 @@
-                <table border="0" width="100%">
+                <div id="search-block" data-initial-cat="{{ initial.cat }}" data-initial-subcat="{{ initial.subcat }}">
+                    <table border="0" width="100%">
 
-                <tr>
-                <td colspan="3">
-                    Hay muchas otras formas de vivir, y miles de ejemplos, pequeños y grandes, de otra forma de hacer las cosas. ¡Encuentra el tuyo!
-                </td>
-                </tr>
+                    <tr>
+                    <td colspan="3">
+                        Hay muchas otras formas de vivir, y miles de ejemplos, pequeños y grandes, de otra forma de hacer las cosas. ¡Encuentra el tuyo!
+                    </td>
+                    </tr>
 
-                <tr>
-                <td>
-                <label for="id_keywords">Puedes usar tus propias palabras...</label><br/>
-                <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
-                <button id="id_keywords_submit">Buscar</button>
-                </td>
+                    <tr>
+                    <td>
+                    <label for="id_keywords">Puedes usar tus propias palabras...</label><br/>
+                    <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
+                    <button id="id_keywords_submit">Buscar</button>
+                    </td>
 
-                <td>
-                <label for="id_category">...O elegir el tema que más te interesa</label><br/>
-                <select id="id_category" name="category">
-                </select>
-                </td>
-
-                <td>
-                <br/>
-                <select id="id_subcategory" name="subcategory">
-                </select>
-                </td>
-                </tr>
-
-                <tr>
-                <td colspan="3">
-                    En el mapa: movimientos sociales relacionados con Gestión de residuos (reciclaje y reutilización)
-                    <select id="id_province" name="province">
-                        <option value="">en todas las provincias</option>
-                        <option value="madrid">en Madrid</option>
-                        <option value="murcia">en Murcia</option>
+                    <td>
+                    <label for="id_category">...O elegir el tema que más te interesa</label><br/>
+                    <select id="id_category" name="category">
                     </select>
-                </td>
-                </tr>
+                    </td>
 
-                </table>
+                    <td>
+                    <br/>
+                    <select id="id_subcategory" name="subcategory">
+                    </select>
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td colspan="3">
+                        En el mapa: movimientos sociales relacionados con <span id="id_category_header">todas las categorías</span>
+                        <select id="id_province" name="province">
+                            <option value="">en todas las provincias</option>
+                            <option value="madrid">en Madrid</option>
+                            <option value="murcia">en Murcia</option>
+                        </select>
+                    </td>
+                    </tr>
+
+                    </table>
+                </div>
 
