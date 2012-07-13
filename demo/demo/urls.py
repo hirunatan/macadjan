@@ -15,6 +15,8 @@ urlpatterns = patterns('',
 
     url(r'^entities-text/$', SampleEntitiesText.as_view(), name='entities-text'),
     url(r'^entities-list/$', SampleEntitiesList.as_view(), name='entities-list'),
+    url(r'^entities-list/$', SampleEntitiesList.as_view(), name='entities-list'),
+    url(r'^entity/(?P<entity_slug>[a-zA-Z0-9_\-]+)/$', SampleEntity.as_view(), name='entity'),
     url(r'', include('macadjan.urls', namespace='macadjan')),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -118,10 +118,9 @@ class EntitiesText(Entities):
 
         for entity in entities_list:
             title, description = (
-                #~ u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
-                                                              #~ reverse('entity', kwargs={'entity_slug': entity.slug}),
-                                                          #~ entity.name),
-                entity.name,
+                u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
+                                                              reverse('entity', kwargs={'entity_slug': entity.slug}),
+                                                          entity.name),
                 u'<br/>%s' % entity.summary
             )
 
@@ -142,6 +141,25 @@ class EntitiesList(Entities):
 
         context = {
             "entities_list": entities_list
+        }
+        return self.render_to_response(self.template_name, context)
+
+
+class Entity(View):
+    '''
+    Base class with a view that display the complete card of one entity.
+    '''
+
+    model = None
+    template_name = "macadjan/entity-page.html"
+
+    def get(self, request, entity_slug, *args, **kwargs):
+        if not self.model:
+            raise ImproperlyConfigured()
+
+        entity = get_object_or_404(self.model, slug = entity_slug)
+        context = {
+            'entity': entity
         }
         return self.render_to_response(self.template_name, context)
 
