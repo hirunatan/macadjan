@@ -201,6 +201,13 @@ Macadjan.MapView = Backbone.View.extend({
         ), initialZoom);
     },
 
+    zoomTo: function(lon, lat, zoom) {
+        this.map.setCenter(new OpenLayers.LonLat(lon, lat).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+        ), zoom);
+    },
+
     parseBounds: function() {
         var b = {
             "left": this.$el.data('map-bounds-left') || -20037508.34,
@@ -297,6 +304,8 @@ Macadjan.MapPageView = Backbone.View.extend({
         'change #id_category': 'onChangeCategory',
         'change #id_subcategory': 'onChangeSubCategory',
         'click #id_keywords_submit': 'onClickKeywords',
+        'click #list-block .with-point strong': 'onClickEntityNameWithPoint',
+        'click #list-block .without-point strong': 'onClickEntityNameWithoutPoint',
     },
 
     initialize: function() {
@@ -385,6 +394,19 @@ Macadjan.MapPageView = Backbone.View.extend({
         this.$el.data('initial-keywords', currentKeywords);
         this.$('#map-block').data('initial-keywords', currentKeywords);
         this.refresh();
+    },
+
+    onClickEntityNameWithPoint: function(event) {
+        var target = $(event.currentTarget);
+        var lon = target.data('entity-lon');
+        var lat = target.data('entity-lat');
+        Macadjan.mapView.zoomTo(lon, lat, 16);
+    },
+
+    onClickEntityNameWithoutPoint: function(event) {
+        var target = $(event.currentTarget);
+        var url = target.data('entity-url');
+        window.open(url);
     },
 
     refresh: function() {
