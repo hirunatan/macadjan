@@ -1,33 +1,41 @@
-                    <table border="0" width="100%">
+                    <p class="claim-line">Hay muchas otras formas de vivir, y miles de ejemplos, pequeños y grandes,
+                    de otra forma de hacer las cosas. ¡Encuentra el tuyo!</p>
 
-                    <tr>
-                    <td colspan="3">
-                        Hay muchas otras formas de vivir, y miles de ejemplos, pequeños y grandes, de otra forma de hacer las cosas. ¡Encuentra el tuyo!
-                    </td>
-                    </tr>
+                    <div id="search-form">
 
-                    <tr>
-                    <td>
-                    <label for="id_keywords">Puedes usar tus propias palabras...</label><br/>
-                    <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
-                    <button id="id_keywords_submit">Buscar</button>
-                    </td>
+                        <div class="block">
+                            <div class="column-1">
+                                <label for="id_keywords">Puedes usar tus propias palabras...</label><br/>
+                                <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
+                                <button id="id_keywords_submit">Buscar</button>
+                            </div>
 
-                    <td>
-                    <label for="id_category">...O elegir el tema que más te interesa</label><br/>
-                    <select id="id_category" name="category">
-                    </select>
-                    </td>
+                            <table border="0">
+                                <tr>
+                                    <td valign="bottom">
+                                        <label for="id_category">...O elegir el tema que más te interesa</label><br/>
+                                        <select id="id_category" name="category"></select>
+                                    </td>
+                                    <td valign="bottom">
+                                        <select id="id_subcategory" name="subcategory"></select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--
+                            <div class="column-2">
+                                <div class="column-2-1">
+                                </div>
+                                <div class="column-2-2">
+                                </div>
+                            </div>
+                            -->
 
-                    <td>
-                    <br/>
-                    <select id="id_subcategory" name="subcategory">
-                    </select>
-                    </td>
-                    </tr>
+                            <div style="clear: both;"></div>
+                        </div>
 
-                    <tr>
-                    <td colspan="3">
+                    </div>
+
+                    <p class="breadcrumb-line">
                         En el mapa: movimientos sociales relacionados con <span id="id-category-header">todos los temas</span>
                         {% comment %}
                         <select id="id_province" name="province">
@@ -36,8 +44,4 @@
                             <option value="murcia">en Murcia</option>
                         </select>
                         {% endcomment %}
-                    </td>
-                    </tr>
-
-                    </table>
-
+                    </p>

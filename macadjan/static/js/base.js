@@ -306,7 +306,6 @@ Macadjan.MapPageView = Backbone.View.extend({
         Macadjan.categories.on('reset', this.onResetCategories);
         Macadjan.subCategories.on('reset', this.onResetSubCategories);
 
-        this.$('#id-category-block').hide();
         this.loadList();
     },
 
@@ -390,6 +389,13 @@ Macadjan.MapPageView = Backbone.View.extend({
     },
 
     refresh: function() {
+        this.loadList();
+        Macadjan.mapView.refresh();
+    },
+
+    loadList: function() {
+        var self = this;
+
         var cat = this.$el.data('initial-cat');
         var category = Macadjan.categories.find(function(item) {return item.get('id') == cat;});
         var subCat = this.$el.data('initial-subcat');
@@ -404,30 +410,15 @@ Macadjan.MapPageView = Backbone.View.extend({
             categoryHeader.text(subCategory.get('name'));
             categoryTitle.text(subCategory.get('name'));
             categoryDescription.text(subCategory.get('description'));
-            categoryBlock.show();
         } else if (category) {
             categoryHeader.text(category.get('name'));
             categoryTitle.text(category.get('name'));
             categoryDescription.text(category.get('description'));
-            categoryBlock.show();
         } else {
             categoryHeader.text('todos los temas');
-            categoryTitle.text('');
+            categoryTitle.text('Todos los temas');
             categoryDescription.text('');
-            categoryBlock.hide();
         }
-
-        Macadjan.mapView.refresh();
-
-        this.loadList();
-    },
-
-    loadList: function() {
-        var self = this;
-
-        var cat = this.$el.data('initial-cat');
-        var subCat = this.$el.data('initial-subcat');
-        var keywords = this.$el.data('initial-keywords');
 
         $.get(
             this.$el.data('entity-list-url'), 
@@ -437,12 +428,10 @@ Macadjan.MapPageView = Backbone.View.extend({
             },
             function(data) {
                 var listBlock = self.$('#list-block');
-                var categoryBlock = self.$('#id-category-block:visible');
+                var categoryBlock = self.$('#id-category-block');
                 listBlock.html(data);
-                if (categoryBlock) {
-                    var categoryBlockHeight = categoryBlock.height() + 20;  // 20 is the padding of the block
-                    listBlock.height(600 - categoryBlockHeight);
-                }
+                var categoryBlockHeight = categoryBlock.height() + 30;  // 30 is the padding of the blocks
+                listBlock.height(600 - categoryBlockHeight);
             }
         );
     },
