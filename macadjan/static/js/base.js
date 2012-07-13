@@ -202,11 +202,26 @@ Macadjan.MapView = Backbone.View.extend({
     },
 
     zoomTo: function(lon, lat, zoom) {
+        /*
+        this.map.events.register('moveend', this.map, this.pru);
+        this.map.events.register('zoomend', this.map, this.pru);
+        */
+
         this.map.setCenter(new OpenLayers.LonLat(lon, lat).transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
         ), zoom);
     },
+
+    /*
+    pru: function(evt) {
+        var layer = this.map.layers['POIs'];
+        alert('kongo');
+
+        this.map.events.unregister('moveend', this.map, this.pru);
+        this.map.events.unregister('zoomend', this.map, this.pru);
+    },
+    */
 
     parseBounds: function() {
         var b = {
