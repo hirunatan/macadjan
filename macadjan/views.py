@@ -55,6 +55,16 @@ class MapPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
             return initial_context
 
         initial_context.update(form.cleaned_data)
+
+        if not initial_context.get('lat', '') or \
+           not initial_context.get('lon', '') or \
+           not initial_context.get('zoom', ''):
+
+           site_info = Site.objects.get_current().site_info
+           initial_context['lon'] = site_info.map_initial_lon
+           initial_context['lat'] = site_info.map_initial_lat
+           initial_context['zoom'] = site_info.map_initial_zoom
+
         return initial_context
 
 

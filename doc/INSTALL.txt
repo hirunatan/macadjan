@@ -1,0 +1,61 @@
+Requisites for demo (may work with older versions, not tested):
+===============================================================
+
+System dependences:
+ - sqlite3 >= 5.1
+ - Python == 2.6/2.7
+ - Python Pip
+ - Python Virtualenvwrapper
+
+See tools/requirements.txt for python dependences.
+
+
+Installing dependences on ubuntu/debian:
+----------------------------------------
+
+sudo apt-get install python2.6 python2.6-dev 
+sudo apt-get install sqlite3
+sudo apt-get install python-pip
+
+sudo pip install virtualenvwrapper
+
+Edit ~/.bashrc and add this line
+    source /usr/local/bin/virtualenvwrapper.sh
+
+Exit the shell and enter again to activate virtualenvwrapper. The first time
+you do it, the virtualenvs directory and scripts will be created.
+
+
+Creation of a virtualenv. 
+-------------------------
+
+Go to your projects directory
+
+mkvirtualenv macadjan
+
+From now on, each time you log in or enter a new shell you must type
+
+workon macadjan
+
+
+Download and install macadjan and its dependencies.
+---------------------------------------------------
+
+git clone https://github.com/hirunatan/macadjan.git
+
+cd macadjan
+
+pip install -r requirements.txt
+
+
+Use the demo site.
+------------------
+
+To test, you may use the 'demo' site, that should run out-of-the box.
+For this:
+
+cd demo
+./manage.py runserver
+
+Then, navigate to http://localhost:8000
+
