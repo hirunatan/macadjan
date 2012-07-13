@@ -149,7 +149,19 @@ body {
     .breadcrumb-line {
     }
     #search-form {
-        background: @MainBlockBackground;
+        background-image: linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
+        background-image: -o-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
+        background-image: -moz-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
+        background-image: -webkit-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
+        background-image: -ms-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
+
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.17, rgb(137,172,11)),
+            color-stop(0.59, rgb(173,221,15))
+        );
         color: @MainBlockTextColor;
         padding: 10px 15px 15px 15px;
         .column-1 {
@@ -257,3 +269,26 @@ body {
     border: 1px solid;
 }
 */
+
+#id_keywords_submit {
+    border: 1px solid #f76706;
+
+    background-image: linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
+    background-image: -o-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
+    background-image: -moz-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
+    background-image: -webkit-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
+    background-image: -ms-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.17, rgb(241,88,0)),
+        color-stop(0.59, rgb(255,153,9))
+    );
+    border: 0 none;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    height: 30px;
+    line-height: 30px;
+}

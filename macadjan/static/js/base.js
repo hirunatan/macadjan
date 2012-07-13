@@ -145,14 +145,14 @@ Macadjan.MapView = Backbone.View.extend({
             params: {'features': this.parseFilter()},
             format: new OpenLayers.Format.Text(),
         });
-        
+
         this.style = new OpenLayers.Style({
             pointRadius: "${radius}",
-            //fillColor: "#cc6633",
-            fillColor: "#cc1111",
+            fillColor: "#ff9909",
+            //fillColor: "#cc1111",
             fillOpacity: 0.9,
-            //strokeColor: "#ffcc66",
-            strokeColor: "#cc1111",
+            strokeColor: "#f15800",
+            //strokeColor: "#cc1111",
             strokeWidth: 10,
             strokeOpacity: 0.4,
             label: "${count}",
@@ -401,7 +401,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         var subCat = this.$el.data('initial-subcat');
         var subCategory = Macadjan.subCategories.find(function(item) {return item.get('id') == subCat;});
         var keywords = this.$el.data('initial-keywords');
-        
+
         var categoryBlock = this.$('#id-category-block');
         var categoryHeader = this.$('#id-category-header');
         var categoryTitle = this.$('#id-category-title');
@@ -421,7 +421,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         }
 
         $.get(
-            this.$el.data('entity-list-url'), 
+            this.$el.data('entity-list-url'),
             {
                 features: (cat || '') + '|' + (subCat || '') + '|' + keywords,
                 bbox: '',
@@ -438,4 +438,4 @@ Macadjan.MapPageView = Backbone.View.extend({
 });
 
 Macadjan.mapPage = new Macadjan.MapPageView();
- 
+
