@@ -5,3 +5,4 @@
 *.swo
 local_settings.py
 demo/database.sqlite
+demo/demo/whoosh_index/*
