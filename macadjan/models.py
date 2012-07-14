@@ -165,7 +165,7 @@ class Category(models.Model):
     '''
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'))
-    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+    slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'))
     description = models.TextField(null = False, blank = True,
             verbose_name = _(u'Descripción'))
@@ -229,7 +229,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey("macadjan.Category", related_name = 'subcategories', null = False, blank = False,
             on_delete = models.CASCADE,
             verbose_name = _(u'Categoría'))
-    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+    slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'))
     description = models.TextField(null = False, blank = True,
             verbose_name = _(u'Descripción'))
@@ -279,7 +279,7 @@ class TagCollection(models.Model):
     '''
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'))
-    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+    slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'))
 
     def __unicode__(self):
@@ -302,7 +302,7 @@ class EntityTag(models.Model):
     '''
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'))
-    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+    slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'))
     collection = models.ForeignKey("macadjan.TagCollection", related_name = 'tags', null = False, blank = False,
             on_delete = models.CASCADE,
@@ -403,7 +403,7 @@ class Entity(models.Model):
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'),
             help_text = _(u'Nombre de la entidad (para salir en el globo).'))
-    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+    slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'),
             help_text = _(u'Identificador de la entidad, sólo puede contener letras, números y el signo "_". Si lo dejas en blanco se generará automáticamente.'))
     alias = models.CharField(max_length = 100, null = False, blank = True, default = '',
