@@ -403,7 +403,7 @@ Macadjan.MapPageView = Backbone.View.extend({
                 filterLine = filterName.toLowerCase() + ' y la palabra ' + keywords;
             }
         } else {
-            filterLine = filterName;
+            filterLine = filterName.toLowerCase();
         }
         categoryHeader.text(filterLine);
         categoryTitle.text(filterName);
