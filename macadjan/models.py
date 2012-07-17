@@ -10,7 +10,7 @@ from django.template import RequestContext, Context, loader
 
 from .utils import slugify_uniquely
 
-from haystack import query
+from haystack.query import SearchQuerySet
 from datetime import datetime
 
 
@@ -324,71 +324,55 @@ class EntityTag(models.Model):
 
 class EntityManager(models.Manager):
 
-    def entities_in_area(self, left, right, top, bottom, category = None, subcategory = None, map_source = None):
+    def entities_in_area(self, left, right, top, bottom):
         '''
-        Search all entities located inside a geographical area, optionally filtering
-        by category or subcategory and map_source.
+        Search all entities located inside a geographical area.
         '''
-        entities = self.get_query_set().filter(
+        return self.get_query_set().filter(
                             longitude__gte = left, longitude__lt = right,
                             latitude__gte = bottom, latitude__lt = top)
-        return self._entities_filter(entities, category, subcategory, map_source)
 
-    def entities_without_area(self, category = None, subcategory = None, map_source = None):
+    def entities_without_area(self):
         '''
-        Search all entities without geographical area, optionally filtering by category
-        or subcategory and map_source.
+        Search all entities without geographical area.
         '''
-        entities = self.get_query_set().filter(
+        return self.get_query_set().filter(
                             longitude__isnull = True, latitude__isnull = True)
-        return self._entities_filter(entities, category, subcategory, map_source)
 
-    def entities_with_area(self, category = None, subcategory = None, map_source = None):
+    def entities_with_area(self):
         '''
-        Search all entities with geographical area, optionally filtering by category
-        or subcategory and map_source.
+        Search all entities with geographical area.
         '''
-        entities = self.get_query_set().filter(
+        return self.get_query_set().filter(
                             longitude__isnull = False, latitude__isnull = False)
-        return self._entities_filter(entities, category, subcategory, map_source)
 
-    def _entities_filter(self, base_queryset, category, subcategory, map_source):
-        entities = base_queryset
+    def filter_by_cat(self, entities, category = None, subcategory = None):
+        '''
+        Add a filter by category or subcategory.
+        '''
         if subcategory:
             entities = entities.filter(subcategories = subcategory)
         elif category:
             entities = entities.filter(subcategories__category = category).distinct()
-        if map_source:
-            entities = entities.filter(map_source = map_source)
         return entities
 
     def filter_with_keywords(self, entities, keywords):
         '''
-        Add a further filter with keywords. Warning: the returned object is no longer
-        a QuerySet, but a list.
+        Add a further filter with keywords.
         '''
         if not keywords:
             return list(entities)
         if not entities:
             return []
-        entities_text = query.RelatedSearchQuerySet().filter(content=keywords).load_all()
-        entities_text = entities_text.load_all_queryset(Entity, entities)
-        return [result.object for result in entities_text]
+        entity_ids = SearchQuerySet().filter(content=keywords).values_list('pk', flat=True)
+        entities = entities.filter(pk__in = entity_ids)
+        return entities
 
 
 class EntityActiveManager(EntityManager):
     '''With this manager you only see active entities.'''
     def get_query_set(self):
         return super(EntityActiveManager, self).get_query_set().filter(is_active = True)
-
-    def entities_in_area(self, left, right, top, bottom, category = None, subcategory = None, map_source = None):
-        return super(EntityActiveManager, self).entities_in_area(left, right, top, bottom, category, subcategory, map_source).filter(is_active = True)
-
-    def entities_without_area(self, category = None, subcategory = None, map_source = None):
-        return super(EntityActiveManager, self).entities_without_area(category, subcategory, map_source).filter(is_active = True)
-
-    def entities_with_area(self, category = None, subcategory = None, map_source = None):
-        return super(EntityActiveManager, self).entities_with_area(category, subcategory, map_source).filter(is_active = True)
 
 
 class Entity(models.Model):

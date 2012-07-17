@@ -85,25 +85,25 @@ class Entities(View):
             return []
 
         if filter_arguments.left and filter_arguments.right and \
-                        filter_arguments.top and filter_arguments.bottom:
+                       filter_arguments.top and filter_arguments.bottom:
             entities = self.model.objects_active.entities_in_area(
                             filter_arguments.left,
                             filter_arguments.right,
                             filter_arguments.top,
-                            filter_arguments.bottom,
-                            filter_arguments.category,
-                            filter_arguments.subcategory,
-                            filter_arguments.map_source)
+                            filter_arguments.bottom
+                        )
         else:
             entities = self.model.objects_active.all()
-            entities = self.model.objects_active._entities_filter(
+
+        entities = self.model.objects_active.filter_by_cat(
                             entities,
                             filter_arguments.category,
                             filter_arguments.subcategory,
-                            filter_arguments.map_source)
+                   )
         entities_list = self.model.objects_active.filter_with_keywords(
                                entities,
-                               filter_arguments.keywords)
+                               filter_arguments.keywords,
+                        )
 
         return entities_list
 
