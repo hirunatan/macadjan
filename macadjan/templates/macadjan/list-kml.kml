@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load i18n %}
+{% load l10n %}
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+  {% for entity,url in entities_urls %}
+      <Placemark id="{{ entity.id }}">
+        <name>{{ entity.name }}</name>
+        <description>
+          <![CDATA[
+            <strong><a href="{{ url }}">{{ entity.name }}</a></strong>
+            <br/><br/>
+            {{ entity.summary }}
+          ]]>
+        </description>
+        <Point>
+          <coordinates>{{ entity.longitude|unlocalize }},{{ entity.latitude|unlocalize }},0</coordinates>
+        </Point>
+      </Placemark>
+  {% endfor %}
+  </Document>
+</kml>
+

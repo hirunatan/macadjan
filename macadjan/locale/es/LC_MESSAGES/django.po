@@ -1,0 +1,1365 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-10 22:37+0200\n"
+"PO-Revision-Date: 2012-06-22 21:38\n"
+"Last-Translator:   <hirunatan@hammo.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Translated-Using: django-rosetta 0.6.5\n"
+
+#: admin.py:47
+#, python-format
+msgid "Se han activado %(num)d elementos"
+msgstr ""
+
+#: admin.py:49
+msgid "Activar todos los seleccionados"
+msgstr ""
+
+#: admin.py:53
+#, python-format
+msgid "Se han desactivado %(num)d elementos"
+msgstr ""
+
+#: admin.py:55
+msgid "Desactivar todos los seleccionados"
+msgstr ""
+
+#: admin.py:77
+#, python-format
+msgid "Se han lanzado %(num)d geolocalizaciones"
+msgstr ""
+
+#: admin.py:79
+msgid "Geolocalizar todos los seleccionados"
+msgstr ""
+
+#: forms.py:34
+msgid "Clave de seguridad"
+msgstr ""
+
+#: forms.py:35
+msgid "Introduce el texto que ves en la imagen (esto es para evitar spam)."
+msgstr ""
+
+#: models.py:18
+msgid "Sitio"
+msgstr ""
+
+#: models.py:19
+msgid "Dominio al que se aplica esta info."
+msgstr ""
+
+#: models.py:23
+msgid "Nombre del sitio"
+msgstr ""
+
+#: models.py:24
+msgid ""
+"Nombre global del sitio, aparece en la parte superior de todas las páginas."
+msgstr ""
+
+#: models.py:27
+msgid "Descripción del sitio"
+msgstr ""
+
+#: models.py:28
+msgid "Texto plano que aparece en el head html de todas las páginas."
+msgstr ""
+
+#: models.py:31
+msgid "Línea pie de página"
+msgstr ""
+
+#: models.py:32
+msgid "Texto HTML que aparece en la línea de pie de todas las páginas."
+msgstr ""
+
+#: models.py:36
+msgid "Extensión izqda"
+msgstr ""
+
+#: models.py:37 models.py:41 models.py:45 models.py:49
+msgid "Extensión máxima del mapa (por defecto, el planeta entero)."
+msgstr ""
+
+#: models.py:40
+msgid "Extensión derecha"
+msgstr ""
+
+#: models.py:44
+msgid "Extensión inferior"
+msgstr ""
+
+#: models.py:48
+msgid "Extensión superior"
+msgstr ""
+
+#: models.py:53
+msgid "Niveles de zoom"
+msgstr ""
+
+#: models.py:54
+msgid "Número total de niveles del mapa."
+msgstr ""
+
+#: models.py:57
+msgid "Resolución máxima"
+msgstr ""
+
+#: models.py:58
+msgid "Resolución máxima del mapa."
+msgstr ""
+
+#: models.py:61
+msgid "Unidades del mapa"
+msgstr ""
+
+#: models.py:62
+msgid "Unidad usada en la extensión del mapa y otros sitios."
+msgstr ""
+
+#: models.py:66
+msgid "Inicial longitud"
+msgstr ""
+
+#: models.py:67
+msgid "Posición inicial del mapa (longitud)."
+msgstr ""
+
+#: models.py:70
+msgid "Inicial latitud"
+msgstr ""
+
+#: models.py:71
+msgid "Posición inicial del mapa (latitud)."
+msgstr ""
+
+#: models.py:74
+msgid "Inicial zoom"
+msgstr ""
+
+#: models.py:75
+msgid "Posición inicial del mapa (zoom)."
+msgstr ""
+
+#: models.py:79
+msgid "Activar formulario de nueva entidad."
+msgstr ""
+
+#: models.py:80
+msgid ""
+"\n"
+"Si está activo, podrás añadir una opción de menú con url /new_entity_proposal para\n"
+"ver el formulario de proponer nuevas entidades.\n"
+msgstr ""
+
+#: models.py:86
+msgid "Activar formulario de modificar entidad."
+msgstr ""
+
+#: models.py:87
+msgid ""
+"\n"
+"Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario de\n"
+"proponer cambios.\n"
+msgstr ""
+
+#: models.py:103
+msgid "info sitio"
+msgstr ""
+
+#: models.py:104
+msgid "info sitios"
+msgstr ""
+
+#: models.py:112 models.py:136 models.py:159 models.py:205 models.py:312
+#: models.py:536 importer/converter_default.py:20
+#: importer/converter_default.py:25 importer/converter_default.py:69
+#: importer/converter_default.py:81 importer/converter_default.py:82
+msgid "Nombre"
+msgstr ""
+
+#: models.py:114 models.py:161 models.py:210 models.py:315
+msgid "Slug"
+msgstr ""
+
+#: models.py:116 models.py:163 models.py:212 models.py:397 models.py:650
+msgid "Descripción"
+msgstr ""
+
+#: models.py:118
+msgid "Web"
+msgstr ""
+
+#: models.py:119 models.py:381 models.py:634
+msgid ""
+"Página web informativa. Ojo: hay que poner la dirección completa, incluyendo"
+" http://. La dirección será validada automáticamente para comprobar que "
+"existe."
+msgstr ""
+
+#: models.py:127
+msgid "fuente de mapeo"
+msgstr ""
+
+#: models.py:128
+msgid "fuentes de mapeo"
+msgstr ""
+
+#: models.py:144
+msgid "tipo de entidad"
+msgstr ""
+
+#: models.py:145
+msgid "tipos de entidad"
+msgstr ""
+
+#: models.py:165 models.py:214
+msgid "Marcador"
+msgstr ""
+
+#: models.py:166
+msgid ""
+"\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"con el punto de inserción en el centro del borde inferior.<br/>\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador por defecto definido en settings.py.\n"
+msgstr ""
+"\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"con el punto de inserción en el centro del borde inferior.<br/>\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador por defecto definido en settings.py.<br/>\n"
+"La lista de iconos disponibles es la siguiente: https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
+
+#: models.py:174 models.py:223
+msgid "Activo"
+msgstr ""
+
+#: models.py:175
+msgid ""
+"Indica si esta categoría está activa; si no lo está, no saldrá en el árbol "
+"de clasificación del mapa."
+msgstr ""
+
+#: models.py:196
+msgid "categoría"
+msgstr ""
+
+#: models.py:197
+msgid "categorías"
+msgstr ""
+
+#: models.py:208
+msgid "Categoría"
+msgstr ""
+
+#: models.py:215
+msgid ""
+"\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"con el punto de inserción en el centro del borde inferior.<br/>\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.\n"
+msgstr ""
+"\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"con el punto de inserción en el centro del borde inferior.<br/>\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.<br/>\n"
+"La lista de iconos disponibles es la siguiente: https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
+
+#: models.py:224
+msgid ""
+"Indica si esta subcategoría está activa; si no lo está, no saldrá en el "
+"árbol de clasificación del mapa."
+msgstr ""
+
+#: models.py:237
+msgid "subcategoría"
+msgstr ""
+
+#: models.py:238
+msgid "subcategorías"
+msgstr ""
+
+#: models.py:313 models.py:537
+msgid "Nombre de la entidad (para salir en el globo)."
+msgstr ""
+
+#: models.py:316
+msgid ""
+"Identificador de la entidad, sólo puede contener letras, números y el signo "
+"\"_\". Si lo dejas en blanco se generará automáticamente."
+msgstr ""
+
+#: models.py:318 models.py:576
+msgid "Alias"
+msgstr ""
+
+#: models.py:319 models.py:577
+msgid "Un posible nombre alternativo para la entidad."
+msgstr ""
+
+#: models.py:321 models.py:579 importer/converter_default.py:26
+#: importer/converter_default.py:84
+msgid "Resumen"
+msgstr ""
+
+#: models.py:322 models.py:580
+msgid "Descripción breve (para salir en el globo)."
+msgstr ""
+
+#: models.py:326
+msgid "Es contenedor"
+msgstr ""
+
+#: models.py:327
+msgid ""
+"Indica si esta entidad puede contener otras, las cuales comparten espacio "
+"físico con ellas (ej. un CSOA, una cooperativa integral...)."
+msgstr ""
+
+#: models.py:331
+msgid "Agrupada dentro de"
+msgstr ""
+
+#: models.py:332
+msgid ""
+"Indica si esta entidad está contenida en otra (ej. un taller dentro de un "
+"CSOA)."
+msgstr ""
+
+#: models.py:336 models.py:610 importer/converter_default.py:35
+#: importer/converter_default.py:94
+msgid "Latitud"
+msgstr ""
+
+#: models.py:337
+msgid "Usa la herramienta de la derecha para obtener la latitud."
+msgstr ""
+
+#: models.py:339 models.py:613 importer/converter_default.py:36
+#: importer/converter_default.py:102
+msgid "Longitud"
+msgstr ""
+
+#: models.py:340
+msgid "Usa la herramienta de la derecha para obtener la longitud."
+msgstr ""
+
+#: models.py:342 models.py:589 importer/converter_default.py:29
+#: importer/converter_default.py:87
+msgid "Dirección (calle y nº)"
+msgstr ""
+
+#: models.py:343 models.py:590
+msgid ""
+"Tipo y nombre de vía y número. Ejemplos: C/ del Pez, 21; Av. de la "
+"ilustración, 145"
+msgstr ""
+
+#: models.py:345 models.py:592 importer/converter_default.py:30
+#: importer/converter_default.py:88
+msgid "Dirección (resto)"
+msgstr ""
+
+#: models.py:346
+msgid ""
+"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 entrada "
+"posterior."
+msgstr ""
+
+#: models.py:348 models.py:595
+msgid "Cód. postal"
+msgstr ""
+
+#: models.py:349 models.py:596
+msgid "Cinco dígitos. Ej. 28038"
+msgstr ""
+
+#: models.py:351 models.py:598 importer/converter_default.py:32
+#: importer/converter_default.py:90
+msgid "Población"
+msgstr ""
+
+#: models.py:352 models.py:599
+msgid ""
+"Nombre de la población tal como se usa en la dirección postal. Ej. Madrid, "
+"Alcorcón."
+msgstr ""
+
+#: models.py:354 models.py:601 importer/converter_default.py:33
+#: importer/converter_default.py:91 importer/converter_default_gl.py:33
+#: importer/converter_default_gl.py:91
+msgid "Provincia"
+msgstr ""
+
+#: models.py:355 models.py:602
+msgid ""
+"Nombre de la provincia, no es necesario si se llama igual que la ciudad."
+msgstr ""
+
+#: models.py:357 models.py:604
+msgid "País"
+msgstr ""
+
+#: models.py:358 models.py:605
+msgid ""
+"Nombre del país, tal como se usa en la dirección postal, si es necesario."
+msgstr ""
+
+#: models.py:360 models.py:607 importer/converter_default.py:34
+#: importer/converter_default.py:93 importer/converter_default_gl.py:34
+#: importer/converter_default_gl.py:93
+msgid "Zona"
+msgstr ""
+
+#: models.py:361 models.py:608
+msgid ""
+"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, comarca,"
+" pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
+msgstr ""
+
+#: models.py:365 models.py:618
+msgid "Teléfono contacto 1"
+msgstr ""
+
+#: models.py:366 models.py:619
+msgid "Un número de teléfono a quien llamar."
+msgstr ""
+
+#: models.py:368 models.py:621
+msgid "Teléfono contacto 2"
+msgstr ""
+
+#: models.py:369 models.py:622
+msgid "Se pueden poner dos teléfonos, ejemplo un fijo y un móvil."
+msgstr ""
+
+#: models.py:371 models.py:624 importer/converter_default.py:39
+#: importer/converter_default.py:112 importer/converter_default_gl.py:39
+#: importer/converter_default_gl.py:112
+msgid "Fax"
+msgstr ""
+
+#: models.py:372 models.py:625
+msgid "También se puede poner un número de fax."
+msgstr ""
+
+#: models.py:374 models.py:627
+msgid "Email 1"
+msgstr ""
+
+#: models.py:375 models.py:628
+msgid ""
+"Email de contacto. Ojo: poner la dirección correcta y sin añadir espacios a "
+"izquierda ni derecha. Ej. colectivo@gmail.com"
+msgstr ""
+
+#: models.py:377 models.py:630
+msgid "Email 2"
+msgstr ""
+
+#: models.py:378 models.py:631
+msgid "Se puede poner un segundo email de contacto."
+msgstr ""
+
+#: models.py:380 models.py:633 importer/converter_default.py:42
+#: importer/converter_default.py:115 importer/converter_default_gl.py:42
+#: importer/converter_default_gl.py:115
+msgid "Web 1"
+msgstr ""
+
+#: models.py:383 models.py:636 importer/converter_default.py:43
+#: importer/converter_default.py:116 importer/converter_default_gl.py:43
+#: importer/converter_default_gl.py:116
+msgid "Web 2"
+msgstr ""
+
+#: models.py:384 models.py:637
+msgid "Se puede poner una segunda página web."
+msgstr ""
+
+#: models.py:386 models.py:639
+msgid "Persona contacto"
+msgstr ""
+
+#: models.py:387 models.py:640
+msgid "Nombre de al menos una persona por quien preguntar."
+msgstr ""
+
+#: models.py:391 models.py:644
+msgid "Año creación"
+msgstr ""
+
+#: models.py:392 models.py:645
+msgid ""
+"Año en que el colectivo u organización comenzó su actividad (introducir un "
+"nº con las cuatro cifras)."
+msgstr ""
+
+#: models.py:394 models.py:647 importer/converter_default.py:46
+#: importer/converter_default.py:128
+msgid "Forma jurídica"
+msgstr ""
+
+#: models.py:395 models.py:648
+msgid ""
+"Con qué forma jurídica concreta está registrada la entidad, si lo está."
+msgstr ""
+
+#: models.py:398 models.py:651
+msgid ""
+"Aquí se puede poner una descripción general, o cualquier cosa que no entre "
+"en las casillas siguientes. Si hay poca información, puede ser suficiente "
+"con rellenar esta casilla. Alternativamente, puede no ser necesaria si se "
+"han rellenado las otras con mucha información."
+msgstr ""
+
+#: models.py:400 models.py:653 importer/converter_default.py:48
+#: importer/converter_default.py:130
+msgid "Objetivo como entidad"
+msgstr ""
+
+#: models.py:401 models.py:654
+msgid ""
+"Objetivos principales de la entidad, cuál es su razón de ser; qué ofrece a "
+"sus socios, usuarios, clientes o público en general."
+msgstr ""
+
+#: models.py:403 models.py:656 importer/converter_default.py:49
+#: importer/converter_default.py:131 importer/converter_default_gl.py:49
+#: importer/converter_default_gl.py:131
+msgid "Finanzas"
+msgstr ""
+
+#: models.py:404 models.py:657
+msgid ""
+"Indicar cómo gestiona el dinero (con/sin ánimo de lucro, precios de los "
+"productos si vende algo, fuentes de ingresos, modo de financiación...)."
+msgstr ""
+
+#: models.py:406 models.py:659 importer/converter_default.py:50
+#: importer/converter_default.py:132
+msgid "Valores sociales y medioambientales"
+msgstr ""
+
+#: models.py:407 models.py:660
+msgid ""
+"Justificación de por qué merece estar en este directorio, valores que aporta"
+" en función de nuestros criterios de selección, en tanto que relaciones "
+"humanas y cuidado del medio ambiente."
+msgstr ""
+
+#: models.py:409 models.py:662 importer/converter_default.py:51
+#: importer/converter_default.py:133
+msgid "Forma de acceso"
+msgstr ""
+
+#: models.py:410 models.py:663
+msgid ""
+"Cómo acceder a los servicios o funciones de la entidad, horarios y lugar de "
+"contacto, condiciones de participación, venta o ditribución."
+msgstr ""
+
+#: models.py:412 models.py:665 importer/converter_default.py:52
+#: importer/converter_default.py:134
+msgid "Redes de las que forma parte"
+msgstr ""
+
+#: models.py:413 models.py:666
+msgid ""
+"Indicar si esta entidad está integrada en algún tipo de redes, grupo o "
+"plataforma, junto con otras entidades."
+msgstr ""
+
+#: models.py:415 models.py:668 importer/converter_default.py:53
+#: importer/converter_default.py:135
+msgid "Otras entidades con las que colabora"
+msgstr ""
+
+#: models.py:416 models.py:669
+msgid ""
+"Indicar si esta entidad trabaja en colaboración con otras entidades o redes,"
+" aún sin formar parte de ellas."
+msgstr ""
+
+#: models.py:418 models.py:671 importer/converter_default.py:54
+#: importer/converter_default.py:136
+msgid "Proyectos en marcha"
+msgstr ""
+
+#: models.py:419 models.py:672
+msgid ""
+"Indicar, si se desea, los proyectos importantes que la entidad lleva a cabo "
+"o en los que está involucrada."
+msgstr ""
+
+#: models.py:421 models.py:674 importer/converter_default.py:55
+#: importer/converter_default.py:137 importer/converter_default_gl.py:55
+#: importer/converter_default_gl.py:137
+msgid "Necesidades"
+msgstr ""
+
+#: models.py:422 models.py:675
+msgid ""
+"Indicar si la entidad tiene actualmente alguna necesidad importante que "
+"pudiera ser cubierta por otras entidades o personas externas."
+msgstr ""
+
+#: models.py:424 models.py:677
+msgid "Qué ofrece"
+msgstr ""
+
+#: models.py:425 models.py:678
+msgid ""
+"Indicar si esta entidad está en disposición de ofrecer recursos u otros "
+"elementos que puedan ser útiles a otras entidades relacionadas o personas "
+"externas; posibilidades de colaboración."
+msgstr ""
+
+#: models.py:427 models.py:680 importer/converter_default.py:57
+#: importer/converter_default.py:139 importer/converter_default_gl.py:57
+#: importer/converter_default_gl.py:139
+msgid "Información adicional"
+msgstr ""
+
+#: models.py:428 models.py:681
+msgid "Cualquier otra información no clasificable en las casillas anteriores."
+msgstr ""
+
+#: models.py:433
+msgid "Fuente"
+msgstr ""
+
+#: models.py:434
+msgid "Colectivo encargado de crear y mantener los datos de esta entidad."
+msgstr ""
+
+#: models.py:436 models.py:568
+msgid "Fecha de alta"
+msgstr ""
+
+#: models.py:437
+msgid "Fecha y hora de alta de esta entidad en la base de datos."
+msgstr ""
+
+#: models.py:439 models.py:571
+msgid "Fecha de última modificación"
+msgstr ""
+
+#: models.py:440
+msgid "Fecha y hora de última modificación de esta entidad."
+msgstr ""
+
+#: models.py:444
+msgid "Activa"
+msgstr ""
+
+#: models.py:445
+msgid ""
+"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa ni "
+"en los listados."
+msgstr ""
+
+#: models.py:450 models.py:542 importer/converter_default.py:27
+#: importer/converter_default.py:150
+msgid "Tipo de entidad"
+msgstr ""
+
+#: models.py:451 models.py:543
+msgid "De qué tipo organizativo es la entidad, estructuralmente hablando."
+msgstr ""
+
+#: models.py:457 models.py:548
+msgid "Categoría principal"
+msgstr ""
+
+#: models.py:458
+msgid ""
+"Determinará el tipo de icono en el mapa. Esta categoría deberá estar "
+"incluida en la lista de más abajo; si no, será añadida automáticamente."
+msgstr ""
+
+#: models.py:461 models.py:584 importer/converter_default.py:20
+#: importer/converter_default.py:28 importer/converter_default.py:159
+#: importer/converter_default_gl.py:20 importer/converter_default_gl.py:28
+#: importer/converter_default_gl.py:159
+msgid "Categorías"
+msgstr ""
+
+#: models.py:506
+msgid "entidad"
+msgstr ""
+
+#: models.py:507
+msgid "entidades"
+msgstr ""
+
+#: models.py:526
+msgid "Pendiente"
+msgstr ""
+
+#: models.py:527
+msgid "Aceptada"
+msgstr ""
+
+#: models.py:528
+msgid "Rechazada"
+msgstr ""
+
+#: models.py:533
+msgid "Entidad existente"
+msgstr ""
+
+#: models.py:534
+msgid ""
+"Indica si esta propuesta es para cambiar los datos de una entidad existente "
+"(nulo si es para crear una entidad nueva)."
+msgstr ""
+
+#: models.py:549
+msgid "Determinará el tipo de icono en el mapa."
+msgstr ""
+
+#: models.py:553
+msgid "Email de quien hace la propuesta"
+msgstr ""
+
+#: models.py:554
+msgid ""
+"Si nos indicas tu email, te notificaremos cuando la procesemos y te podremos"
+" contactar para resolver dudas."
+msgstr ""
+
+#: models.py:556
+msgid "Comentarios de la propuesta"
+msgstr ""
+
+#: models.py:557
+msgid "Cualquier cosa que nos quieras comentar acerca de la propuesta."
+msgstr ""
+
+#: models.py:563
+msgid "Estado de la propuesta"
+msgstr ""
+
+#: models.py:565
+msgid "Información del estado"
+msgstr ""
+
+#: models.py:566
+msgid ""
+"Notas sobre la propuesta o información de por qué se ha aceptado o "
+"rechazado."
+msgstr ""
+
+#: models.py:569
+msgid "Fecha y hora de envío de esta propuesta."
+msgstr ""
+
+#: models.py:572
+msgid "Fecha y hora de última modificación de esta propuesta."
+msgstr ""
+
+#: models.py:585
+msgid ""
+"Puedes indicar otras categorías para clasificar mejor la entidad, y que "
+"aparezca en distintas opciones de búsqueda."
+msgstr ""
+
+#: models.py:593
+msgid ""
+"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 entrada "
+"posterior"
+msgstr ""
+
+#: models.py:611
+msgid ""
+"Puedes introducir directamente las coordenadas (latitud) si las conoces. Ej."
+" 41.058244"
+msgstr ""
+
+#: models.py:614
+msgid ""
+"Puedes introducir directamente las coordenadas (longitud) si las conoces. "
+"Ej. -3.533563"
+msgstr ""
+
+#: models.py:684
+#, python-format
+msgid "Propuesta: %s"
+msgstr ""
+
+#: models.py:716
+msgid "propuesta de entidad"
+msgstr ""
+
+#: models.py:717
+msgid "propuestas de entidades"
+msgstr ""
+
+#: views.py:253
+msgid "Debes definir el DEFAULT_MARKER_URL en los settings."
+msgstr ""
+
+#: views.py:304
+msgid "Ha habido errores en la importación"
+msgstr ""
+
+#: views.py:306
+msgid "Se ha completado la importación sin errores"
+msgstr ""
+
+#: views.py:311
+msgid "No se han podido importar los datos"
+msgstr ""
+
+#: views.py:387
+msgid "Ha habido algún error, comprueba los mensajes más abajo."
+msgstr ""
+
+#: importer/archive_csv.py:62
+msgid "Debes configurar el archivo antes de empezar a leer"
+msgstr ""
+
+#: importer/converter_base.py:35
+msgid "Error general"
+msgstr ""
+
+#: importer/converter_base.py:41
+#, python-format
+msgid "Error en elemento %(number)d"
+msgstr ""
+
+#: importer/converter_base.py:46
+msgid "Error cerrando el archivo"
+msgstr ""
+
+#: importer/converter_base.py:69
+msgid "No se pueden consultar los errores antes de importar."
+msgstr ""
+
+#: importer/converter_default.py:23 importer/converter_default_gl.py:23
+msgid "El archivo no es un csv con el formato esperado"
+msgstr ""
+
+#: importer/converter_default.py:31 importer/converter_default.py:89
+#: importer/converter_default_gl.py:31 importer/converter_default_gl.py:89
+msgid "C.P."
+msgstr ""
+
+#: importer/converter_default.py:37 importer/converter_default.py:110
+#: importer/converter_default_gl.py:37 importer/converter_default_gl.py:110
+msgid "Teléfono 1"
+msgstr ""
+
+#: importer/converter_default.py:38 importer/converter_default.py:111
+#: importer/converter_default_gl.py:38 importer/converter_default_gl.py:111
+msgid "Teléfono 2"
+msgstr ""
+
+#: importer/converter_default.py:40 importer/converter_default.py:113
+#: importer/converter_default_gl.py:40 importer/converter_default_gl.py:113
+msgid "Correo electrónico 1"
+msgstr ""
+
+#: importer/converter_default.py:41 importer/converter_default.py:114
+#: importer/converter_default_gl.py:41 importer/converter_default_gl.py:114
+msgid "Correo electrónico 2"
+msgstr ""
+
+#: importer/converter_default.py:44 importer/converter_default.py:117
+msgid "Persona de contacto"
+msgstr ""
+
+#: importer/converter_default.py:45 importer/converter_default.py:118
+msgid "Año de creación"
+msgstr ""
+
+#: importer/converter_default.py:47 importer/converter_default.py:129
+msgid "Descripción general"
+msgstr ""
+
+#: importer/converter_default.py:56 importer/converter_default.py:138
+msgid "Ofrecimientos"
+msgstr ""
+
+#: importer/converter_default.py:58 importer/converter_default.py:140
+msgid "Fecha última actualización"
+msgstr ""
+
+#: importer/converter_default.py:61 importer/converter_default_gl.py:61
+#, python-format
+msgid ""
+"El archivo no es un csv válido de Macadjan versión 03/04/2012, no se "
+"encuentran las siguientes columnas: %(missing_columns)s"
+msgstr ""
+
+#: importer/converter_default.py:99 importer/converter_default_gl.py:99
+#, python-format
+msgid "Valor de latitud incorrecto %(lat)s"
+msgstr ""
+
+#: importer/converter_default.py:107 importer/converter_default_gl.py:107
+#, python-format
+msgid "Valor de longitud incorrecto %(long)s"
+msgstr ""
+
+#: importer/converter_default.py:125 importer/converter_default_gl.py:125
+msgid "El año de creación debe ser un nº de cuatro dígitos"
+msgstr ""
+
+#: importer/converter_default.py:145 importer/converter_default_gl.py:145
+msgid ""
+"Fecha de última actualización incorrecta, el formato debe ser DD/MM/YYYY"
+msgstr ""
+
+#: importer/converter_default.py:154 importer/converter_default_gl.py:154
+#, python-format
+msgid "No se encuentra el tipo de entidad %(type)s"
+msgstr ""
+
+#: importer/converter_default.py:164
+msgid "No se encuentra la categoría %(cat)s - %(subcat)"
+msgstr ""
+
+#: importer/converter_default_gl.py:20 importer/converter_default_gl.py:25
+#: importer/converter_default_gl.py:69 importer/converter_default_gl.py:81
+#: importer/converter_default_gl.py:82
+msgid "Nome / Nombre"
+msgstr ""
+
+#: importer/converter_default_gl.py:26 importer/converter_default_gl.py:84
+msgid "Resume / Resumen"
+msgstr ""
+
+#: importer/converter_default_gl.py:27 importer/converter_default_gl.py:150
+msgid "Tipo de entidade / entidad"
+msgstr ""
+
+#: importer/converter_default_gl.py:29 importer/converter_default_gl.py:87
+msgid "Enderezo (rúa e nº) / Dirección (calle y nº)"
+msgstr ""
+
+#: importer/converter_default_gl.py:30 importer/converter_default_gl.py:88
+msgid "Enderezo (resto) / Dirección (resto)"
+msgstr ""
+
+#: importer/converter_default_gl.py:32 importer/converter_default_gl.py:90
+msgid "Poboación / Población"
+msgstr ""
+
+#: importer/converter_default_gl.py:35
+msgid "Latitude / Latitud"
+msgstr ""
+
+#: importer/converter_default_gl.py:36 importer/converter_default_gl.py:102
+msgid "Lonxitude / Longitud"
+msgstr ""
+
+#: importer/converter_default_gl.py:44 importer/converter_default_gl.py:117
+msgid "Persoa / Persona de contacto"
+msgstr ""
+
+#: importer/converter_default_gl.py:45 importer/converter_default_gl.py:118
+msgid "Ano / Año de creación"
+msgstr ""
+
+#: importer/converter_default_gl.py:46 importer/converter_default_gl.py:128
+msgid "Forma xurídica / jurídica"
+msgstr ""
+
+#: importer/converter_default_gl.py:47 importer/converter_default_gl.py:129
+msgid "Descrición xeral / Descripción general"
+msgstr ""
+
+#: importer/converter_default_gl.py:48 importer/converter_default_gl.py:130
+msgid "Obxetivo como entidade / Objetivo como entidad"
+msgstr ""
+
+#: importer/converter_default_gl.py:50 importer/converter_default_gl.py:132
+msgid ""
+"Valores sociais e medioambientais / Valores sociales y medioambientales"
+msgstr ""
+
+#: importer/converter_default_gl.py:51 importer/converter_default_gl.py:133
+msgid "Forma de aceso / acceso"
+msgstr ""
+
+#: importer/converter_default_gl.py:52 importer/converter_default_gl.py:134
+msgid "Redes das que forma parte / Redes de las que forma parte"
+msgstr ""
+
+#: importer/converter_default_gl.py:53 importer/converter_default_gl.py:135
+msgid ""
+"Outras entidades coas que colabora / Otras entidades con las que colabora"
+msgstr ""
+
+#: importer/converter_default_gl.py:54 importer/converter_default_gl.py:136
+msgid "Proxectos en marcha / Proyectos en marcha"
+msgstr ""
+
+#: importer/converter_default_gl.py:56 importer/converter_default_gl.py:138
+msgid "Ofrecemientos / Ofrecimientos"
+msgstr ""
+
+#: importer/converter_default_gl.py:58 importer/converter_default_gl.py:140
+msgid "Data da última actualización / Fecha de la última actualización"
+msgstr ""
+
+#: importer/converter_default_gl.py:94
+msgid "Latitude / Latitud "
+msgstr ""
+
+#: importer/converter_default_gl.py:164
+#, python-format
+msgid "No se encuentra la categoría %(cat)s - %(subcat)s"
+msgstr ""
+
+#: importer/import_page_base.py:36
+#, python-format
+msgid "Error importando módulo %(module)s: \"%(error_msg)s\")"
+msgstr ""
+
+#: importer/import_page_base.py:41
+#, python-format
+msgid "El módulo \"%(module)s\" no contiene una clase \"%(class_name)s\"."
+msgstr ""
+
+#: importer/import_page_base.py:44
+#, python-format
+msgid "La clase \"%(class_name)s\" no es una subclase de \"ImporPage\""
+msgstr ""
+
+#: importer/import_page_default.py:23
+msgid "Importar desde un fichero csv"
+msgstr ""
+
+#: importer/import_page_default.py:30 importer/import_page_default_gl.py:30
+msgid ""
+"<p>Necesitas un fichero creado a partir de la hoja de cálculo de carga de "
+"ficheros, y guardada en formato csv.</p>"
+msgstr ""
+
+#: importer/import_page_default.py:66 importer/import_page_default_gl.py:66
+msgid "Selecciona un fichero csv"
+msgstr ""
+
+#: importer/import_page_default.py:68 importer/import_page_default_gl.py:68
+msgid "Indica la fuente de datos"
+msgstr ""
+
+#: importer/import_page_default_gl.py:23
+msgid "Importar desde un fichero csv (galego)"
+msgstr ""
+
+#: templates/macadjan_base/ajax_entity_list.html:18
+msgid "Ver en el mapa"
+msgstr ""
+
+#: templates/macadjan_base/ajax_entity_list.html:26
+msgid "anterior"
+msgstr ""
+
+#: templates/macadjan_base/ajax_entity_list.html:28
+#, python-format
+msgid ""
+"\n"
+"            Página <span class=\"number\">%(page_number)s</span> de %(total_pages)s.\n"
+"        "
+msgstr ""
+
+#: templates/macadjan_base/ajax_entity_list.html:32
+msgid "siguiente"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:16
+msgid "Tipo de entidad:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:20
+#, python-format
+msgid "<p>Es parte de %(name)s</p>"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:25
+msgid "Dirección:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:32
+msgid "Zona de influencia:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:36
+msgid "Teléfono de contacto:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:39
+msgid "Teléfono de contacto 2:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:42
+msgid "Fax:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:46
+msgid "Email:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:49
+msgid "Email 2:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:53
+msgid "Web:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:56
+msgid "Web 2:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:60
+msgid "Persona de contacto:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:64
+msgid "Año de creación:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:68
+msgid "Forma jurídica:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:72
+msgid "Descripción:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:76
+msgid "Objetivo como entidad:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:80
+msgid "Finanzas:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:84
+msgid "Valores sociales y medioambientales:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:88
+msgid "Forma de acceso:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:92
+msgid "Redes de las que forma parte:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:96
+msgid "Otras entidades con las que colabora:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:100
+msgid "Proyectos en marcha:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:104
+msgid "Necesidades:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:108
+msgid "Ofrecimientos:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:112
+msgid "Información adicional:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:117
+msgid "Categorías:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:130
+msgid "Fuente de los datos:"
+msgstr ""
+
+#: templates/macadjan_base/entity.html:133
+msgid "Última actualización de la ficha:"
+msgstr ""
+
+#: templates/macadjan_base/import_finish.html:17
+#: templates/macadjan_base/import_select.html:8
+msgid "Importación de datos"
+msgstr ""
+
+#: templates/macadjan_base/import_finish.html:23
+msgid "Volver atrás"
+msgstr ""
+
+#: templates/macadjan_base/import_finish.html:25
+msgid "Se han actualizado las siguientes entidades:"
+msgstr ""
+
+#: templates/macadjan_base/import_finish.html:37
+msgid "Volver al principio"
+msgstr ""
+
+#: templates/macadjan_base/import_select.html:11
+msgid ""
+"No hay ningún tipo de importador registrado. Si quieres importar datos automáticamente desde\n"
+"        fichero, deberás instalar uno (consulta con el administrador del mapa)."
+msgstr ""
+
+#: templates/macadjan_base/import_select.html:14
+msgid "Selecciona el tipo de fichero que quieres importar:"
+msgstr ""
+
+#: templates/macadjan_base/import_select.html:25
+msgid ""
+"ATENCIÓN: antes de proceder, se recomienta encarecidamente\n"
+"            hacer una copia de seguridad de la base de datos."
+msgstr ""
+
+#: templates/macadjan_base/import_select.html:30
+msgid "Volver al panel de administración"
+msgstr ""
+
+#: templates/macadjan_base/map.html:18
+msgid "Selecciona categorías"
+msgstr ""
+
+#: templates/macadjan_base/map.html:21 templates/macadjan_base/map.html:37
+msgid "Todos"
+msgstr ""
+
+#: templates/macadjan_base/map.html:33
+msgid "Selecciona subcategorías"
+msgstr ""
+
+#: templates/macadjan_base/map.html:49
+msgid "Busqueda"
+msgstr ""
+
+#: templates/macadjan_base/map.html:52
+msgid "Texto a buscar..."
+msgstr ""
+
+#: templates/macadjan_base/map.html:59
+#, python-format
+msgid ""
+"\n"
+"<p>Bienvenid@ a %(websitename)s. Puedes elegir una categoría y opcionalmente\n"
+"una subcategoría para afinar el filtro de lo que estás buscando, o bien consultar todas las\n"
+"entidades si no seleccionas nada.</p>\n"
+msgstr ""
+"\n"
+"<p>Bienvenid@ a %(websitename)s. Navega a través del árbol de categorías o usa la herramienta de búsqueda para buscar palabras clave en las  fichas de cada entidad (como productos o valores sociales), </p>\n"
+
+#: templates/macadjan_base/map.html:77 templates/macadjan_base/map.html:83
+#: templates/macadjan_base/map.html:88
+msgid "Debes tener un navegador que soporte iframes para poder ver el mapa."
+msgstr ""
+
+#: templates/macadjan_base/map.html:117
+#, python-format
+msgid ""
+"Acceder al <a href=\"%(admin_url)s\" target=\"_blank\">panel de "
+"administración</a>"
+msgstr ""
+
+#: templates/macadjan_base/map_iframe.html:19
+msgid "Mapa"
+msgstr ""
+
+#: templates/macadjan_base/map_iframe.html:21
+msgid "Entidades del mapa"
+msgstr ""
+
+#: templates/macadjan_base/map_iframe.html:23
+msgid "Entidades sin ubicación geográfica"
+msgstr ""
+
+#: templates/macadjan_base/map_source.html:12
+msgid "Página web"
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal.html:5
+#: templates/macadjan_base/new_entity_proposal_iframe.html:7
+#: templates/macadjan_base/new_entity_proposal_ok.html:7
+msgid "Proponer nueva entidad"
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal.html:10
+msgid ""
+"Debes tener un navegador que soporte iframes para poder ver el formulario."
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal_iframe.html:12
+#: templates/macadjan_base/new_entity_proposal_ok.html:11
+msgid "Proponer una nueva entidad"
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal_iframe.html:13
+msgid ""
+"\n"
+"        <p>¿Quieres aparecer en el mapa? Rellena este formulario y te daremos de alta.</p>\n"
+"        <p>Asegúrate de ser la persona titular de esta información, o de contar con su autorización.</p>\n"
+"        <p>Las casillas con (*) son obligatorias, el resto son opcionales, pero cuanto más información nos des,\n"
+"        más útil será la ficha para los visitantes del mapa. Como mínimo procura rellenar la casilla Descripción\n"
+"        y algún dato de contacto (teléfono, web, email, etc.). Además deberás rellenar la dirección o bien las\n"
+"        casillas Latitud/Longitud si quieres salir en el mapa; de lo contrario la entidad aparecerá listada en\n"
+"        la pestaña \"Entidades sin ubicación geográfica\".</p>\n"
+"    "
+msgstr ""
+"\n"
+"<p>¿Quieres aparecer en el mapa? Rellena este formulario y te daremos de alta.</p>\n"
+"<p>Asegúrate de ser la persona titular de esta información, o de contar con su autorización.</p>\n"
+"<p>Las casillas con (*) son obligatorias, el resto son opcionales, pero cuanto más información nos des,\n"
+"más útil será la ficha para los visitantes del mapa. Como mínimo procura rellenar la casilla Descripción\n"
+"y algún dato de contacto (teléfono, web, email, etc.). Además deberás rellenar la dirección o bien las\n"
+"casillas Latitud/Longitud si quieres salir en el mapa; de lo contrario la entidad aparecerá listada en\n"
+"la pestaña \"Entidades sin ubicación geográfica\".</p>"
+
+#: templates/macadjan_base/new_entity_proposal_iframe.html:60
+msgid "Enviar"
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal_iframe.html:63
+msgid ""
+"\n"
+"            <p>La información aquí enviada, en caso de ser aprobada, pasará a formar parte de la base de datos de\n"
+"            este mapa con el fin de ser mostrada públicamente en el mismo, o también posiblemente en otro de los\n"
+"            mapas de la red de mapeo de alternativas en la que este mapa está integrado.</p>\n"
+"            <p>Una excepción son las casillas \"Email de quien hace la propuesta\" y \"Comentarios de la propuesta\",\n"
+"            que no se mostrarán nunca al público, y serán usadas exclusivamente para ponernos en contacto con esa\n"
+"            persona y notificar el estado de la propuesta, si es o no aceptada, y por qué.</p>\n"
+"            <p>En cualquier caso, quien hace la propuesta o la entidad en sí puede contactar con nosotros para\n"
+"            consultar, modificar o borrar cualquiera de los datos, consultando la sección de contacto de esta web.</p>\n"
+"            "
+msgstr ""
+
+#: templates/macadjan_base/new_entity_proposal_ok.html:12
+msgid ""
+"Tu propuesta ha sido enviada, la revisaremos y la incluiremos en el mapa lo "
+"antes posible. Comprueba tu correo, te hemos enviado un mensaje de "
+"confirmación."
+msgstr ""

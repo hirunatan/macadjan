@@ -360,10 +360,8 @@ class EntityManager(models.Manager):
         '''
         Add a further filter with keywords.
         '''
-        if not keywords:
-            return list(entities)
-        if not entities:
-            return []
+        if not keywords or not entities:
+            return entities
         entity_ids = SearchQuerySet().filter(content=keywords).values_list('pk', flat=True)
         entities = entities.filter(pk__in = entity_ids)
         return entities

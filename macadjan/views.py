@@ -78,7 +78,7 @@ class Entities(View):
 
     def find_entities(self, request, *args, **kwargs):
         if not self.model:
-            raise ImproperlyConfigured()
+            raise ImproperlyConfigured(_(u'You must subclass Entities view and define the model.'))
 
         filter_arguments = OpenLayersTileArguments(request)
         if not filter_arguments.is_valid:
@@ -138,11 +138,46 @@ class EntitiesList(Entities):
 
     def get(self, request, *args, **kwargs):
         entities_list = self.find_entities(request, *args, **kwargs)
-
         context = {
             "entities_list": entities_list
         }
         return self.render_to_response(self.template_name, context)
+
+
+class EntitiesKml(Entities):
+    '''Get entities list as a KML file.'''
+
+    template_name = "macadjan/list-kml.kml"
+
+    def get(self, request, *args, **kwargs):
+        entities_list = self.find_entities(request, *args, **kwargs)
+        entities_list = entities_list.order_by('-modification_date')
+        entities_urls = [(entity, 'http://' + Site.objects.get_current().domain +
+                                  reverse('entity', kwargs={'entity_slug': entity.slug}))
+                         for entity in entities_list]
+        context = {
+            "entities_urls": entities_urls
+        }
+        return self.render_to_response(self.template_name, context,
+                    mimetype = 'application/vnd.google-earth.kml+xml')
+
+
+class EntitiesGeoRSS(Entities):
+    '''Get entities list as a GeoRSS file.'''
+
+    template_name = "macadjan/list-georss.xml"
+
+    def get(self, request, *args, **kwargs):
+        entities_list = self.find_entities(request, *args, **kwargs)
+        entities_list = entities_list.order_by('-modification_date')
+        entities_urls = [(entity, 'http://' + Site.objects.get_current().domain +
+                                  reverse('entity', kwargs={'entity_slug': entity.slug}))
+                         for entity in entities_list]
+        context = {
+            "entities_urls": entities_urls
+        }
+        return self.render_to_response(self.template_name, context,
+            mimetype = 'application/rss+xml')
 
 
 class Entity(View):

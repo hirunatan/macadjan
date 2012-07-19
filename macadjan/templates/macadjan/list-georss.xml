@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+{% load i18n %}
+{% load l10n %}
+<feed xmlns="http://www.w3.org/2005/Atom" 
+      xmlns:georss="http://www.georss.org/georss">
+  <title>Feed GeoRSS Simple para {{ site.site_info.website_name }}</title>
+  <subtitle></subtitle>
+  <link href="{{ site.domain}}"/>
+  <updated></updated>
+  <author>
+    <name>Hirunatan</name>
+    <email>hirunatan@riseup.net</email>
+  </author>
+  <id></id>
+
+  {% for entity,url in entities_urls %}
+  <entry>
+    <title>{{ entity.name }}</title>
+    <link href="{{ url }}"/>
+    <id>{{ entity.id }}</id>
+    <updated>{{ entity.modification_date }}</updated>
+    <summary>{{ entity.summary }}</summary>
+    <georss:point>{{ entity.latitude }} {{ entity.longitude }}</georss:point>
+  </entry>
+  {% endfor %}
+</feed>
