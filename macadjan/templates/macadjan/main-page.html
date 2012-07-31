@@ -1,8 +1,28 @@
 {% extends "macadjan/base.html" %}
 {% load i18n %}
 
+<!--
+The parent base.html defines a HTML5 header, with flags and utilities to help being compatible
+with all browsers and some advanced style and script utilities:
+ - less for 'intelligent css'
+ - modernizr to smoothly evolve from old browsers
+ - jquery for advanced dom processing
+ - doT fror client-side templates
+ - json2 to process json from javascript
+ - backbone & underscore to do real 'object-oriented' javascript
+ - yepnope to control script loading
+-->
+
+<!-- Default title is the website name; almost all subtemplates redefine this -->
 {% block title %}{{ current_site_info.website_name }}{% endblock %}
 
+<!-- Here you can define additional meta headers -->
+{% block meta %}{% endblock %}
+
+<!-- Here you can put a class or other attributes to the body -->
+{% block bodyclass %}{% endblock %}
+
+<!-- This is the actual body of the page --> 
 {% block body %}
 <div class="main-container">
     <div id="header-wrapper">
@@ -28,4 +48,7 @@
     </div>
 </div>
 {% endblock %}
+
+<!-- Here you put the scripts (at the bottom of the page) -->
+{% block extrajs %}{% endblock %}
 

@@ -1,7 +1,9 @@
-                    <div id="map-block" class="map-block"
-                        data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}" data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}" data-initial-keywords="{{ initial.keywords }}"
-                        data-initial-lon="{{ initial.lon }}" data-initial-lat="{{ initial.lat }}" data-initial-zoom="{{ initial.zoom }}"
-                        data-api-url="{% url entities-text %}"
-                        data-map-bounds-left="{{ map_bounds.left }}" data-map-bounds-right="{{ map_bounds.right }}"
-                        data-map-bounds-top="{{ map_bounds.top }}" data-map-bounds-bottom="{{ map_bounds.bottom }}">
-                    </div>
+<div id="map-block" class="map-block"
+    data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}"
+    data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}"
+    data-initial-lon="{{ initial.lon }}" data-initial-lat="{{ initial.lat }}" data-initial-zoom="{{ initial.zoom }}"
+    data-initial-keywords="{{ initial.keywords }}" data-api-url="{% url entities-text %}"
+    data-map-bounds-left="{{ map_bounds.left }}" data-map-bounds-right="{{ map_bounds.right }}"
+    data-map-bounds-top="{{ map_bounds.top }}" data-map-bounds-bottom="{{ map_bounds.bottom }}">
+</div>
+

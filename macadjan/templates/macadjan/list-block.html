@@ -1,14 +1,14 @@
-                    {% if entities_list %}
-                        <ul>
-                            {% for entity in entities_list %}
-                            <li class="{% if entity.latitude %}with-point{% else %}without-point{% endif %}">
-                                <strong data-entity-lon="{{ entity.longitude }}" data-entity-lat="{{ entity.latitude }}"
-                                        data-entity-url="{% url entity entity.slug %}">{{ entity.name }}</strong>
-                                {% if entity.summary %}<br/>{{ entity.summary }}{% endif %}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>(no se han encontrado entidades)</p>
-                    {% endif %}
+{% if entities_list %}
+    <ul>
+        {% for entity in entities_list %}
+        <li class="{% if entity.latitude %}with-point{% else %}without-point{% endif %}">
+            <strong data-entity-lon="{{ entity.longitude }}" data-entity-lat="{{ entity.latitude }}"
+                    data-entity-url="{% url entity entity.slug %}">{{ entity.name }}</strong>
+            {% if entity.summary %}<br/>{{ entity.summary }}{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>(no se han encontrado entidades)</p>
+{% endif %}
 

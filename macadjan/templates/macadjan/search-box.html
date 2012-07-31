@@ -1,26 +1,24 @@
-                    <p class="claim-line">Hay muchas otras formas de vivir, y miles de ejemplos, pequeños y grandes,
-                    de otra forma de hacer las cosas. ¡Encuentra el tuyo!</p>
+<div id="search-form" class="clearfix">
+    <div class="column-1">
+        <label for="id_keywords">Puedes usar tus propias palabras...</label>
+        <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
+        <button id="id_keywords_submit">Buscar</button>
+    </div>
+    <div class="column-2">
+        <label for="id_category">...O elegir la categoría que más te interesa</label>
+        <select id="id_category" name="category"></select>
+        <select id="id_subcategory" name="subcategory"></select>
+    </div>
+</div>
 
-                    <div id="search-form" class="clearfix">
-                        <div class="column-1">
-                            <label for="id_keywords">Puedes usar tus propias palabras...</label>
-                            <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
-                            <button id="id_keywords_submit">Buscar</button>
-                        </div>
-                        <div class="column-2">
-                            <label for="id_category">...O elegir el tema que más te interesa</label>
-                            <select id="id_category" name="category"></select>
-                            <select id="id_subcategory" name="subcategory"></select>
-                        </div>
-                    </div>
+<h1>
+    En el mapa: entidades relacionadas con <span id="id-category-header">todas las categorías</span>
+    {% comment %}
+    <select id="id_province" name="province">
+        <option value="">en todas las provincias</option>
+        <option value="madrid">en Madrid</option>
+        <option value="murcia">en Murcia</option>
+    </select>
+    {% endcomment %}
+</h1>
 
-                    <h1>
-                        En el mapa: movimientos sociales relacionados con <span id="id-category-header">todos los temas</span>
-                        {% comment %}
-                        <select id="id_province" name="province">
-                            <option value="">en todas las provincias</option>
-                            <option value="madrid">en Madrid</option>
-                            <option value="murcia">en Murcia</option>
-                        </select>
-                        {% endcomment %}
-                    </h1>

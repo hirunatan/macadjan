@@ -1,68 +1,6 @@
 /*@import "bootstrap/bootstrap.less";*/
 
-/*********************
- * Global definitions
- *********************/
-
-/*
-@HeaderMarginBackground: #222222;
-@HeaderBackground: #222222 url("../img/banner.jpg") right no-repeat;
-@HeaderTextColor: #eeeeee;
-
-@MenuMarginBackground: #707070 url("../img/menu-background.png") top left repeat-x;
-@MenuBackground: #707070 url("../img/menu-background.png") top left repeat-x;
-@MenuTextColor: #ffffff;
-@MenuSelectedBackground: #909090 url("../img/menu-hover.png") top left repeat-x;
-@MenuSelectedTextColor: #505050;
-
-@ContentMarginBackground: #eeeeee;
-@ContentBackground: #ffffff;
-@ContentTextColor: #000000;
-@BlockBackground: #eeeeee;
-@BlockTextColor: #000000;
-@MainBlockBackground: #333333;
-@MainBlockTextColor: #ffffff;
-
-@FooterMarginBackground: #eeeeee;
-@FooterBackground: #404040 url('../img/menu-background.png') top left repeat-x;
-@FooterTextColor: #ffffff;
-
-@BoxBorder: 1px solid #707070;
-@UnderlineBorder: 1px solid #404040;
-
-@DefaultFont: verdana, tahoma, arial, helvetica, sans-serif;
-@DefaultTextColor: #000000;
-*/
-
-/* Colores provisionales monos para la demo */
-@HeaderMarginBackground: #eeeeee;
-@HeaderBackground: #222222 url("../img/banner.jpg") right no-repeat;
-@HeaderTextColor: #eeeeee;
-
-@MenuMarginBackground: #707070 url("../img/menu-background.png") top left repeat-x;
-@MenuBackground: #707070 url("../img/menu-background.png") top left repeat-x;
-@MenuTextColor: #ffffff;
-@MenuSelectedBackground: #909090 url("../img/menu-hover.png") top left repeat-x;
-@MenuSelectedTextColor: #505050;
-
-@ContentMarginBackground: #eeeeee;
-@ContentBackground: #ffffff;
-@ContentTextColor: #000000;
-@BlockBackground: #eeeeee;
-@BlockTextColor: #000000;
-@MainBlockBackground: #a0c80e;
-@MainBlockTextColor: #000000;
-
-@FooterMarginBackground: #eeeeee;
-@FooterBackground: #404040 url('../img/menu-background.png') top left repeat-x;
-@FooterTextColor: #ffffff;
-
-@BoxBorder: 1px solid #bbbbbb;
-@UnderlineBorder: 1px solid #404040;
-
-@DefaultFont: verdana, tahoma, arial, helvetica, sans-serif;
-@DefaultTextColor: #000000;
-
+@import "definitions.less";
 
 /************
  * Structure
@@ -152,20 +90,8 @@ body {
         line-height: 1.1em;
     }
     #search-form {
-        background-image: linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
-        background-image: -o-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
-        background-image: -moz-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
-        background-image: -webkit-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
-        background-image: -ms-linear-gradient(bottom, rgb(137,172,11) 17%, rgb(173,221,15) 59%);
-
-        background-image: -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(0.17, rgb(137,172,11)),
-            color-stop(0.59, rgb(173,221,15))
-        );
-        color: @MainBlockTextColor;
+        background: @BlockBackground;
+        color: @BlockTextColor;
         padding: 10px 15px 15px 15px;
         .column-1 {
             width: 400px;
@@ -208,6 +134,18 @@ body {
         p {
             margin-left: 10px;
         }
+        strong {
+            font-weight: bold;
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+                color: @DefaultActiveLinkColor;
+            }
+        }
+        .without-point {
+            background: url("../img/ext-link.png") right 2px no-repeat;
+            padding-right: 20px;
+        }
     }
 }
 
@@ -227,7 +165,7 @@ body {
     }
 }
 
-#footer-blocks {
+#below-map-box {
     .block {
         font-size: 90%;
         float: left;
@@ -260,63 +198,3 @@ body {
     }
 }
 
-/*---------------
-
-.container{
-    width: 980px;
-}
-
-.sidebar{
-    width: 250px;
-    float: right;
-}
-
-.main-content {
-    width: 705px;
-    margin-right: 20px;
-    float: left;
-}
-
-.left{
-    float: left;
-}
-
-.right{
-    float: right;
-}
-
-
-.button{
-    padding: 10px 30px;
-    .border-radius(5px);
-    font-size: 16px;
-    border: 1px solid;
-}
-*/
-
-#id_keywords_submit {
-    border: 1px solid #f76706;
-
-    background-image: linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
-    background-image: -o-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
-    background-image: -moz-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
-    background-image: -webkit-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
-    background-image: -ms-linear-gradient(bottom, rgb(241,88,0) 17%, rgb(255,153,9) 59%);
-
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.17, rgb(241,88,0)),
-        color-stop(0.59, rgb(255,153,9))
-    );
-    border: 0 none;
-    border-radius: 3px 3px 3px 3px;
-    color: #FFFFFF;
-    height: 30px;
-    line-height: 30px;
-}
-#list-block{
-        strong { color: #000; font-weight: bold; &:hover{ text-decoration: underline; cursor: pointer; color: #f15800;} }
-        .without-point { background: url("../img/onw.png") right 2px no-repeat; padding-right: 20px; }
-}

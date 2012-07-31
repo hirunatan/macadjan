@@ -1,6 +1,5 @@
 <!doctype html>
-{% load staticfiles %}
-{% load i18n %}
+{% load i18n staticfiles %}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -13,25 +12,26 @@
 
     <title>{% block title %}title.here{% endblock %}</title>
 
-    <link rel="stylesheet/less" href="{% static 'less/style.less' %}">
-    <script src="{% static 'js/libs/less-1.3.0.min.js' %}"></script>
-    <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
-    to style.css, and replace the 2 lines above by this one: -->
-    <!--<link rel="stylesheet" href="/static/less/style.css">-->
+    {% if debug %}
+        <link rel="stylesheet/less" href="{% static 'less/style.less' %}">
+        <link rel="stylesheet/less" href="{% static 'less/custom.less' %}">
+        <script src="{% static 'js/libs/less-1.3.0.min.js' %}"></script>
+        <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your style.less
+        and custom.less files to style.css and custom.css in production site -->
+    {% else %}
+        <link rel="stylesheet" href="/static/less/style.css">
+    {% endif %}
 
     <script src="{% static 'js/libs/modernizr-2.5.3-respond-1.1.0.min.js' %}"></script>
-    <script src="{% static 'js/libs/openlayers/OpenLayers.js' %}"></script>
 </head>
-<body>
+<body{% block bodyclass %}{% endblock %}>
     {% block body %}{% endblock %}
-    {# TODO: ver qué es esto y si hay que activarlo <script src="{% url django.views.i18n.javascript_catalog %}"></script> #}
     <script src="{% static 'js/libs/jquery-1.7.2.min.js' %}"></script>
     <script src="{% static 'js/libs/doT.min.js' %}"></script>
     <script src="{% static 'js/libs/json2.js' %}"></script>
     <script src="{% static 'js/libs/underscore-min.js' %}"></script>
     <script src="{% static 'js/libs/backbone-min.js' %}"></script>
     <script src="{% static 'js/libs/yepnope.1.5.4-min.js' %}"></script>
-    <script src="{% static 'js/base.js' %}"></script>
     {% block extrajs %}{% endblock %}
 </body>
 </html>
