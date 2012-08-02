@@ -55,6 +55,7 @@ To test, you may use the 'demo' site, that should run out-of-the box.
 For this:
 
 cd demo
+./manage.py syncdb
 ./manage.py runserver
 
 Then, navigate to http://localhost:8000
