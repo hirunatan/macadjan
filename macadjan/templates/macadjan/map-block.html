@@ -1,3 +1,5 @@
+{% load l10n %}
+{% localize off %}
 <div id="map-block" class="map-block"
     data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}"
     data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}"
@@ -6,4 +8,5 @@
     data-map-bounds-left="{{ map_bounds.left }}" data-map-bounds-right="{{ map_bounds.right }}"
     data-map-bounds-top="{{ map_bounds.top }}" data-map-bounds-bottom="{{ map_bounds.bottom }}">
 </div>
+{% endlocalize %}
 
