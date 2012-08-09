@@ -14,6 +14,14 @@ body {
     line-height: 130%;
     font-family: @DefaultFont;
     text-align: center;
+    a:link, a:visited {
+        color: @DefaultLinkColor;
+        text-decoration: none;
+    }
+    a:hover {
+        color: @DefaultActiveLinkColor;
+        text-decoration: underline;
+    }
 }
 
 .clearfix {
@@ -197,4 +205,98 @@ body {
         font-size: 80%;
     }
 }
+
+.main_button {
+    width: 100%;
+    margin-top: 2em;
+}
+
+/* Styles for macadja_importer and macadjan_sync */
+
+.main_button input {
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 0.5em;
+}
+
+/* Styles for macadjan_sync */
+
+blockquote.highlight {
+    border: 1px solid;
+    background: @BlockBackground;
+    margin: 1em;
+    padding: 1em;
+}
+
+.messages {
+    padding: 0;
+}
+
+.messages li.success {
+    list-style: none;
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid #000099;
+    background-color: #aaaaff;
+    color: #000099;
+}
+
+.messages li.error {
+    list-style: none;
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid #ff0000;
+    background-color: #ffaaaa;
+    color: #ff0000;
+}
+
+.errorlist li {
+    color: #ff0000;
+}
+
+.form_table tr {
+    vertical-align: top;
+}
+
+.form_table th, td {
+    padding: 0.5em 1em;
+}
+
+.form_table input, textarea, select {
+    width: 500px;
+}
+
+.form_table .help_text {
+    font-size: 95%;
+    font-style: italic;
+}
+
+.sync_table tr {
+    vertical-align: top;
+}
+
+.sync_table th, td {
+    padding: 0 1em;
+}
+
+.sync_table input, textarea, select {
+    width: 500px;
+}
+
+span.sync_changed {
+    color: #0000ff;
+}
+
+ul.cat li,
+ul.subcat li {
+    list-style-type: none;
+}
+
+ul.cat li.selected,
+ul.subcat li.selected {
+    list-style-type: disc;
+    list-style-image: url("../images/arrow-list.gif");
+}
+
 

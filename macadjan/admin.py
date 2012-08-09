@@ -73,12 +73,13 @@ class EntityAdmin(admin.ModelAdmin):
     filter_vertical = ('subcategories', 'tags',)   # Fields that use a selection widget instead a multi select
     list_filter = ('is_active', 'subcategories',)         # Fields you can filter by in the entity list
     search_fields = ('name', 'alias',)       # Fields searched by the input bux in the entity list
+    prepopulated_fields = {"slug": ("name",)}
     actions = [make_active, make_inactive, 'geolocalize']
 
     def geolocalize(self, request, queryset):
         #for obj in queryset:
         #    task__geolocalize_entity.delay(obj.pk)
-        self.message_user(request, _(u'Se han lanzado %(num)d geolocalizaciones') % {'num': queryset.count()})  
+        self.message_user(request, _(u'Se han lanzado %(num)d geolocalizaciones') % {'num': queryset.count()})
 
     geolocalize.short_description = _(u'Geolocalizar todos los seleccionados')
 
@@ -86,9 +87,4 @@ class EntityAdmin(admin.ModelAdmin):
     # TODO: it would be good to have also categories in list_filter, but currently the admin only supports
     # real fields, not properties or methods or fields in other tables. We could add a "category" field to
     # Entity class, and sincronize it with signals. To think later...
-
-
-                         # OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                         #    cuando hagamos EcozoomEntity, acordarse de añadir map_source al list_filter
-                         # 0000000000000000000000000000000000
 
