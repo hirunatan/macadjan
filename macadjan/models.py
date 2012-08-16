@@ -393,7 +393,7 @@ class Entity(models.Model):
             help_text = _(u'Un posible nombre alternativo para la entidad.'))
     summary = models.CharField(max_length = 300, null = False, blank = True,
             verbose_name = _(u'Resumen'),
-            help_text = _(u'Descripción breve (para salir en el globo).'))
+            help_text = _(u'Define la entidad en una frase.'))
 
     # Container info
     is_container = models.BooleanField(
