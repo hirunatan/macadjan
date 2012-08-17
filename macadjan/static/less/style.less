@@ -67,12 +67,58 @@ body {
 }
 
 #menu-wrapper {
-    .menu-box {
+    background: @MenuMarginBackground;
+    float: left;
+    width: 100%;
+    #menu-box {
+        width: 85%;
+        margin: 0 auto;
+        font-size: 95%;
+        white-space: nowrap; /* stops half a menu link dropping to next line. Instead, the whole link will drop. This only happens if you have a lot of menu links, and large text size */
+        padding-right: 2px; /* The menu far left, and far right borders are not quite lining up in non IE browsers for some reason. This makes it less noticable */
+        #menu-line {
+            background: @MenuBackground;
+            margin: 0;
+            padding: 0;
+            float: left;
+            border-left: @BoxBorder;
+            border-right: @BoxBorder;
+            width: 100%;
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            li {
+                display: inline;
+            }
+            a:link, a:visited {
+                padding: 0.25em 1em;
+                background: transparent;
+                color: @MenuTextColor;
+                text-decoration: none;
+                float: left;
+                border-right: @MenuSeparatorBorder;
+            }
+            a:hover {
+                background: @MenuSelectedBackground;
+                color: @MenuSelectedTextColor;
+            }
+            form {
+                float: right;
+            }
+            form select {
+                width: 200px;
+            }
+        }
     }
 }
 
+* html #menu { padding-right: 0; } /* See above comment. This re-adjusts IE to the above padding */
+
 #content-wrapper {
     background: @ContentMarginBackground;
+    clear: both;
     #content-box {
         width: 83%; /* 83% because it has 1% padding on each side, which brings it to 85% wide */
         margin: 0 auto;
@@ -91,6 +137,8 @@ body {
     font-size: 90%;
     .claim-line {
         margin-top: 0;
+        text-align: center;
+        font-style: italic;
     }
     h1 {
         font-size: 200%;
