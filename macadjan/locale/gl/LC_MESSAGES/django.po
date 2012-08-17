@@ -2,22 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-17 00:42+0200\n"
-"PO-Revision-Date: 2012-05-27 22:52\n"
-"Last-Translator:   <desatonao@riseup.net>\n"
+"POT-Creation-Date: 2012-08-17 17:05+0200\n"
+"PO-Revision-Date: 2012-08-17 17:10\n"
+"Last-Translator:   <tio@feo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Translated-Using: django-rosetta 0.6.5\n"
+"X-Translated-Using: django-rosetta 0.6.2\n"
 
 #: admin.py:14
 #, python-format
@@ -60,7 +60,8 @@ msgstr "Nome do sitio"
 
 #: models.py:29
 msgid ""
-"Nombre global del sitio, aparece en la parte superior de todas las páginas."
+"Nombre global del sitio, aparece en la parte superior de todas las "
+"páginas."
 msgstr "Nome global do sitio, aparece na parte superior de tódalas páxinas. "
 
 #: models.py:32
@@ -162,13 +163,11 @@ msgstr "Activar formulario de nova entidade."
 #: models.py:89
 msgid ""
 "\n"
-"Si está activo, podrás añadir una opción de menú con url /"
-"new_entity_proposal para\n"
+"Si está activo, podrás añadir una opción de menú con url /new_entity_proposal para\n"
 "ver el formulario de proponer nuevas entidades.\n"
 msgstr ""
 "\n"
-"Se está activo, poderás engadir unha opción de menún con url /"
-"new_entity_proposal para\n"
+"Se está activo, poderás engadir unha opción de menún con url /new_entity_proposal para\n"
 "velo formulario de propoñer novas entidades.\n"
 
 #: models.py:95
@@ -178,13 +177,11 @@ msgstr "Activar formulario de modificar entidade."
 #: models.py:96
 msgid ""
 "\n"
-"Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario "
-"de\n"
+"Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario de\n"
 "proponer cambios.\n"
 msgstr ""
 "\n"
-"Se está activo, a ficha de entidade terá un enlace que leve ó formulario de "
-"propoñer cambios.\n"
+"Se está activo, a ficha de entidade terá un enlace que leve ó formulario de propoñer cambios.\n"
 
 #: models.py:102
 msgid "Ayuda para Descripción"
@@ -266,28 +263,18 @@ msgstr "Marcador"
 #: models.py:174
 msgid ""
 "\n"
-"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un "
-"fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
 "con el punto de inserción en el centro del borde inferior.<br/>\n"
-"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los "
-"iconos predefinidos de Macadjan, o bien<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos "
-"personalizados de un tema.<br/>\n"
-"Si no se indica marcador, se usará el marcador por defecto definido en "
-"settings.py.\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador por defecto definido en settings.py.\n"
 msgstr ""
 "\n"
-"Indicar a ruta da imaxe a usar como marcador. A imaxe debe ser un ficheiro ."
-"jpg, .png o .gif de 32x37 pixels<br/> co punto de inserción no centro do "
-"borde inferior.<br/>\n"
-"A ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para as "
-"iconas predefinidos de Macadjan, ou ben<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para as iconas "
-"personalizados dun tema.<br/>\n"
-"Se non se indica marcador, usarase o marcador por defecto definido en "
-"settings.py.<br/>\n"
-"A lista de iconas dispoñibles é a seguinte: https://n-1.cc/pg/file/"
-"read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
+"Indicar a ruta da imaxe a usar como marcador. A imaxe debe ser un ficheiro .jpg, .png o .gif de 32x37 pixels<br/> co punto de inserción no centro do borde inferior.<br/>\n"
+"A ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para as iconas predefinidos de Macadjan, ou ben<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para as iconas personalizados dun tema.<br/>\n"
+"Se non se indica marcador, usarase o marcador por defecto definido en settings.py.<br/>\n"
+"A lista de iconas dispoñibles é a seguinte: https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
 
 #: models.py:182 models.py:246
 msgid "Activo"
@@ -295,11 +282,11 @@ msgstr "Activo"
 
 #: models.py:183
 msgid ""
-"Indica si esta categoría está activa; si no lo está, no saldrá en el árbol "
-"de clasificación del mapa."
+"Indica si esta categoría está activa; si no lo está, no saldrá en el "
+"árbol de clasificación del mapa."
 msgstr ""
-"Indica se esta categoría está activa; se non o está, non sairá no árbol de "
-"clasificación do mapa."
+"Indica se esta categoría está activa; se non o está, non sairá no "
+"árbol de clasificación do mapa."
 
 #: models.py:211
 msgid "categoría"
@@ -316,36 +303,26 @@ msgstr "Categoría"
 #: models.py:238
 msgid ""
 "\n"
-"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un "
-"fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
 "con el punto de inserción en el centro del borde inferior.<br/>\n"
-"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los "
-"iconos predefinidos de Macadjan, o bien<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos "
-"personalizados de un tema.<br/>\n"
-"Si no se indica marcador, se usará el marcador de la categoría a la que "
-"pertenece esta subcategoría.\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.\n"
 msgstr ""
 "\n"
-"Indicar a ruta da imaxe a usar como marcador. A imaxe debe ser un ficheiro ."
-"jpg, .png o .gif de 32x37 pixels<br/> co punto de inserción no centro do "
-"borde inferior.<br/>\n"
-"A ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para as "
-"iconas predefinidos de Macadjan, ou ben<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para as iconas "
-"personalizados dun tema.<br/>\n"
-"Se non se indica marcador, usarase o marcador da categoría á que pertence "
-"esta subcategoría.<br/>\n"
-"A lista de iconas dispoñibles é a seguinte: https://n-1.cc/pg/file/"
-"read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
+"Indicar a ruta da imaxe a usar como marcador. A imaxe debe ser un ficheiro .jpg, .png o .gif de 32x37 pixels<br/> co punto de inserción no centro do borde inferior.<br/>\n"
+"A ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para as iconas predefinidos de Macadjan, ou ben<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para as iconas personalizados dun tema.<br/>\n"
+"Se non se indica marcador, usarase o marcador da categoría á que pertence esta subcategoría.<br/>\n"
+"A lista de iconas dispoñibles é a seguinte: https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan\n"
 
 #: models.py:247
 msgid ""
-"Indica si esta subcategoría está activa; si no lo está, no saldrá en el "
-"árbol de clasificación del mapa."
+"Indica si esta subcategoría está activa; si no lo está, no saldrá en el"
+" árbol de clasificación del mapa."
 msgstr ""
-"Indica se esta subcategoría está activa; se non o está, non sairá no árbol "
-"de clasificación do mapa."
+"Indica se esta subcategoría está activa; se non o está, non sairá no "
+"árbol de clasificación do mapa."
 
 #: models.py:272
 msgid "subcategoría"
@@ -381,11 +358,11 @@ msgstr "Nome da entidade (para sair no globo)."
 
 #: models.py:390
 msgid ""
-"Identificador de la entidad, sólo puede contener letras, números y el signo "
-"\"_\". Si lo dejas en blanco se generará automáticamente."
+"Identificador de la entidad, sólo puede contener letras, números y el "
+"signo \"_\". Si lo dejas en blanco se generará automáticamente."
 msgstr ""
-"Identificador da entidade, so pode conter letras, números e o signo \"_\". "
-"Se o deixas en branco xerarase automáticamente."
+"Identificador da entidade, so pode conter letras, números e o signo "
+"\"_\". Se o deixas en branco xerarase automáticamente."
 
 #: models.py:392
 msgid "Alias"
@@ -409,11 +386,11 @@ msgstr "É contenedor"
 
 #: models.py:401
 msgid ""
-"Indica si esta entidad puede contener otras, las cuales comparten espacio "
-"físico con ellas (ej. un CSOA, una cooperativa integral...)."
+"Indica si esta entidad puede contener otras, las cuales comparten "
+"espacio físico con ellas (ej. un CSOA, una cooperativa integral...)."
 msgstr ""
-"Indica se a entidade pode conter a outras, as cales comparten espazo físico "
-"con elas (ex. un Centro Social, unha cooperativa integral...)."
+"Indica se a entidade pode conter a outras, as cales comparten espazo "
+"físico con elas (ex. un Centro Social, unha cooperativa integral...)."
 
 #: models.py:405
 msgid "Agrupada dentro de"
@@ -421,11 +398,11 @@ msgstr "Agrupada dentro de"
 
 #: models.py:406
 msgid ""
-"Indica si esta entidad está contenida en otra (ej. un taller dentro de un "
-"CSOA)."
+"Indica si esta entidad está contenida en otra (ej. un taller dentro de "
+"un CSOA)."
 msgstr ""
-"Indica se esta entidade está contida noutra (ex. un obradoiro dentro dun "
-"Centro Social)."
+"Indica se esta entidade está contida noutra (ex. un obradoiro dentro "
+"dun Centro Social)."
 
 #: models.py:410
 msgid "Latitud"
@@ -453,8 +430,7 @@ msgid ""
 "ilustración, 145"
 msgstr ""
 "Tipo e nome de vía e número.\n"
-"Exemplos: C/ do Peixe, 21; Av. da ilustración, 145 (nome do tipo de vía en "
-"castelán)"
+"Exemplos: C/ do Peixe, 21; Av. da ilustración, 145 (nome do tipo de vía en castelán)"
 
 #: models.py:419
 msgid "Dirección (resto)"
@@ -462,8 +438,8 @@ msgstr "Enderezo (resto)"
 
 #: models.py:420
 msgid ""
-"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 entrada "
-"posterior."
+"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 "
+"entrada posterior."
 msgstr ""
 "Portal, piso e outros datos.\n"
 "Exemplos: Escaleira A, 3º Esq; Local 4 entrada posterior."
@@ -482,8 +458,8 @@ msgstr "Poboación"
 
 #: models.py:426
 msgid ""
-"Nombre de la población tal como se usa en la dirección postal. Ej. Madrid, "
-"Alcorcón."
+"Nombre de la población tal como se usa en la dirección postal. Ej. "
+"Madrid, Alcorcón."
 msgstr ""
 "Nome da poboación tal como se usa na direción postal.\n"
 "Ex: Pontevedra, Gondomar."
@@ -494,7 +470,8 @@ msgstr "Provincia"
 
 #: models.py:429
 msgid ""
-"Nombre de la provincia, no es necesario si se llama igual que la ciudad."
+"Nombre de la provincia, no es necesario si se llama igual que la "
+"ciudad."
 msgstr "Nome da provincia. Non é necesario se se chama igual ca cidade."
 
 #: models.py:431
@@ -503,7 +480,8 @@ msgstr "País"
 
 #: models.py:432
 msgid ""
-"Nombre del país, tal como se usa en la dirección postal, si es necesario."
+"Nombre del país, tal como se usa en la dirección postal, si es "
+"necesario."
 msgstr "Nome do país, tal como se usa na direción postal, se é necesario."
 
 #: models.py:434
@@ -512,11 +490,12 @@ msgstr "Zona"
 
 #: models.py:435
 msgid ""
-"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, comarca, "
-"pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
+"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, "
+"comarca, pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
 msgstr ""
-"Zona de influencia da entidade. Pode ser barrio, pobo, cidade, comarca, "
-"pedanía... Ex. San Pedro da Ramallosa, Serra do Galiñeiro, Val Miñor."
+"Zona de influencia da entidade. Pode ser barrio, pobo, cidade, "
+"comarca, pedanía... Ex. San Pedro da Ramallosa, Serra do Galiñeiro, "
+"Val Miñor."
 
 #: models.py:439
 msgid "Teléfono contacto 1"
@@ -548,11 +527,11 @@ msgstr "Email 1"
 
 #: models.py:449
 msgid ""
-"Email de contacto. Ojo: poner la dirección correcta y sin añadir espacios a "
-"izquierda ni derecha. Ej. colectivo@gmail.com"
+"Email de contacto. Ojo: poner la dirección correcta y sin añadir "
+"espacios a izquierda ni derecha. Ej. colectivo@gmail.com"
 msgstr ""
-"Email de contacto. Ollo: poñela direción correcta e sen engadir espazos á "
-"esquerda ou á dereita. Ex.  colectivo@gmail.com"
+"Email de contacto. Ollo: poñela direción correcta e sen engadir "
+"espazos á esquerda ou á dereita. Ex.  colectivo@gmail.com"
 
 #: models.py:451
 msgid "Email 2"
@@ -568,13 +547,12 @@ msgstr "Web 1"
 
 #: models.py:455
 msgid ""
-"Página web informativa. Ojo: hay que poner la dirección completa, incluyendo "
-"http://. La dirección será validada automáticamente para comprobar que "
-"existe."
+"Página web informativa. Ojo: hay que poner la dirección completa, "
+"incluyendo http://. La dirección será validada automáticamente para "
+"comprobar que existe."
 msgstr ""
 "Páxina web informativa. Ollo: hai que poñela direción completa,\n"
-"incluindo http://. A dirección será validada automáticamente para comprobar "
-"que existe."
+"incluindo http://. A dirección será validada automáticamente para comprobar que existe."
 
 #: models.py:457
 msgid "Web 2"
@@ -614,11 +592,11 @@ msgstr "Activa"
 
 #: models.py:474
 msgid ""
-"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa ni "
-"en los listados."
+"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa"
+" ni en los listados."
 msgstr ""
-"Indica se esta entidade está activa; se non o está, non sairá no mapa nin "
-"nos listados."
+"Indica se esta entidade está activa; se non o está, non sairá no mapa "
+"nin nos listados."
 
 #: models.py:479
 msgid "Tipo de entidad"
@@ -637,8 +615,9 @@ msgid ""
 "Determinará el tipo de icono en el mapa. Esta categoría deberá estar "
 "incluida en la lista de más abajo; si no, será añadida automáticamente."
 msgstr ""
-"Determinará o tipo e icona no mapa. Esta categoría deberá estar incluida na "
-"lista de máis abaixo; se non, será engadida automáticamente."
+"Determinará o tipo e icona no mapa. Esta categoría deberá estar "
+"incluida na lista de máis abaixo; se non, será engadida "
+"automáticamente."
 
 #: models.py:492
 msgid "Categorías"
@@ -721,3 +700,24 @@ msgstr "Categorías:"
 msgid "Última actualización de la ficha:"
 msgstr "Última actualización da ficha:"
 
+#: templates/macadjan/search-box.html:4
+msgid "Puedes usar tus propias palabras..."
+msgstr ""
+
+#: templates/macadjan/search-box.html:5
+msgid "ej. huerto urbano, bicicrítica..."
+msgstr ""
+
+#: templates/macadjan/search-box.html:6
+msgid "Buscar"
+msgstr ""
+
+#: templates/macadjan/search-box.html:9
+msgid "...O elegir la categoría que más te interesa"
+msgstr ""
+
+#: templates/macadjan/search-box.html:16
+msgid ""
+"En el mapa: entidades relacionadas con <span id=\"id-category-"
+"header\">todas las categorías"
+msgstr ""

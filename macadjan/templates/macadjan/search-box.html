@@ -1,18 +1,19 @@
+{% load i18n %}
 <div id="search-form" class="clearfix">
     <div class="column-1">
-        <label for="id_keywords">Puedes usar tus propias palabras...</label>
-        <input type="text" id="id_keywords" name="keywords" placeholder="ej. huerto urbano, bicicrítica..." />
-        <button id="id_keywords_submit">Buscar</button>
+        <label for="id_keywords">{% trans 'Puedes usar tus propias palabras...' %}</label>
+        <input type="text" id="id_keywords" name="keywords" placeholder="{% trans 'ej. huerto urbano, bicicrítica...' %}" />
+        <button id="id_keywords_submit">{% trans 'Buscar' %}</button>
     </div>
     <div class="column-2">
-        <label for="id_category">...O elegir la categoría que más te interesa</label>
+        <label for="id_category">{% trans '...O elegir la categoría que más te interesa' %}</label>
         <select id="id_category" name="category"></select>
         <select id="id_subcategory" name="subcategory"></select>
     </div>
 </div>
 
 <h1>
-    En el mapa: entidades relacionadas con <span id="id-category-header">todas las categorías</span>
+    {% blocktrans %}En el mapa: entidades relacionadas con <span id="id-category-header">todas las categorías</span>{% endblocktrans %}
     {% comment %}
     <select id="id_province" name="province">
         <option value="">en todas las provincias</option>

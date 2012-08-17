@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-17 00:42+0200\n"
+"POT-Creation-Date: 2012-08-17 17:05+0200\n"
 "PO-Revision-Date: 2012-06-22 21:38\n"
 "Last-Translator:   <hirunatan@hammo.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -686,3 +686,24 @@ msgstr ""
 msgid "Última actualización de la ficha:"
 msgstr ""
 
+#: templates/macadjan/search-box.html:4
+msgid "Puedes usar tus propias palabras..."
+msgstr ""
+
+#: templates/macadjan/search-box.html:5
+msgid "ej. huerto urbano, bicicrítica..."
+msgstr ""
+
+#: templates/macadjan/search-box.html:6
+msgid "Buscar"
+msgstr ""
+
+#: templates/macadjan/search-box.html:9
+msgid "...O elegir la categoría que más te interesa"
+msgstr ""
+
+#: templates/macadjan/search-box.html:16
+msgid ""
+"En el mapa: entidades relacionadas con <span id=\"id-category-header\">todas "
+"las categorías"
+msgstr ""
