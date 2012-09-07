@@ -35,8 +35,11 @@ class SubCategoriesResponseMixin(object):
         return to_json([obj.to_dict() for obj in self.get_subcategories_query_set()])
 
 
-class MapPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
-    template_name = "macadjan/map-page.html"
+class MapView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
+    '''
+    Base class for a view that shows an openlayer map with the entities,
+    possibly filtered and zoomed.
+    '''
 
     def get(self, request):
         context = {
@@ -66,6 +69,14 @@ class MapPageView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
            initial_context['zoom'] = site_info.map_initial_zoom
 
         return initial_context
+
+
+class MapPageView(MapView):
+    template_name = "macadjan/map-page.html"
+
+
+class MapIframeView(MapView):
+    template_name = "macadjan/map-iframe.html"
 
 
 class Entities(View):

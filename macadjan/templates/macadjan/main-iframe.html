@@ -1,0 +1,31 @@
+{% extends "macadjan/base.html" %}
+{% load i18n %}
+
+<!--
+Base template, equivalent to main-page.html but it defines nothing but the content div.
+-->
+
+<!-- Default title is the website name; almost all subtemplates redefine this -->
+{% block title %}{{ current_site_info.website_name }}{% endblock %}
+
+<!-- Here you can define additional meta headers -->
+{% block meta %}{% endblock %}
+
+<!-- Here you can put a class or other attributes to the body -->
+{% block bodyclass %}{% endblock %}
+
+<!-- This is the actual body of the page --> 
+{% block body %}
+<div class="main-iframe-container">
+    <div id="iframe-content-wrapper">
+        <div id="iframe-content-box">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Here you put the scripts (at the bottom of the page) -->
+{% block extrajs %}{% endblock %}
+

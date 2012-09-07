@@ -1,0 +1,26 @@
+{% extends "macadjan/main-iframe.html" %}
+{% load i18n staticfiles %}
+
+{% block content %}
+<div id="map-page" class="map-page clearfix" data-entity-list-url="{% url entities-list %}"
+                     data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}"
+                     data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}"
+                     data-initial-keywords="{{ initial.keywords }}">
+
+    <div id="iframe-map-box">
+        {% include "macadjan/map-box.html" %}
+    </div>
+    <div class="cleared"></div>
+
+</div>
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/libs/openlayers/OpenLayers.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script>
+        Macadjan.categories.reset({{ view.categories_as_json }});
+        Macadjan.subCategories.reset({{ view.subcategories_as_json }});
+    </script>
+{% endblock %}
+
