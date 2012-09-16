@@ -1,11 +1,20 @@
 {% extends "macadjan/main-page.html" %}
-{% load i18n staticfiles %}
+{% load i18n l10n staticfiles %}
 
 {% block content %}
-<div id="map-page" class="map-page clearfix" data-entity-list-url="{% url entities-list %}"
-                     data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}"
-                     data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}"
-                     data-initial-keywords="{{ initial.keywords }}">
+{% localize off %}
+<div id="map-page" class="map-page clearfix"
+    data-entity-list-url="{% url entities-list %}"
+    data-filter-category="{% if map_arguments.filter_category %}{{ map_arguments.filter_category.id }}{% endif %}"
+    data-filter-subcategory="{% if map_arguments.filter_subcategory %}{{ map_arguments.filter_subcategory.id }}{% endif %}"
+    data-filter-keywords="{{ map_arguments.filter_keywords }}"
+    data-initial-lon="{{ map_arguments.initial_lon }}"
+    data-initial-lat="{{ map_arguments.initial_lat }}"
+    data-initial-zoom="{{ map_arguments.initial_zoom }}"
+    data-map-bounds-left="{{ map_arguments.bounds_left }}"
+    data-map-bounds-right="{{ map_arguments.bounds_right }}"
+    data-map-bounds-top="{{ map_arguments.bounds_top }}"
+    data-map-bounds-bottom="{{ map_arguments.bounds_bottom }}">
 
     <div id="search-box">
         {% include "macadjan/search-box.html" %}
@@ -22,6 +31,7 @@
     </div>
 
 </div>
+{% endlocalize %}
 {% endblock %}
 
 {% block extrajs %}

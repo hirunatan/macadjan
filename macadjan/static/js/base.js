@@ -1,5 +1,5 @@
 
-/* Global macadjan  module namespace. */
+/* Global macadjan module namespace. */
 
 var Macadjan = {}
 
@@ -187,9 +187,9 @@ Macadjan.MapView = Backbone.View.extend({
     },
 
     parseFilter: function() {
-        var cat = this.$el.data('initial-cat') || '';
-        var subcat = this.$el.data('initial-subcat') || '';
-        var keywords = this.$el.data('initial-keywords') || '';
+        var cat = this.$el.data('filter-category') || '';
+        var subcat = this.$el.data('filter-subcategory') || '';
+        var keywords = this.$el.data('filter-keywords') || '';
         return cat + '|' + subcat + '|' + keywords
     },
 
@@ -270,8 +270,14 @@ Macadjan.MapPageView = Backbone.View.extend({
 
         Macadjan.categories.on('reset', this.onResetCategories);
         Macadjan.subCategories.on('reset', this.onResetSubCategories);
+        this.loadedCategories = false;
+        this.loadedSubCategories = false;
 
-        this.loadList();
+        var filterKeywords = this.$el.data('filter-keywords');
+        if (filterKeywords) {
+            var inputKeywords = this.$('#id_keywords');
+            inputKeywords.attr('value', filterKeywords);
+        }
     },
 
     onResetCategories: function() {
@@ -283,10 +289,18 @@ Macadjan.MapPageView = Backbone.View.extend({
         var option = self.make("option", {'value': ''}, 'Todos los temas');
         selectCategory.append(option);
 
+        var filterCategory = this.$el.data('filter-category');
         Macadjan.categories.each(function(item) {
-            var option = self.make("option", {'value': item.get('id')}, item.get('name'));
+            var attrs = {'value': item.get('id')};
+            if (item.get('id') == filterCategory) {
+                attrs['selected'] = 'selected';
+            }
+            var option = self.make("option", attrs, item.get('name'));
             selectCategory.append(option);
         })
+
+        this.loadedCategories = true;
+        this.checkInitialLoad();
     },
 
     onResetSubCategories: function() {
@@ -295,14 +309,49 @@ Macadjan.MapPageView = Backbone.View.extend({
         var selectSubCategory = this.$('#id_subcategory');
         selectSubCategory.empty();
         selectSubCategory.hide();
+
+        this.loadedSubCategories = true;
+        this.checkInitialLoad();
     },
 
-    getCategory: function() {
+    checkInitialLoad: function() {
+        if (this.loadedCategories & this.loadedSubCategories) {
+            var selectCategory = this.$('#id_category');
+            var currentCategoryId = selectCategory.val();
+
+            if (currentCategoryId) {
+                var filterSubCategory = this.$el.data('filter-subcategory');
+                this.loadSubCatsOfCurrentCat(currentCategoryId, filterSubCategory);
+                var selectSubCategory = this.$('#id_subcategory');
+                selectSubCategory.show();
+            }
+            this.refresh();
+        }
+    },
+
+    loadSubCatsOfCurrentCat: function(currentCategoryId, filterSubCategory) {
+        var self = this;
+        var selectSubCategory = this.$('#id_subcategory');
+
+        var option = this.make("option", {'value': ''}, 'Todos los temas');
+        selectSubCategory.append(option);
+
+        var subcategories = Macadjan.subCategories.filter(
+            function(item){
+                return item.get('category_id') == currentCategoryId;
+            }
+        );
+        _.each(subcategories, function(item) {
+            var attrs = {'value': item.get('id')};
+            if (item.get('id') == filterSubCategory) {
+                attrs['selected'] = 'selected';
+            }
+            var option = self.make("option", attrs, item.get('name'));
+            selectSubCategory.append(option);
+        })
     },
 
     onChangeCategory: function(evt) {
-        var self = this;
-
         var selectCategory = this.$('#id_category');
         var selectSubCategory = this.$('#id_subcategory');
         var currentCategoryId = selectCategory.val();
@@ -312,26 +361,14 @@ Macadjan.MapPageView = Backbone.View.extend({
             selectSubCategory.hide();
         } else {
             selectSubCategory.empty();
-            var option = self.make("option", {'value': ''}, 'Todos los temas');
-            selectSubCategory.append(option);
-
-            var subcategories = Macadjan.subCategories.filter(
-                function(item){
-                    return item.get('category_id') == currentCategoryId
-                }
-            );
-            _.each(subcategories, function(item) {
-                var option = self.make("option", {'value': item.get('id')}, item.get('name'));
-                selectSubCategory.append(option);
-            })
-
+            this.loadSubcatsOfCurrentCat(currentCategoryId, null);
             selectSubCategory.show();
         }
 
-        this.$el.data('initial-cat', currentCategoryId);
-        this.$el.data('initial-subcat', '');
-        this.$('#map-block').data('initial-cat', currentCategoryId);
-        this.$('#map-block').data('initial-subcat', '');
+        this.$el.data('filter-category', currentCategoryId);
+        this.$el.data('filter-subcategory', '');
+        this.$('#map-block').data('filter-category', currentCategoryId);
+        this.$('#map-block').data('filter-subcategory', '');
         this.refresh();
     },
 
@@ -339,8 +376,8 @@ Macadjan.MapPageView = Backbone.View.extend({
         var selectSubCategory = this.$('#id_subcategory');
         var currentSubCategoryId = selectSubCategory.val();
 
-        this.$el.data('initial-subcat', currentSubCategoryId);
-        this.$('#map-block').data('initial-subcat', currentSubCategoryId);
+        this.$el.data('filter-subcategory', currentSubCategoryId);
+        this.$('#map-block').data('filter-subcategory', currentSubCategoryId);
         this.refresh();
     },
 
@@ -348,8 +385,8 @@ Macadjan.MapPageView = Backbone.View.extend({
         var inputKeywords = this.$('#id_keywords');
         var currentKeywords = inputKeywords.val();
 
-        this.$el.data('initial-keywords', currentKeywords.trim());
-        this.$('#map-block').data('initial-keywords', currentKeywords);
+        this.$el.data('filter-keywords', currentKeywords.trim());
+        this.$('#map-block').data('filter-keywords', currentKeywords);
         this.refresh();
     },
 
@@ -374,11 +411,11 @@ Macadjan.MapPageView = Backbone.View.extend({
     loadList: function() {
         var self = this;
 
-        var cat = this.$el.data('initial-cat');
+        var cat = this.$el.data('filter-category');
         var category = Macadjan.categories.find(function(item) {return item.get('id') == cat;});
-        var subCat = this.$el.data('initial-subcat');
+        var subCat = this.$el.data('filter-subcategory');
         var subCategory = Macadjan.subCategories.find(function(item) {return item.get('id') == subCat;});
-        var keywords = this.$el.data('initial-keywords');
+        var keywords = this.$el.data('filter-keywords');
 
         var categoryBlock = this.$('#id-category-block');
         var categoryHeader = this.$('#id-category-header');

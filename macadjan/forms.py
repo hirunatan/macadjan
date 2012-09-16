@@ -2,13 +2,19 @@
 
 from django import forms
 
-class ParamsValidationForm(forms.Form):
-    cat = forms.IntegerField(required=False)
-    subcat = forms.IntegerField(required=False)
-    keywords = forms.CharField(required=False)
-    lat = forms.FloatField(required=False)
-    lon = forms.FloatField(required=False)
-    zoom = forms.IntegerField(required=False)
+class MapArgumentsForm(forms.Form):
+    '''
+    Process arguments for map views.
+    '''
+    kw = forms.CharField(required = False)      # search keywords
+    lon = forms.FloatField(required = False)    # initial longitude
+    lat = forms.FloatField(required = False)    # initial latitude
+    z = forms.IntegerField(required = False)    # initial zoom (from 1=whole earth to 16=max zoom).
+    bl = forms.FloatField(required = False)     # map bounds left
+    br = forms.FloatField(required = False)     # map bounds right
+    bt = forms.FloatField(required = False)     # map bounds top
+    bb = forms.FloatField(required = False)     # map bounds bottom
+
 
 class OpenLayersTileArgumentsForm(forms.Form):
     '''
