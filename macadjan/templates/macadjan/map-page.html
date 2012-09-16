@@ -7,14 +7,7 @@
     data-entity-list-url="{% url entities-list %}"
     data-filter-category="{% if map_arguments.filter_category %}{{ map_arguments.filter_category.id }}{% endif %}"
     data-filter-subcategory="{% if map_arguments.filter_subcategory %}{{ map_arguments.filter_subcategory.id }}{% endif %}"
-    data-filter-keywords="{{ map_arguments.filter_keywords }}"
-    data-initial-lon="{{ map_arguments.initial_lon }}"
-    data-initial-lat="{{ map_arguments.initial_lat }}"
-    data-initial-zoom="{{ map_arguments.initial_zoom }}"
-    data-map-bounds-left="{{ map_arguments.bounds_left }}"
-    data-map-bounds-right="{{ map_arguments.bounds_right }}"
-    data-map-bounds-top="{{ map_arguments.bounds_top }}"
-    data-map-bounds-bottom="{{ map_arguments.bounds_bottom }}">
+    data-filter-keywords="{{ map_arguments.filter_keywords }}">
 
     <div id="search-box">
         {% include "macadjan/search-box.html" %}

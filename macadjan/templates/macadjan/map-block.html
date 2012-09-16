@@ -1,9 +1,9 @@
 {% load l10n %}
 {% localize off %}
 <div id="map-block" class="map-block"
-    data-filter-category="{% if map_arguments.category %}{{ map_arguments.category.id }}{% endif %}"
-    data-filter-subcategory="{% if map_arguments.subcategory %}{{ map_arguments.subcategory.id }}{% endif %}"
-    data-filter-keywords="{{ map_arguments.keywords }}"
+    data-filter-category="{% if map_arguments.filter_category %}{{ map_arguments.filter_category.id }}{% endif %}"
+    data-filter-subcategory="{% if map_arguments.filter_subcategory %}{{ map_arguments.filter_subcategory.id }}{% endif %}"
+    data-filter-keywords="{{ map_arguments.filter_keywords }}"
     data-initial-lon="{{ map_arguments.initial_lon }}"
     data-initial-lat="{{ map_arguments.initial_lat }}"
     data-initial-zoom="{{ map_arguments.initial_zoom }}"
