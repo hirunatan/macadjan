@@ -16,12 +16,16 @@ class MapArgumentsForm(forms.Form):
     bb = forms.FloatField(required = False)     # map bounds bottom
 
 
-class OpenLayersTileArgumentsForm(forms.Form):
+class ListArgumentsForm(forms.Form):
     '''
-    Process filters for the markers in a map tile.
+    Process arguments for entity list views.
+
+    The bbox argument is expanded to left, right, top and bottom in clean().
     '''
-    bbox = forms.CharField(required = False)          # contain 'left,right,top,bottom'
-    features = forms.CharField(required = False)      # features
+    cat = forms.IntegerField(required = False)    # category id
+    subcat = forms.IntegerField(required = False) # subcategory id
+    kw = forms.CharField(required = False)        # search keywords
+    bbox = forms.CharField(required = False)      # contain 'left,right,top,bottom'
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -30,16 +34,22 @@ class OpenLayersTileArgumentsForm(forms.Form):
         if bbox:
             bbox_split = bbox.split(',')
             if not len(bbox_split) == 4:
-                msg = u"Bbox is incorrectly formatted, have to content 4 coordinates"
+                msg = u"Bbox is incorrectly formatted, must contain 4 comma-separated coordinates"
                 self._errors["bbox"] = self.error_class([msg])
 
             for i, name in enumerate(['left', 'bottom', 'right', 'top']):
                 coord = bbox_split[i]
                 try:
-                    float(bbox_split[i])
+                    float(coord)
                     cleaned_data[name] = coord
                 except ValueError:
-                    msg = u"Can't convert to float"
+                    msg = u"Can't convert '%s' to float" % coord
                     self._errors["bbox"] = self.error_class([msg])
+        else:
+            cleaned_data['left'] = None
+            cleaned_data['right'] = None
+            cleaned_data['top'] = None
+            cleaned_data['bottom'] = None
 
         return cleaned_data
+

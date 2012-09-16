@@ -81,7 +81,7 @@ Macadjan.MapView = Backbone.View.extend({
 
         this.protocol = new OpenLayers.Protocol.HTTP({
             url: this.$el.data('api-url'),
-            params: {'features': this.parseFilter()},
+            params: this.parseFilter(),
             format: new OpenLayers.Format.Text(),
         });
 
@@ -190,7 +190,11 @@ Macadjan.MapView = Backbone.View.extend({
         var cat = this.$el.data('filter-category') || '';
         var subcat = this.$el.data('filter-subcategory') || '';
         var keywords = this.$el.data('filter-keywords') || '';
-        return cat + '|' + subcat + '|' + keywords
+        return {
+            'cat': cat,
+            'subcat': subcat,
+            'kw': keywords
+        }
     },
 
     onFeatureSelect: function(evt) {
@@ -244,7 +248,10 @@ Macadjan.MapView = Backbone.View.extend({
     },
 
     refresh: function() {
-        this.protocol.params['features'] = this.parseFilter();
+        var filter = this.parseFilter();
+        this.protocol.params['cat'] = filter['cat']
+        this.protocol.params['subcat'] = filter['subcat']
+        this.protocol.params['kw'] = filter['kw']
         this.refreshStrategy.refresh();
     },
 });
@@ -361,7 +368,7 @@ Macadjan.MapPageView = Backbone.View.extend({
             selectSubCategory.hide();
         } else {
             selectSubCategory.empty();
-            this.loadSubcatsOfCurrentCat(currentCategoryId, null);
+            this.loadSubCatsOfCurrentCat(currentCategoryId, null);
             selectSubCategory.show();
         }
 
@@ -449,8 +456,9 @@ Macadjan.MapPageView = Backbone.View.extend({
         $.get(
             this.$el.data('entity-list-url'),
             {
-                features: (cat || '') + '|' + (subCat || '') + '|' + keywords,
-                bbox: '',
+                cat: (cat || ''),
+                subcat: (subCat || ''),
+                kw: keywords
             },
             function(data) {
                 var listBlock = self.$('#list-block');

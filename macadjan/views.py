@@ -13,7 +13,7 @@ from superview.views import SuperView as View
 
 from .models import Category, SubCategory
 from .utils import to_json
-from .forms import OpenLayersTileArgumentsForm, MapArgumentsForm
+from .forms import MapArgumentsForm, ListArgumentsForm
 
 
 class HomeView(RedirectView):
@@ -70,6 +70,67 @@ class MapView(CategoryResponseMixin, SubCategoriesResponseMixin, View):
         return MapArguments(request, category_slug, subcategory_slug)
 
 
+class MapArguments(object):
+    '''
+    The set of arguments accepted by the map view.
+
+    Some of the arguments are received in the url, and the other ones come in GET data. For some of
+    them, if not given, default values are taken from SiteInfo.
+
+    The args in the url are:
+      - category_slug: slug of the category to filter
+      - subcategory_slug: slug of the subcategory to filter
+
+    The args in GET are:
+      - kw: url-quoted, space-separated list of keywords to filter
+      - lon: longitude of the initial center (default: site_info.map_initial_lon)
+      - lat: latitude of the initial center (default: site_info.map_initial_lat)
+      - z: initial zoom level (default: site_info.map_initial_zoom)
+      - bl: left coordinate of the map outer bounds (default: site_info.map_bounds_left)
+      - br: right coordinate of the map outer bounds (default: site_info.map_bounds_right)
+      - bt: top coordinate of the map outer bounds (default: site_info.map_bounds_top)
+      - bb: bottom coordinate of the map outer bounds (default: site_info.map_bounds_bottom)
+    '''
+    def __init__(self, request, category_slug, subcategory_slug):
+        self.filter_category = get_object_or_404(Category, slug = category_slug) if category_slug else None
+        self.filter_subcategory = get_object_or_404(SubCategory, slug = subcategory_slug) if subcategory_slug else None
+        self.filter_keywords = ''
+        self.initial_lon = 0
+        self.initial_lat = 0
+        self.initial_zoom = 0
+        self.bounds_left = 0
+        self.bounds_right = 0
+        self.bounds_top = 0
+        self.bounds_bottom = 0
+
+        arguments_form = MapArgumentsForm(request.GET)
+        if arguments_form.is_valid():
+            self.filter_keywords = arguments_form.cleaned_data['kw']
+            self.initial_lon = arguments_form.cleaned_data['lon']
+            self.initial_lat = arguments_form.cleaned_data['lat']
+            self.initial_zoom = arguments_form.cleaned_data['z']
+            self.bounds_left = arguments_form.cleaned_data['bl']
+            self.bounds_right = arguments_form.cleaned_data['br']
+            self.bounds_top = arguments_form.cleaned_data['bt']
+            self.bounds_bottom = arguments_form.cleaned_data['bb']
+
+        site_info = None
+        if not self.initial_lon or not self.initial_lat:
+            if not site_info: site_info = Site.objects.get_current().site_info
+            self.initial_lon = site_info.map_initial_lon
+            self.initial_lat = site_info.map_initial_lat
+        if not self.initial_zoom:
+            if not site_info: site_info = Site.objects.get_current().site_info
+            self.initial_zoom = site_info.map_initial_zoom
+        if not self.bounds_left or not self.bounds_right or \
+           not self.bounds_top or not self.bounds_bottom:
+            if not site_info: site_info = Site.objects.get_current().site_info
+            self.bounds_left = site_info.map_bounds_left
+            self.bounds_right = site_info.map_bounds_right
+            self.bounds_top = site_info.map_bounds_top
+            self.bounds_bottom = site_info.map_bounds_bottom
+
+
 class MapPageView(MapView):
     template_name = "macadjan/map-page.html"
 
@@ -90,30 +151,32 @@ class Entities(View):
         if not self.model:
             raise ImproperlyConfigured(_(u'You must subclass Entities view and define the model.'))
 
-        filter_arguments = OpenLayersTileArguments(request)
-        if not filter_arguments.is_valid:
-            return []
+        filter_arguments = ListArgumentsForm(request.GET)
+        if not filter_arguments.is_valid():
+            return self.model.objects_active.none()
 
-        if filter_arguments.left and filter_arguments.right and \
-                       filter_arguments.top and filter_arguments.bottom:
+        if filter_arguments.cleaned_data['left'] and filter_arguments.cleaned_data['right'] and \
+           filter_arguments.cleaned_data['top'] and filter_arguments.cleaned_data['bottom']:
+
             entities = self.model.objects_active.entities_in_area(
-                            filter_arguments.left,
-                            filter_arguments.right,
-                            filter_arguments.top,
-                            filter_arguments.bottom
-                        )
+                filter_arguments.cleaned_data['left'],
+                filter_arguments.cleaned_data['right'],
+                filter_arguments.cleaned_data['top'],
+                filter_arguments.cleaned_data['bottom']
+            )
+
         else:
             entities = self.model.objects_active.all()
 
         entities = self.model.objects_active.filter_by_cat(
-                            entities,
-                            filter_arguments.category,
-                            filter_arguments.subcategory,
-                   )
+            entities,
+            filter_arguments.cleaned_data['cat'],
+            filter_arguments.cleaned_data['subcat'],
+        )
         entities_list = self.model.objects_active.filter_with_keywords(
-                               entities,
-                               filter_arguments.keywords,
-                        )
+           entities,
+           filter_arguments.cleaned_data['kw'],
+        )
 
         return entities_list
 
@@ -207,129 +270,4 @@ class Entity(View):
             'entity': entity
         }
         return self.render_to_response(self.template_name, context)
-
-
-# Utilities
-
-class MapArguments(object):
-    '''
-    The set of arguments accepted by the map view.
-
-    Some of the arguments are received in the url, and the other ones come in GET data. For some of
-    them, if not given, default values are taken from SiteInfo.
-
-    The args in the url are:
-      - category_slug: slug of the category to filter
-      - subcategory_slug: slug of the subcategory to filter
-
-    The args in GET are:
-      - kw: url-quoted, space-separated list of keywords to filter
-      - lon: longitude of the initial center (default: site_info.map_initial_lon)
-      - lat: latitude of the initial center (default: site_info.map_initial_lat)
-      - z: initial zoom level (default: site_info.map_initial_zoom)
-      - bl: left coordinate of the map outer bounds (default: site_info.map_bounds_left)
-      - br: right coordinate of the map outer bounds (default: site_info.map_bounds_right)
-      - bt: top coordinate of the map outer bounds (default: site_info.map_bounds_top)
-      - bb: bottom coordinate of the map outer bounds (default: site_info.map_bounds_bottom)
-    '''
-    def __init__(self, request, category_slug, subcategory_slug):
-        self.filter_category = get_object_or_404(Category, slug = category_slug) if category_slug else None
-        self.filter_subcategory = get_object_or_404(SubCategory, slug = subcategory_slug) if subcategory_slug else None
-        self.filter_keywords = ''
-        self.initial_lon = 0
-        self.initial_lat = 0
-        self.initial_zoom = 0
-        self.bounds_left = 0
-        self.bounds_right = 0
-        self.bounds_top = 0
-        self.bounds_bottom = 0
-
-        arguments_form = MapArgumentsForm(request.GET)
-        if arguments_form.is_valid():
-            self.filter_keywords = arguments_form.cleaned_data['kw']
-            self.initial_lon = arguments_form.cleaned_data['lon']
-            self.initial_lat = arguments_form.cleaned_data['lat']
-            self.initial_zoom = arguments_form.cleaned_data['z']
-            self.bounds_left = arguments_form.cleaned_data['bl']
-            self.bounds_right = arguments_form.cleaned_data['br']
-            self.bounds_top = arguments_form.cleaned_data['bt']
-            self.bounds_bottom = arguments_form.cleaned_data['bb']
-
-        site_info = None
-        if not self.initial_lon or not self.initial_lat:
-            if not site_info: site_info = Site.objects.get_current().site_info
-            self.initial_lon = site_info.map_initial_lon
-            self.initial_lat = site_info.map_initial_lat
-        if not self.initial_zoom:
-            if not site_info: site_info = Site.objects.get_current().site_info
-            self.initial_zoom = site_info.map_initial_zoom
-        if not self.bounds_left or not self.bounds_right or \
-           not self.bounds_top or not self.bounds_bottom:
-            if not site_info: site_info = Site.objects.get_current().site_info
-            self.bounds_left = site_info.map_bounds_left
-            self.bounds_right = site_info.map_bounds_right
-            self.bounds_top = site_info.map_bounds_top
-            self.bounds_bottom = site_info.map_bounds_bottom
-
-
-class OpenLayersFeatures(object):
-    '''
-    A number of filter arguments, packed in a single string suitable for the 'features' argument
-    of an OpenLayers tile request. The format is currently
-
-      <category_id>|<subcategory_id>|<keywords>
-
-    Where category_id and subcategory_id may be empty strings, and keywords is an url quoted,
-    space separated list of search keywords.
-    '''
-    def __init__(self, features_string = ''):
-        self.features_string = features_string
-
-    def parse_features(self):
-        category = None
-        subcategory = None
-        keywords = ''
-
-        features_split = self.features_string.split('|')
-        if len(features_split) > 0:
-            category_id = features_split[0]
-            if category_id:
-                category = get_object_or_404(Category, id = category_id)
-
-            if len(features_split) > 1:
-                subcategory_id = features_split[1]
-                if subcategory_id:
-                    subcategory = get_object_or_404(SubCategory, id = subcategory_id)
-
-                if len(features_split) > 2:
-                    keywords = features_split[2]
-
-        return (category, subcategory, keywords)
-
-    def make_features(self, category, subcategory, keywords):
-        self.features_string = '%s|%s|%s' % (category.id if category else '',
-                                             subcategory.id if subcategory else '',
-                                             keywords)
-
-
-class OpenLayersTileArguments(object):
-    '''
-    The set of arguments in a standard OpenLayers tile request.
-    This class holds arguments about zoom level, coordinates of the tile and "features", that
-    is a free string that can be used to filter, for example.
-    It can parse the arguments from the url and also generate the features string.
-    '''
-    def __init__(self, request):
-        arguments_form = OpenLayersTileArgumentsForm(request.GET)
-        if arguments_form.is_valid():
-            self.is_valid = True
-            self.left = arguments_form.cleaned_data.get('left', None)
-            self.right = arguments_form.cleaned_data.get('right', None)
-            self.top = arguments_form.cleaned_data.get('top', None)
-            self.bottom = arguments_form.cleaned_data.get('bottom', None)
-            features_string = arguments_form.cleaned_data['features']
-            features = OpenLayersFeatures(features_string)
-            (self.category, self.subcategory, self.keywords) = features.parse_features()
-        else:
-            self.is_valid = False
 
