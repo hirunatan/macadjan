@@ -3,6 +3,6 @@
 *.pyc
 *.swp
 *.swo
-macadjan.egg-info/*
+macadjan.egg-info*
 demo/database.sqlite
-demo/demo/whoosh_index/*
+demo/demo/whoosh_index
