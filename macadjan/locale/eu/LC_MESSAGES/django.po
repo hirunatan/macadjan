@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-17 17:05+0200\n"
+"POT-Creation-Date: 2012-09-17 07:56+0200\n"
 "PO-Revision-Date: 2012-05-10 22:39\n"
 "Last-Translator:   <hirunatan@hammo.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -601,7 +601,11 @@ msgstr ""
 msgid "entidades"
 msgstr ""
 
-#: views.py:81
+#: views.py:58
+msgid "You must subclass MapView and define template_name."
+msgstr ""
+
+#: views.py:152
 msgid "You must subclass Entities view and define the model."
 msgstr ""
 
@@ -681,5 +685,5 @@ msgstr ""
 #: templates/macadjan/search-box.html:16
 msgid ""
 "En el mapa: entidades relacionadas con <span id=\"id-category-header\">todas "
-"las categorías"
+"las categorías</span>"
 msgstr ""
