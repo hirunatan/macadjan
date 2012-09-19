@@ -23,6 +23,7 @@ SETUP_REQUIREMENTS = [
 REQUIREMENTS = [
     'distribute',
     'Django >= 1.3',
+    'South >= 0.7',
 ]
 
 EXTRAS = {
