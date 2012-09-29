@@ -199,7 +199,7 @@ class EntitiesText(Entities):
 
             text += u'%f\t%f\t%s\t%d,%d\t%d,%d\t%s\t%s\t%d,%d\n' % (entity.latitude,
                             entity.longitude, settings.STATIC_URL + entity.marker_url,
-                            32, 37, 0, -37, title, description, 300, 120)
+                            32, 32, -16, -16, title, description, 300, 120)
 
         return HttpResponse(text, content_type='text/plain')
 
