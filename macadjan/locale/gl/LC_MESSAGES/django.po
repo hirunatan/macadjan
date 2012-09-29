@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-17 17:05+0200\n"
-"PO-Revision-Date: 2012-08-17 17:10\n"
-"Last-Translator:   <tio@feo.es>\n"
+"PO-Revision-Date: 2012-09-28 14:24\n"
+"Last-Translator:   <desatonao@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Translated-Using: django-rosetta 0.6.2\n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: admin.py:14
 #, python-format
@@ -60,8 +60,7 @@ msgstr "Nome do sitio"
 
 #: models.py:29
 msgid ""
-"Nombre global del sitio, aparece en la parte superior de todas las "
-"páginas."
+"Nombre global del sitio, aparece en la parte superior de todas las páginas."
 msgstr "Nome global do sitio, aparece na parte superior de tódalas páxinas. "
 
 #: models.py:32
@@ -185,15 +184,15 @@ msgstr ""
 
 #: models.py:102
 msgid "Ayuda para Descripción"
-msgstr ""
+msgstr "Axuda para Descrición"
 
 #: models.py:104
 msgid "Ayuda para Objetivo como entidad"
-msgstr ""
+msgstr "Axuda pra Obxetivo como entidade"
 
 #: models.py:106
 msgid "Ayuda para Finanzas"
-msgstr ""
+msgstr "Axuda para Finanzas"
 
 #: models.py:108
 msgid "Ayuda para Valores sociales y medioambientales"
@@ -282,11 +281,11 @@ msgstr "Activo"
 
 #: models.py:183
 msgid ""
-"Indica si esta categoría está activa; si no lo está, no saldrá en el "
-"árbol de clasificación del mapa."
+"Indica si esta categoría está activa; si no lo está, no saldrá en el árbol "
+"de clasificación del mapa."
 msgstr ""
-"Indica se esta categoría está activa; se non o está, non sairá no "
-"árbol de clasificación do mapa."
+"Indica se esta categoría está activa; se non o está, non sairá no árbol de "
+"clasificación do mapa."
 
 #: models.py:211
 msgid "categoría"
@@ -318,11 +317,11 @@ msgstr ""
 
 #: models.py:247
 msgid ""
-"Indica si esta subcategoría está activa; si no lo está, no saldrá en el"
-" árbol de clasificación del mapa."
+"Indica si esta subcategoría está activa; si no lo está, no saldrá en el "
+"árbol de clasificación del mapa."
 msgstr ""
-"Indica se esta subcategoría está activa; se non o está, non sairá no "
-"árbol de clasificación do mapa."
+"Indica se esta subcategoría está activa; se non o está, non sairá no árbol "
+"de clasificación do mapa."
 
 #: models.py:272
 msgid "subcategoría"
@@ -358,11 +357,11 @@ msgstr "Nome da entidade (para sair no globo)."
 
 #: models.py:390
 msgid ""
-"Identificador de la entidad, sólo puede contener letras, números y el "
-"signo \"_\". Si lo dejas en blanco se generará automáticamente."
+"Identificador de la entidad, sólo puede contener letras, números y el signo "
+"\"_\". Si lo dejas en blanco se generará automáticamente."
 msgstr ""
-"Identificador da entidade, so pode conter letras, números e o signo "
-"\"_\". Se o deixas en branco xerarase automáticamente."
+"Identificador da entidade, so pode conter letras, números e o signo \"_\". "
+"Se o deixas en branco xerarase automáticamente."
 
 #: models.py:392
 msgid "Alias"
@@ -386,11 +385,11 @@ msgstr "É contenedor"
 
 #: models.py:401
 msgid ""
-"Indica si esta entidad puede contener otras, las cuales comparten "
-"espacio físico con ellas (ej. un CSOA, una cooperativa integral...)."
+"Indica si esta entidad puede contener otras, las cuales comparten espacio "
+"físico con ellas (ej. un CSOA, una cooperativa integral...)."
 msgstr ""
-"Indica se a entidade pode conter a outras, as cales comparten espazo "
-"físico con elas (ex. un Centro Social, unha cooperativa integral...)."
+"Indica se a entidade pode conter a outras, as cales comparten espazo físico "
+"con elas (ex. un Centro Social, unha cooperativa integral...)."
 
 #: models.py:405
 msgid "Agrupada dentro de"
@@ -398,11 +397,11 @@ msgstr "Agrupada dentro de"
 
 #: models.py:406
 msgid ""
-"Indica si esta entidad está contenida en otra (ej. un taller dentro de "
-"un CSOA)."
+"Indica si esta entidad está contenida en otra (ej. un taller dentro de un "
+"CSOA)."
 msgstr ""
-"Indica se esta entidade está contida noutra (ex. un obradoiro dentro "
-"dun Centro Social)."
+"Indica se esta entidade está contida noutra (ex. un obradoiro dentro dun "
+"Centro Social)."
 
 #: models.py:410
 msgid "Latitud"
@@ -438,8 +437,8 @@ msgstr "Enderezo (resto)"
 
 #: models.py:420
 msgid ""
-"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 "
-"entrada posterior."
+"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 entrada "
+"posterior."
 msgstr ""
 "Portal, piso e outros datos.\n"
 "Exemplos: Escaleira A, 3º Esq; Local 4 entrada posterior."
@@ -458,8 +457,8 @@ msgstr "Poboación"
 
 #: models.py:426
 msgid ""
-"Nombre de la población tal como se usa en la dirección postal. Ej. "
-"Madrid, Alcorcón."
+"Nombre de la población tal como se usa en la dirección postal. Ej. Madrid, "
+"Alcorcón."
 msgstr ""
 "Nome da poboación tal como se usa na direción postal.\n"
 "Ex: Pontevedra, Gondomar."
@@ -470,8 +469,7 @@ msgstr "Provincia"
 
 #: models.py:429
 msgid ""
-"Nombre de la provincia, no es necesario si se llama igual que la "
-"ciudad."
+"Nombre de la provincia, no es necesario si se llama igual que la ciudad."
 msgstr "Nome da provincia. Non é necesario se se chama igual ca cidade."
 
 #: models.py:431
@@ -480,8 +478,7 @@ msgstr "País"
 
 #: models.py:432
 msgid ""
-"Nombre del país, tal como se usa en la dirección postal, si es "
-"necesario."
+"Nombre del país, tal como se usa en la dirección postal, si es necesario."
 msgstr "Nome do país, tal como se usa na direción postal, se é necesario."
 
 #: models.py:434
@@ -490,12 +487,11 @@ msgstr "Zona"
 
 #: models.py:435
 msgid ""
-"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, "
-"comarca, pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
+"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, comarca,"
+" pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
 msgstr ""
-"Zona de influencia da entidade. Pode ser barrio, pobo, cidade, "
-"comarca, pedanía... Ex. San Pedro da Ramallosa, Serra do Galiñeiro, "
-"Val Miñor."
+"Zona de influencia da entidade. Pode ser barrio, pobo, cidade, comarca, "
+"pedanía... Ex. San Pedro da Ramallosa, Serra do Galiñeiro, Val Miñor."
 
 #: models.py:439
 msgid "Teléfono contacto 1"
@@ -527,11 +523,11 @@ msgstr "Email 1"
 
 #: models.py:449
 msgid ""
-"Email de contacto. Ojo: poner la dirección correcta y sin añadir "
-"espacios a izquierda ni derecha. Ej. colectivo@gmail.com"
+"Email de contacto. Ojo: poner la dirección correcta y sin añadir espacios a "
+"izquierda ni derecha. Ej. colectivo@gmail.com"
 msgstr ""
-"Email de contacto. Ollo: poñela direción correcta e sen engadir "
-"espazos á esquerda ou á dereita. Ex.  colectivo@gmail.com"
+"Email de contacto. Ollo: poñela direción correcta e sen engadir espazos á "
+"esquerda ou á dereita. Ex.  colectivo@gmail.com"
 
 #: models.py:451
 msgid "Email 2"
@@ -547,9 +543,9 @@ msgstr "Web 1"
 
 #: models.py:455
 msgid ""
-"Página web informativa. Ojo: hay que poner la dirección completa, "
-"incluyendo http://. La dirección será validada automáticamente para "
-"comprobar que existe."
+"Página web informativa. Ojo: hay que poner la dirección completa, incluyendo"
+" http://. La dirección será validada automáticamente para comprobar que "
+"existe."
 msgstr ""
 "Páxina web informativa. Ollo: hai que poñela direción completa,\n"
 "incluindo http://. A dirección será validada automáticamente para comprobar que existe."
@@ -592,11 +588,11 @@ msgstr "Activa"
 
 #: models.py:474
 msgid ""
-"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa"
-" ni en los listados."
+"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa ni "
+"en los listados."
 msgstr ""
-"Indica se esta entidade está activa; se non o está, non sairá no mapa "
-"nin nos listados."
+"Indica se esta entidade está activa; se non o está, non sairá no mapa nin "
+"nos listados."
 
 #: models.py:479
 msgid "Tipo de entidad"
@@ -615,9 +611,8 @@ msgid ""
 "Determinará el tipo de icono en el mapa. Esta categoría deberá estar "
 "incluida en la lista de más abajo; si no, será añadida automáticamente."
 msgstr ""
-"Determinará o tipo e icona no mapa. Esta categoría deberá estar "
-"incluida na lista de máis abaixo; se non, será engadida "
-"automáticamente."
+"Determinará o tipo e icona no mapa. Esta categoría deberá estar incluida na "
+"lista de máis abaixo; se non, será engadida automáticamente."
 
 #: models.py:492
 msgid "Categorías"
@@ -718,6 +713,6 @@ msgstr ""
 
 #: templates/macadjan/search-box.html:16
 msgid ""
-"En el mapa: entidades relacionadas con <span id=\"id-category-"
-"header\">todas las categorías"
+"En el mapa: entidades relacionadas con <span id=\"id-category-header\">todas"
+" las categorías"
 msgstr ""
