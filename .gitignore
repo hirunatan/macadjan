@@ -3,6 +3,7 @@
 *.pyc
 *.swp
 *.swo
+versiontools*egg
 macadjan.egg-info*
 demo/database.sqlite
 demo/demo/whoosh_index
