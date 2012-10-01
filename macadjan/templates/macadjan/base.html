@@ -12,15 +12,15 @@
 
     <title>{% block title %}title.here{% endblock %}</title>
 
-    {% if debug %}
+    {#{% if debug %}#}
         <link rel="stylesheet/less" href="{% static 'less/style.less' %}">
         <link rel="stylesheet/less" href="{% static 'less/custom.less' %}">
         <script src="{% static 'js/libs/less-1.3.0.min.js' %}"></script>
         <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your style.less
         and custom.less files to style.css and custom.css in production site -->
-    {% else %}
-        <link rel="stylesheet" href="/static/less/style.css">
-    {% endif %}
+    {#{% else %}#}
+    {#    <link rel="stylesheet" href="/static/less/style.css">#}
+    {#{% endif %}#}
 
     <script src="{% static 'js/libs/modernizr-2.5.3-respond-1.1.0.min.js' %}"></script>
 </head>
