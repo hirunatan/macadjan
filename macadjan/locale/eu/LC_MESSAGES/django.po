@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-17 07:56+0200\n"
-"PO-Revision-Date: 2012-05-10 22:39\n"
-"Last-Translator:   <hirunatan@hammo.org>\n"
+"PO-Revision-Date: 2012-10-01 08:03\n"
+"Last-Translator:   <tio@feo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Translated-Using: django-rosetta 0.6.2\n"
 
@@ -60,7 +60,8 @@ msgstr "Tokiaren izena"
 
 #: models.py:29
 msgid ""
-"Nombre global del sitio, aparece en la parte superior de todas las páginas."
+"Nombre global del sitio, aparece en la parte superior de todas las "
+"páginas."
 msgstr "Tokiaren izen globala, orrialde guztien goikaldean agertzen da."
 
 #: models.py:32
@@ -162,8 +163,7 @@ msgstr ""
 #: models.py:89
 msgid ""
 "\n"
-"Si está activo, podrás añadir una opción de menú con url /"
-"new_entity_proposal para\n"
+"Si está activo, podrás añadir una opción de menú con url /new_entity_proposal para\n"
 "ver el formulario de proponer nuevas entidades.\n"
 msgstr ""
 
@@ -174,8 +174,7 @@ msgstr ""
 #: models.py:96
 msgid ""
 "\n"
-"Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario "
-"de\n"
+"Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario de\n"
 "proponer cambios.\n"
 msgstr ""
 
@@ -259,15 +258,11 @@ msgstr ""
 #: models.py:174
 msgid ""
 "\n"
-"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un "
-"fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
 "con el punto de inserción en el centro del borde inferior.<br/>\n"
-"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los "
-"iconos predefinidos de Macadjan, o bien<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos "
-"personalizados de un tema.<br/>\n"
-"Si no se indica marcador, se usará el marcador por defecto definido en "
-"settings.py.\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador por defecto definido en settings.py.\n"
 msgstr ""
 
 #: models.py:182 models.py:246
@@ -276,8 +271,8 @@ msgstr ""
 
 #: models.py:183
 msgid ""
-"Indica si esta categoría está activa; si no lo está, no saldrá en el árbol "
-"de clasificación del mapa."
+"Indica si esta categoría está activa; si no lo está, no saldrá en el "
+"árbol de clasificación del mapa."
 msgstr ""
 
 #: models.py:211
@@ -295,21 +290,17 @@ msgstr ""
 #: models.py:238
 msgid ""
 "\n"
-"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un "
-"fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
+"Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>\n"
 "con el punto de inserción en el centro del borde inferior.<br/>\n"
-"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los "
-"iconos predefinidos de Macadjan, o bien<br/>\n"
-"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos "
-"personalizados de un tema.<br/>\n"
-"Si no se indica marcador, se usará el marcador de la categoría a la que "
-"pertenece esta subcategoría.\n"
+"La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>\n"
+"themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>\n"
+"Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.\n"
 msgstr ""
 
 #: models.py:247
 msgid ""
-"Indica si esta subcategoría está activa; si no lo está, no saldrá en el "
-"árbol de clasificación del mapa."
+"Indica si esta subcategoría está activa; si no lo está, no saldrá en el"
+" árbol de clasificación del mapa."
 msgstr ""
 
 #: models.py:272
@@ -346,8 +337,8 @@ msgstr ""
 
 #: models.py:390
 msgid ""
-"Identificador de la entidad, sólo puede contener letras, números y el signo "
-"\"_\". Si lo dejas en blanco se generará automáticamente."
+"Identificador de la entidad, sólo puede contener letras, números y el "
+"signo \"_\". Si lo dejas en blanco se generará automáticamente."
 msgstr ""
 
 #: models.py:392
@@ -372,8 +363,8 @@ msgstr ""
 
 #: models.py:401
 msgid ""
-"Indica si esta entidad puede contener otras, las cuales comparten espacio "
-"físico con ellas (ej. un CSOA, una cooperativa integral...)."
+"Indica si esta entidad puede contener otras, las cuales comparten "
+"espacio físico con ellas (ej. un CSOA, una cooperativa integral...)."
 msgstr ""
 
 #: models.py:405
@@ -382,8 +373,8 @@ msgstr ""
 
 #: models.py:406
 msgid ""
-"Indica si esta entidad está contenida en otra (ej. un taller dentro de un "
-"CSOA)."
+"Indica si esta entidad está contenida en otra (ej. un taller dentro de "
+"un CSOA)."
 msgstr ""
 
 #: models.py:410
@@ -418,8 +409,8 @@ msgstr ""
 
 #: models.py:420
 msgid ""
-"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 entrada "
-"posterior."
+"Portal, piso y otros datos. Ejemplos: Escalera A, 3º izq.; Local 4 "
+"entrada posterior."
 msgstr ""
 
 #: models.py:422
@@ -436,8 +427,8 @@ msgstr ""
 
 #: models.py:426
 msgid ""
-"Nombre de la población tal como se usa en la dirección postal. Ej. Madrid, "
-"Alcorcón."
+"Nombre de la población tal como se usa en la dirección postal. Ej. "
+"Madrid, Alcorcón."
 msgstr ""
 
 #: models.py:428
@@ -446,7 +437,8 @@ msgstr ""
 
 #: models.py:429
 msgid ""
-"Nombre de la provincia, no es necesario si se llama igual que la ciudad."
+"Nombre de la provincia, no es necesario si se llama igual que la "
+"ciudad."
 msgstr ""
 
 #: models.py:431
@@ -455,7 +447,8 @@ msgstr ""
 
 #: models.py:432
 msgid ""
-"Nombre del país, tal como se usa en la dirección postal, si es necesario."
+"Nombre del país, tal como se usa en la dirección postal, si es "
+"necesario."
 msgstr ""
 
 #: models.py:434
@@ -464,8 +457,8 @@ msgstr ""
 
 #: models.py:435
 msgid ""
-"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, comarca, "
-"pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
+"Zona de influencia de la entidad. Puede ser barrio, pueblo, ciudad, "
+"comarca, pedanía... Ej. Barrio de Lavapiés, Sierra Norte de Madrid."
 msgstr ""
 
 #: models.py:439
@@ -498,8 +491,8 @@ msgstr ""
 
 #: models.py:449
 msgid ""
-"Email de contacto. Ojo: poner la dirección correcta y sin añadir espacios a "
-"izquierda ni derecha. Ej. colectivo@gmail.com"
+"Email de contacto. Ojo: poner la dirección correcta y sin añadir "
+"espacios a izquierda ni derecha. Ej. colectivo@gmail.com"
 msgstr ""
 
 #: models.py:451
@@ -516,9 +509,9 @@ msgstr ""
 
 #: models.py:455
 msgid ""
-"Página web informativa. Ojo: hay que poner la dirección completa, incluyendo "
-"http://. La dirección será validada automáticamente para comprobar que "
-"existe."
+"Página web informativa. Ojo: hay que poner la dirección completa, "
+"incluyendo http://. La dirección será validada automáticamente para "
+"comprobar que existe."
 msgstr ""
 
 #: models.py:457
@@ -559,8 +552,8 @@ msgstr ""
 
 #: models.py:474
 msgid ""
-"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa ni "
-"en los listados."
+"Indica si esta entidad está activa; si no lo está, no saldrá en el mapa"
+" ni en los listados."
 msgstr ""
 
 #: models.py:479
@@ -684,6 +677,6 @@ msgstr ""
 
 #: templates/macadjan/search-box.html:16
 msgid ""
-"En el mapa: entidades relacionadas con <span id=\"id-category-header\">todas "
-"las categorías</span>"
+"En el mapa: entidades relacionadas con <span id=\"id-category-"
+"header\">todas las categorías</span>"
 msgstr ""
