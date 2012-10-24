@@ -41,7 +41,7 @@ Macadjan.MapView = Backbone.View.extend({
         this.selectControl.activate();
         this.poiLayer.events.on({
             "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect,
+            "featureunselected": this.onFeatureUnselect
         });
 
         this.centerMap();
@@ -52,7 +52,7 @@ Macadjan.MapView = Backbone.View.extend({
             projection: new OpenLayers.Projection('EPSG:4326'),
             controls: [
                 new OpenLayers.Control.Navigation(),
-                new OpenLayers.Control.PanZoomBar(),
+                new OpenLayers.Control.PanZoomBar()
             ],
             maxExtent: this.parseBounds(),
             numZoomLevels: this.parseZoomLevels(),
@@ -76,13 +76,13 @@ Macadjan.MapView = Backbone.View.extend({
         });
         this.refreshStrategy = new OpenLayers.Strategy.Refresh({
             force: true,
-            active: true,
+            active: true
         });
 
         this.protocol = new OpenLayers.Protocol.HTTP({
             url: this.$el.data('api-url'),
             params: this.parseFilter(),
-            format: new OpenLayers.Format.Text(),
+            format: new OpenLayers.Format.Text()
         });
 
         this.style = new OpenLayers.Style({
@@ -95,7 +95,7 @@ Macadjan.MapView = Backbone.View.extend({
             strokeWidth: 10,
             strokeOpacity: 0.4,
             label: "${count}",
-            fontColor: "#ffffff",
+            fontColor: "#ffffff"
         },{
             context: {
                 radius: function(feature) {
@@ -111,7 +111,7 @@ Macadjan.MapView = Backbone.View.extend({
             strategies: [
                 this.bboxStrategy,
                 this.clusterStrategy,
-                this.refreshStrategy,
+                this.refreshStrategy
             ],
             protocol: this.protocol,
              styleMap: new OpenLayers.StyleMap({
@@ -269,7 +269,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         'change #id_subcategory': 'onChangeSubCategory',
         'click #id_keywords_submit': 'onClickKeywords',
         'click #list-block .with-point strong': 'onClickEntityNameWithPoint',
-        'click #list-block .without-point strong': 'onClickEntityNameWithoutPoint',
+        'click #list-block .without-point strong': 'onClickEntityNameWithoutPoint'
     },
 
     initialize: function() {
@@ -468,7 +468,7 @@ Macadjan.MapPageView = Backbone.View.extend({
                 listBlock.height(600 - categoryBlockHeight);
             }
         );
-    },
+    }
 });
 
 Macadjan.mapPage = new Macadjan.MapPageView();
