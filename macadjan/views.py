@@ -190,16 +190,17 @@ class EntitiesText(Entities):
         text = u'lat\tlon\ticon\ticonSize\ticonOffset\ttitle\tdescription\tpopupSize\n'
 
         for entity in entities_list:
-            title, description = (
-                u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
-                                                              reverse('entity', kwargs={'entity_slug': entity.slug}),
-                                                          entity.name),
-                u'<br/>%s' % entity.summary
-            )
-
-            text += u'%f\t%f\t%s\t%d,%d\t%d,%d\t%s\t%s\t%d,%d\n' % (entity.latitude,
-                            entity.longitude, settings.STATIC_URL + entity.marker_url,
-                            32, 32, -16, -16, title, description, 300, 120)
+            if not entity.latitude == None:
+                title, description = (
+                    u'<a href="%s" target="_blank">%s</a>' % ('http://' + Site.objects.get_current().domain +
+                                                        reverse('entity', kwargs={'entity_slug': entity.slug}),
+                                                        entity.name),
+                    u'<br/>%s' % entity.summary
+                    )
+                
+                text += u'%f\t%f\t%s\t%d,%d\t%d,%d\t%s\t%s\t%d,%d\n' % (entity.latitude,
+                                        entity.longitude, settings.STATIC_URL + entity.marker_url,
+                                        32, 32, -16, -16, title, description, 300, 120)
 
         return HttpResponse(text, content_type='text/plain')
 
