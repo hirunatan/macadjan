@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.db.models import signals
 from django.conf import settings
-from django.core.mail import EmailMessage
 from django.template import RequestContext, Context, loader
 
 from .utils import slugify_uniquely
