@@ -532,7 +532,7 @@ class Entity(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('entity', (), {'id_entity': self.id})
+        return ('entity', (), {'entity_slug': self.slug})
 
     @property
     def marker_url(self):
