@@ -40,7 +40,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'marker_url', 'is_active') # Fields shown in the entity list
+    list_display = ('__unicode__', 'slug', 'marker_url', 'is_active') # Fields shown in the entity list
     list_filter = ('is_active', 'category',)         # Fields you can filter by in the entity list
     prepopulated_fields = {"slug": ("name",)}
     actions = [make_active, make_inactive]
