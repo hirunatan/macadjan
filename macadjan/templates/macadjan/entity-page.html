@@ -25,7 +25,12 @@
                 <p>
                     <strong>{% trans "Dirección:" %}</strong>  
                     {{ entity.address_1 }} {{ entity.address_2 }}
-                    {{ entity.zipcode }} {{ entity.city }} {{ entity.province }}
+                    {{ entity.zipcode }}
+                    {% if entity.city and entity.province %}
+                        {{ entity.city }} ({{ entity.province }})
+                    {% else %}
+                        {{ entity.city }} {{ entity.province }}
+                    {% endif %}
                     {{ entity.country }}
                 </p>
                 {% endif %}
