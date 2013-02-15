@@ -165,7 +165,8 @@ class Category(models.Model):
     name = models.CharField(max_length = 100, null = False, blank = False,
             verbose_name = _(u'Nombre'))
     slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
-            verbose_name = _(u'Slug'))
+            verbose_name = _(u'Slug'),
+            help_text = _(u'Podrás consultar la categoría en la dirección /map/&lt;slug&gt;/'))
     description = models.TextField(null = False, blank = True,
             verbose_name = _(u'Descripción'))
     marker_url = models.CharField(max_length = 100, null = False, blank = True, default = '',
@@ -229,7 +230,8 @@ class SubCategory(models.Model):
             on_delete = models.CASCADE,
             verbose_name = _(u'Categoría'))
     slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
-            verbose_name = _(u'Slug'))
+            verbose_name = _(u'Slug'),
+            help_text = _(u'Podrás consultar la subcategoría en la dirección /map/&lt;slug_categoría&gt;/&lt;slug_subcategoría&gt;/'))
     description = models.TextField(null = False, blank = True,
             verbose_name = _(u'Descripción'))
     marker_url = models.CharField(max_length = 100, null = False, blank = True, default = '',
@@ -386,7 +388,7 @@ class Entity(models.Model):
             help_text = _(u'Nombre de la entidad (para salir en el globo).'))
     slug = models.SlugField(max_length = 100, null = False, blank = False, unique = True,
             verbose_name = _(u'Slug'),
-            help_text = _(u'Identificador de la entidad, sólo puede contener letras, números y el signo "_". Si lo dejas en blanco se generará automáticamente.'))
+            help_text = _(u'Identificador de la entidad, sólo puede contener letras, números y el signo "_". Si lo dejas en blanco se generará automáticamente.<br/>Podrás consultar la entidad en la dirección /entity/&lt;slug&gt;/'))
     alias = models.CharField(max_length = 100, null = False, blank = True, default = '',
             verbose_name = _(u'Alias'),
             help_text = _(u'Un posible nombre alternativo para la entidad.'))
