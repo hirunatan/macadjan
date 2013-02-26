@@ -71,22 +71,22 @@ class SiteInfo(models.Model):
 
     # Map initial position
     map_initial_lon = models.FloatField(null = False, blank = False,
-            verbose_name = _(u'Inicial longitud'),
+            verbose_name = _(u'Longitud inicial'),
             help_text = _(u'Posición inicial del mapa (longitud).'))
 
     map_initial_lat = models.FloatField(null = False, blank = False,
-            verbose_name = _(u'Inicial latitud'),
+            verbose_name = _(u'Latitud inicial'),
             help_text = _(u'Posición inicial del mapa (latitud).'))
 
     map_initial_zoom = models.IntegerField(null = False, blank = False,
-            verbose_name = _(u'Inicial zoom'),
+            verbose_name = _(u'Zoom inicial'),
             help_text = _(u'Posición inicial del mapa (zoom).'))
 
     # Entry proposal forms
     new_entity_proposal_enabled = models.BooleanField(null = False, blank = True, default = False,
             verbose_name = _(u'Activar formulario de nueva entidad.'),
             help_text = _(u'''
-Si está activo, podrás añadir una opción de menú con url /new_entity_proposal para
+Si está activo, podrás añadir una opción de menú con url /entity_proposal/new/ para
 ver el formulario de proponer nuevas entidades.
 '''))
 
@@ -97,6 +97,27 @@ Si está activo, la ficha de entidad tendrá un enlace que lleve al formulario d
 proponer cambios.
 '''))
 
+    new_entity_proposal_title = models.CharField(max_length = 100, null = False, blank = True,
+            verbose_name = _(u'Título del formulario (nueva entidad)'),
+            help_text = _(u'Título alternativo para el formulario de solicitud de nueva entidad.'))
+
+    new_entity_proposal_text = models.TextField(null = False, blank = True,
+            verbose_name = _(u'Texto del formulario (nueva entidad)'),
+            help_text = _(u'Texto alternativo para el formulario de solicitud de nueva entidad.'))
+
+    change_proposal_title = models.CharField(max_length = 100, null = False, blank = True,
+            verbose_name = _(u'Título del formulario (modificación)'),
+            help_text = _(u'Título alternativo para el formulario de solicitud de modificación de entidad.'))
+
+    change_proposal_text = models.TextField(null = False, blank = True,
+            verbose_name = _(u'Texto del formulario (modificación)'),
+            help_text = _(u'Texto alternativo para el formulario de solicitud de de modificación de entidad..'))
+ 
+    proposal_bottom_text = models.TextField(null = False, blank = True,
+            verbose_name = _(u'Texto inferior'),
+            help_text = _(u'Texto alternativo que aparece en la parte inferior del formulario.'))
+
+    # Hints
     description_hints = models.TextField(null = False, blank = True, default = '',
             verbose_name = _(u'Ayuda para Descripción'))
     goals_hints = models.TextField(null = False, blank = True, default = '',
