@@ -57,9 +57,6 @@ class EntityTagAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 class SiteInfoAdmin(admin.ModelAdmin):
-    #list_display = ('__unicode__',) # Fields shown in the entity list
-    #list_filter = ('collection',)          # Fields you can filter by in the entity list
-    #prepopulated_fields = {"slug": ("name",)}
     fieldsets = (
         ('Configuración del sitio', {
             'classes': ('collapse',),
