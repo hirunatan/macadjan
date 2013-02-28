@@ -56,8 +56,35 @@ class EntityTagAdmin(admin.ModelAdmin):
     list_filter = ('collection',)          # Fields you can filter by in the entity list
     prepopulated_fields = {"slug": ("name",)}
 
+class SiteInfoAdmin(admin.ModelAdmin):
+    #list_display = ('__unicode__',) # Fields shown in the entity list
+    #list_filter = ('collection',)          # Fields you can filter by in the entity list
+    #prepopulated_fields = {"slug": ("name",)}
+    fieldsets = (
+        ('Configuración del sitio', {
+            'classes': ('collapse',),
+            'fields': ('site', 'website_name', 'website_subtitle', 'website_description','footer_line')
+        }),
+        ('Configuración del mapa', {
+            'classes': ('collapse',),
+            'fields': ('map_bounds_left', 'map_bounds_right', 'map_bounds_bottom','map_bounds_top',
+            'map_zoom_levels', 'map_max_resolution','map_units','map_initial_lon','map_initial_lat',
+            'map_initial_zoom')
+        }),
+        ('Formulario de solicitud', {
+            'classes': ('collapse',),
+            'fields': ('new_entity_proposal_enabled','entity_change_proposal_enabled','new_entity_proposal_title',
+            'new_entity_proposal_text','change_proposal_title','change_proposal_text','proposal_bottom_text')
+        }),
+        ('Textos de ayuda', {
+            'classes': ('collapse',),
+            'fields': ('description_hints','goals_hints','finances_hints','social_values_hints',
+                       'how_to_access_hints','networks_member_hints','networks_works_with_hints',
+                       'ongoing_projects_hints','needs_hints','offerings_hints','additional_info_hints')
+        }),
+    )
 
-admin.site.register(SiteInfo)
+admin.site.register(SiteInfo, SiteInfoAdmin)
 admin.site.register(EntityType)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
