@@ -53,7 +53,7 @@ Macadjan.MapView = Backbone.View.extend({
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.PanZoomBar(),
-		new OpenLayers.Control.Attribution()
+                new OpenLayers.Control.Attribution()
             ],
             maxExtent: this.parseBounds(),
             numZoomLevels: this.parseZoomLevels(),
