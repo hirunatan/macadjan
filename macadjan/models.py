@@ -116,6 +116,78 @@ proponer cambios.
     proposal_bottom_text = models.TextField(null = False, blank = True,
             verbose_name = _(u'Texto inferior'),
             help_text = _(u'Texto alternativo que aparece en la parte inferior del formulario.'))
+    
+    # Form fields visibility control
+    proponent_email_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Mail del proponente.'))
+    proponent_comment_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Comentarios.'))
+    alias_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Alias.'))
+    summary_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Resumen.'))
+    subcategories_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Categorías.'))
+    address_1_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Dirección (calle y nº).'))
+    address_2_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Dirección (resto).'))
+    zipcode_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Codigo Postal.'))
+    city_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Ciudad.'))
+    province_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Provincia.'))
+    country_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'País.'))
+    zone_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Zona.'))
+    latitude_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Latitud.'))
+    longitude_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Longitud.'))
+    contact_phone_1_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Teléfono de contacto 1.'))
+    contact_phone_2_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Teléfono de contacto 2.'))
+    fax_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Fax.'))
+    email_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Email 1.'))
+    email_2_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Email 2.'))
+    web_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Web 1.'))
+    web_2_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Web 2.'))
+    contact_person_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Persona de contacto.'))
+    creation_year_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Año de creación.'))
+    legal_form_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Forma jurídica.'))
+    description_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Descripción.'))
+    goals_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Objetivo como entidad.'))
+    finances_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Finanzas.'))
+    social_values_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Valores sociales y medioambientales.'))
+    how_to_access_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Forma de acceso.'))
+    networks_member_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Redes de las que forma parte.'))
+    networks_works_with_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Otras entidades con las que colabora.'))
+    ongoing_projects_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Proyectos en marcha.'))
+    needs_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Necesidades.'))
+    offerings_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Qué ofrece.'))
+    additional_info_field_enabled = models.BooleanField(null = False, blank = True, default = True,
+            verbose_name = _(u'Información adicional.'))
 
     # Hints
     description_hints = models.TextField(null = False, blank = True, default = '',

@@ -13,6 +13,7 @@
     <title>{% block title %}title.here{% endblock %}</title>
 
     {#{% if debug %}#}
+        <link rel="stylesheet" href="{% static 'js/libs/openlayers/theme/default/style.css' %}">
         <link rel="stylesheet/less" href="{% static 'less/style.less' %}">
         <link rel="stylesheet/less" href="{% static 'less/custom.less' %}">
         <script src="{% static 'js/libs/less-1.3.0.min.js' %}"></script>

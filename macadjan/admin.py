@@ -73,6 +73,20 @@ class SiteInfoAdmin(admin.ModelAdmin):
             'fields': ('new_entity_proposal_enabled','entity_change_proposal_enabled','new_entity_proposal_title',
             'new_entity_proposal_text','change_proposal_title','change_proposal_text','proposal_bottom_text')
         }),
+        ('Visibilidad de campos del formulario de solicitud', {
+            'classes': ('collapse',),
+            'fields': ('proponent_email_field_enabled','proponent_comment_field_enabled','alias_field_enabled',
+            'summary_field_enabled','subcategories_field_enabled','address_1_field_enabled',
+            'address_2_field_enabled','zipcode_field_enabled','city_field_enabled','province_field_enabled',
+            'country_field_enabled','zone_field_enabled','latitude_field_enabled','longitude_field_enabled',
+            'contact_phone_1_field_enabled','contact_phone_2_field_enabled','fax_field_enabled','email_field_enabled',
+            'email_2_field_enabled','web_field_enabled','web_2_field_enabled','contact_person_field_enabled',
+            'creation_year_field_enabled','legal_form_field_enabled','description_field_enabled','goals_field_enabled',
+            'finances_field_enabled','social_values_field_enabled','how_to_access_field_enabled',
+            'networks_member_field_enabled','networks_works_with_field_enabled','ongoing_projects_field_enabled',
+            'needs_field_enabled','offerings_field_enabled','additional_info_field_enabled')
+
+        }),
         ('Textos de ayuda', {
             'classes': ('collapse',),
             'fields': ('description_hints','goals_hints','finances_hints','social_values_hints',
