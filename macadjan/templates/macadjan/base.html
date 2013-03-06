@@ -20,7 +20,8 @@
         <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your style.less
         and custom.less files to style.css and custom.css in production site -->
     {#{% else %}#}
-    {#    <link rel="stylesheet" href="/static/less/style.css">#}
+    {#    <link rel="stylesheet" href="{% static 'js/libs/openlayers/theme/default/style.css' %}"> #}
+    {#    <link rel="stylesheet" href="/static/less/style.css"> #}
     {#{% endif %}#}
 
     <script src="{% static 'js/libs/modernizr-2.5.3-respond-1.1.0.min.js' %}"></script>

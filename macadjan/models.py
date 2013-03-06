@@ -112,11 +112,11 @@ proponer cambios.
     change_proposal_text = models.TextField(null = False, blank = True,
             verbose_name = _(u'Texto del formulario (modificación)'),
             help_text = _(u'Texto alternativo para el formulario de solicitud de de modificación de entidad..'))
- 
+
     proposal_bottom_text = models.TextField(null = False, blank = True,
             verbose_name = _(u'Texto inferior'),
             help_text = _(u'Texto alternativo que aparece en la parte inferior del formulario.'))
-    
+
     # Form fields visibility control
     proponent_email_field_enabled = models.BooleanField(null = False, blank = True, default = True,
             verbose_name = _(u'Mail del proponente.'))

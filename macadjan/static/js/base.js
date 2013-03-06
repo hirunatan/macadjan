@@ -59,7 +59,7 @@ Macadjan.MapView = Backbone.View.extend({
             numZoomLevels: this.parseZoomLevels(),
             units:this.parseUnits(),
             maxResolution: this.parseMaxResolution(),
-	    theme: null
+            theme: null
         };
         return new OpenLayers.Map(this.$el.attr('id'), mapArgs);
     },
