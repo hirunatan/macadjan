@@ -267,9 +267,13 @@ class Category(models.Model):
             help_text = _(u'''
 Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>
 con el punto de inserción en el centro del borde inferior.<br/>
-La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>
-themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>
-Si no se indica marcador, se usará el marcador por defecto definido en settings.py.
+La ruta será:<br/>
+ - img/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan (clásicos)<br/>
+ - img/markers/icons-noun-project/&lt;nombre_icono&gt;.png para los iconos nuevos<br/>
+Si no se indica marcador, se usará el marcador por defecto definido en settings.py.<br/>
+La lista de iconos disponibles es la siguiente:<br/>
+ - https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan<br/>
+ - https://n-1.cc/file/view/1521147/iconos-disponibles-para-los-marcadores-de-macadjan-nuevos
 '''))
     is_active = models.BooleanField(default = False,
             verbose_name = _(u'Activo'),
@@ -332,9 +336,13 @@ class SubCategory(models.Model):
             help_text = _(u'''
 Indicar la ruta de la imagen a usar como marcador. La imagen debe ser un fichero .jpg, .png o .gif de 32x37 pixels<br/>
 con el punto de inserción en el centro del borde inferior.<br/>
-La ruta será macadjan_base/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan, o bien<br/>
-themes/&lt;nombre_tema&gt;/markers/&lt;nombre_icono&gt;.png para los iconos personalizados de un tema.<br/>
-Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.
+La ruta será:<br/>
+ - img/markers/icons/&lt;nombre_icono&gt;.png para los iconos predefinidos de Macadjan (clásicos)<br/>
+ - img/markers/icons-noun-project/&lt;nombre_icono&gt;.png para los iconos nuevos<br/>
+Si no se indica marcador, se usará el marcador de la categoría a la que pertenece esta subcategoría.<br/>
+La lista de iconos disponibles es la siguiente:<br/>
+ - https://n-1.cc/pg/file/read/1268597/iconos-disponibles-para-los-marcadores-de-macadjan<br/>
+ - https://n-1.cc/file/view/1521147/iconos-disponibles-para-los-marcadores-de-macadjan-nuevos
 '''))
     is_active = models.BooleanField(default = False,
             verbose_name = _(u'Activo'),
