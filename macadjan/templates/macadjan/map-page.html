@@ -4,7 +4,7 @@
 {% block content %}
 {% localize off %}
 <div id="map-page" class="map-page clearfix"
-    data-entity-list-url="{% url entities-list %}"
+    data-entity-list-url="{% url 'entities-list' %}"
     data-filter-category="{% if map_arguments.filter_category %}{{ map_arguments.filter_category.id }}{% endif %}"
     data-filter-subcategory="{% if map_arguments.filter_subcategory %}{{ map_arguments.filter_subcategory.id }}{% endif %}"
     data-filter-keywords="{{ map_arguments.filter_keywords }}">

@@ -5,7 +5,7 @@
         <li class="{% if entity.latitude %}with-point{% else %}without-point{% endif %}">
             {% localize off %}
             <strong data-entity-lon="{{ entity.longitude }}" data-entity-lat="{{ entity.latitude }}"
-                    data-entity-url="{% url entity entity.slug %}">{{ entity.name }}</strong>
+                    data-entity-url="{% url 'entity' entity.slug %}">{{ entity.name }}</strong>
             {% endlocalize %}
             {% if entity.summary %}<br/>{{ entity.summary }}{% endif %}
         </li>

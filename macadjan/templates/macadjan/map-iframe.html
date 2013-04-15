@@ -2,7 +2,7 @@
 {% load i18n staticfiles %}
 
 {% block content %}
-<div id="map-page" class="map-page clearfix" data-entity-list-url="{% url entities-list %}"
+<div id="map-page" class="map-page clearfix" data-entity-list-url="{% url 'entities-list' %}"
                      data-initial-cat="{% if initial.cat %}{{ initial.cat }}{% endif %}"
                      data-initial-subcat="{% if initial.subcat %}{{ initial.subcat }}{% endif %}"
                      data-initial-keywords="{{ initial.keywords }}">
