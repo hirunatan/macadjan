@@ -424,6 +424,35 @@ class EntityTag(models.Model):
         verbose_name_plural = _(u'etiquetas')
 
 
+class MapSource(models.Model):
+    '''
+    A people group in charge of collecting and processing entities.
+    '''
+    name = models.CharField(max_length = 100, null = False, blank = False,
+            verbose_name = _(u'Nombre'))
+    slug = models.SlugField(max_length = 100, null = False, blank = True, unique = True,
+            verbose_name = _(u'Slug'),
+            help_text = _(u'Podrás consultar la fuente en la dirección /map-source/&lt;slug&gt;/'))
+    description = models.TextField(null = False, blank = True,
+            verbose_name = _(u'Descripción'))
+    web = models.URLField(null = False, blank = True, default = '',
+            verbose_name = _(u'Web'),
+            help_text = _(u'Página web informativa. Ojo: hay que poner la dirección completa, incluyendo http://. La dirección será validada automáticamente para comprobar que existe.'))
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_uniquely(self.name, self.__class__)
+        super(self.__class__, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = _(u'fuente de mapeo')
+        verbose_name_plural = _(u'fuentes de mapeo')
+
+
 class EntityManager(models.Manager):
 
     def entities_in_area(self, left, right, top, bottom):
@@ -596,6 +625,12 @@ class Entity(models.Model):
     # One entity can have as many tags as it wants.
     tags = models.ManyToManyField('macadjan.EntityTag', related_name = 'entities', blank = True,
             verbose_name = _(u'Etiquetas'))
+
+    # Map source
+    map_source = models.ForeignKey('macadjan.MapSource', related_name = 'entities', null = True, blank = False,
+            on_delete = models.PROTECT,
+            verbose_name = _(u'Fuente'),
+            help_text = _('Colectivo encargado de crear y mantener los datos de esta entidad.'))
 
     # Define two custom object managers
     objects = EntityManager()

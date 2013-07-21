@@ -56,6 +56,11 @@ class EntityTagAdmin(admin.ModelAdmin):
     list_filter = ('collection',)          # Fields you can filter by in the entity list
     prepopulated_fields = {"slug": ("name",)}
 
+
+class MapSourceAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+
 class SiteInfoAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Configuración del sitio', {
@@ -101,6 +106,7 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(TagCollection, TagCollectionAdmin)
 admin.site.register(EntityTag, EntityTagAdmin)
+admin.site.register(MapSource, MapSourceAdmin)
 
 
 # ModelAdmin for entities. This is an abstract class. You must write a derived
