@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 
 from superview.views import SuperView as View
 
-from .models import Category, SubCategory
+from .models import Category, SubCategory, MapSource
 from .utils import to_json
 from .forms import MapArgumentsForm, ListArgumentsForm
 
@@ -91,6 +91,7 @@ class MapArguments(object):
       - subcategory_slug: slug of the subcategory to filter
 
     The args in GET are:
+      - src: slug of the map source to filter
       - kw: url-quoted, space-separated list of keywords to filter
       - lon: longitude of the initial center (default: site_info.map_initial_lon)
       - lat: latitude of the initial center (default: site_info.map_initial_lat)
@@ -103,6 +104,7 @@ class MapArguments(object):
     def __init__(self, request, category_slug, subcategory_slug):
         self.filter_category = get_object_or_404(Category, slug = category_slug) if category_slug else None
         self.filter_subcategory = get_object_or_404(SubCategory, slug = subcategory_slug) if subcategory_slug else None
+        self.filter_map_source = None
         self.filter_keywords = ''
         self.initial_lon = 0
         self.initial_lat = 0
@@ -114,6 +116,8 @@ class MapArguments(object):
 
         arguments_form = MapArgumentsForm(request.GET)
         if arguments_form.is_valid():
+            map_source_slug = arguments_form.cleaned_data['src']
+            self.filter_map_source = get_object_or_404(MapSource, slug = map_source_slug) if map_source_slug else None
             self.filter_keywords = arguments_form.cleaned_data['kw']
             self.initial_lon = arguments_form.cleaned_data['lon']
             self.initial_lat = arguments_form.cleaned_data['lat']
@@ -181,6 +185,10 @@ class Entities(View):
             entities,
             filter_arguments.cleaned_data['cat'],
             filter_arguments.cleaned_data['subcat'],
+        )
+        entities = self.model.objects_active.filter_with_source(
+           entities,
+           filter_arguments.cleaned_data['src'],
         )
         entities_list = self.model.objects_active.filter_with_keywords(
            entities,

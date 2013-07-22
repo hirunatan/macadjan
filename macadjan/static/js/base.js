@@ -191,10 +191,12 @@ Macadjan.MapView = Backbone.View.extend({
     parseFilter: function() {
         var cat = this.$el.data('filter-category') || '';
         var subcat = this.$el.data('filter-subcategory') || '';
+        var src = this.$el.data('filter-map-source') || '';
         var keywords = this.$el.data('filter-keywords') || '';
         return {
             'cat': cat,
             'subcat': subcat,
+            'src': src,
             'kw': keywords
         }
     },
@@ -253,6 +255,7 @@ Macadjan.MapView = Backbone.View.extend({
         var filter = this.parseFilter();
         this.protocol.params['cat'] = filter['cat']
         this.protocol.params['subcat'] = filter['subcat']
+        this.protocol.params['src'] = filter['src']
         this.protocol.params['kw'] = filter['kw']
         this.refreshStrategy.refresh();
     },
@@ -424,6 +427,7 @@ Macadjan.MapPageView = Backbone.View.extend({
         var category = Macadjan.categories.find(function(item) {return item.get('id') == cat;});
         var subCat = this.$el.data('filter-subcategory');
         var subCategory = Macadjan.subCategories.find(function(item) {return item.get('id') == subCat;});
+        var mapSource = this.$el.data('filter-map-source');
         var keywords = this.$el.data('filter-keywords');
 
         var categoryBlock = this.$('#id-category-block');
@@ -460,6 +464,7 @@ Macadjan.MapPageView = Backbone.View.extend({
             {
                 cat: (cat || ''),
                 subcat: (subCat || ''),
+                src: (mapSource || ''),
                 kw: keywords
             },
             function(data) {

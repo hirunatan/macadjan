@@ -6,6 +6,7 @@ class MapArgumentsForm(forms.Form):
     '''
     Process arguments for map views.
     '''
+    src = forms.CharField(required = False)     # map source
     kw = forms.CharField(required = False)      # search keywords
     lon = forms.FloatField(required = False)    # initial longitude
     lat = forms.FloatField(required = False)    # initial latitude
@@ -24,6 +25,7 @@ class ListArgumentsForm(forms.Form):
     '''
     cat = forms.IntegerField(required = False)    # category id
     subcat = forms.IntegerField(required = False) # subcategory id
+    src = forms.CharField(required = False)       # map source id
     kw = forms.CharField(required = False)        # search keywords
     bbox = forms.CharField(required = False)      # contain 'left,right,top,bottom'
 

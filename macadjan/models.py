@@ -492,6 +492,14 @@ class EntityManager(models.Manager):
             entities = entities.filter(subcategories__category = category).distinct()
         return entities
 
+    def filter_with_source(self, entities, map_source):
+        '''
+        Add a further filter with map source.
+        '''
+        if map_source:
+            entities = entities.filter(map_source = map_source)
+        return entities
+
     def filter_with_keywords(self, entities, keywords):
         '''
         Add a further filter with keywords.
