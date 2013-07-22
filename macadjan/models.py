@@ -284,8 +284,8 @@ La lista de iconos disponibles es la siguiente:<br/>
     def __unicode__(self):
         return self.name
 
-    def to_dict(self):
-        return {
+    def to_dict(self, include_subcategories = False):
+        the_dict = {
             "id": self.id,
             "name": self.name,
             "slug": self.slug,
@@ -293,6 +293,11 @@ La lista de iconos disponibles es la siguiente:<br/>
             "markerUrl": self.marker_url,
             "is_active": self.is_active,
         }
+        if include_subcategories:
+            the_dict['subcategories'] = [
+                subcat.to_dict() for subcat in self.subcategories.filter(is_active = True)
+            ]
+        return the_dict
 
     @property
     def active_subcategories(self):

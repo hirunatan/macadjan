@@ -2,7 +2,7 @@
 
 from django.conf.urls import patterns, include, url
 
-from .views import HomeView, MapPageView, MapIframeView
+from .views import HomeView, MapPageView, MapIframeView, CategoriesView
 
 urlpatterns = patterns('',
     url(r"^$", HomeView.as_view(), name="home"),
@@ -21,5 +21,7 @@ urlpatterns = patterns('',
     url(r'^map_iframe/$',
         MapIframeView.as_view(), name='map-iframe'),
 
+    url(r'^categories/$',
+        CategoriesView.as_view(), name='categories'),
 )
 

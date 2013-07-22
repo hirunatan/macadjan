@@ -22,6 +22,15 @@ class HomeView(RedirectView):
         return reverse('map-page')
 
 
+class CategoriesView(View):
+
+    def get(self, request):
+        categories = [
+            category.to_dict(include_subcategories = True) for category in Category.objects.actives_only()
+        ]
+        return HttpResponse(to_json(categories), content_type='application/json')
+
+
 class CategoryResponseMixin(object):
     def get_categories_query_set(self):
         return Category.objects.actives_only()
