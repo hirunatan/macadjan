@@ -2,6 +2,8 @@
 
 from django.utils.translation import ugettext as _
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 from .models import *
 #from .async_tasks import *
@@ -107,6 +109,21 @@ admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(TagCollection, TagCollectionAdmin)
 admin.site.register(EntityTag, EntityTagAdmin)
 admin.site.register(MapSource, MapSourceAdmin)
+
+
+# ModelAdmin for users. If your app needs to override ModelAdmin for users, you'll need to
+# subclass this or to add a similar Inline.
+
+class MacadjanUserProfileInline(admin.StackedInline):
+    model = MacadjanUserProfile
+    can_delete = False
+    verbose_name_plural = _(u'perfil Macadjan')
+
+class MacadjanUserAdmin(UserAdmin):
+    inlines = (MacadjanUserProfileInline,)
+
+admin.site.unregister(User)
+admin.site.register(User, MacadjanUserAdmin)
 
 
 # ModelAdmin for entities. This is an abstract class. You must write a derived

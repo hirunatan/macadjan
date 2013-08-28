@@ -458,6 +458,28 @@ class MapSource(models.Model):
         verbose_name_plural = _(u'fuentes de mapeo')
 
 
+class MacadjanUserProfile(models.Model):
+    '''
+    A User profile that may link one user with a MapSource, in order to automatically
+    set the map source when creating objects, and to limit her to only access objects
+    of this source. This only makes sense for "staff" users (admins still will have
+    access to any object, and non-staff will not be able to use the admin).
+    '''
+    user = models.OneToOneField('auth.User', related_name = 'macadjan_profile', null = False, blank = False,
+            on_delete = models.CASCADE,
+            verbose_name = _(u'Usuario'))
+    map_source = models.ForeignKey("macadjan.MapSource", related_name = 'user_profiles', null = True, blank = True,
+            on_delete = models.SET_NULL,
+            verbose_name = _(u'Fuente de mapeo'),
+            help_text = _(u'Sólo tiene sentido para usuarios staff (no admin). Si ponemos una fuente, '
+                          u'este usuario sólo podrá trabajar con entidades de esta fuente.'))
+
+    class Meta:
+        ordering = ['user']
+        verbose_name = _(u'perfil Macadjan')
+        verbose_name_plural = _(u'perfiles Macadjan')
+
+
 class EntityManager(models.Manager):
 
     def entities_in_area(self, left, right, top, bottom):
