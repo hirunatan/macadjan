@@ -458,6 +458,16 @@ class MapSource(models.Model):
         verbose_name_plural = _(u'fuentes de mapeo')
 
 
+class MacadjanUserProfileManager(models.Manager):
+
+    def get_for_user(self, user):
+        try:
+            profile = user.macadjan_profile
+            return profile
+        except MacadjanUserProfile.DoesNotExist:
+            return None
+
+
 class MacadjanUserProfile(models.Model):
     '''
     A User profile that may link one user with a MapSource, in order to automatically
@@ -473,6 +483,7 @@ class MacadjanUserProfile(models.Model):
             verbose_name = _(u'Fuente de mapeo'),
             help_text = _(u'Sólo tiene sentido para usuarios staff (no admin). Si ponemos una fuente, '
                           u'este usuario sólo podrá trabajar con entidades de esta fuente.'))
+    objects = MacadjanUserProfileManager()
 
     class Meta:
         ordering = ['user']

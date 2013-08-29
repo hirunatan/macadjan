@@ -4,6 +4,8 @@ from django.utils.translation import ugettext as _
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 from .models import *
 #from .async_tasks import *
@@ -29,12 +31,12 @@ make_inactive.short_description = _(u'Desactivar todos los seleccionados')
 # TODO: test if it's better to have subcategories inlined or not
 #class SubCategoryInline(admin.StackedInline):
 #    model = SubCategory
-#    prepopulated_fields = {"slug": ("name",)}
+#    prepopulated_fields = {'slug': ('name',)}
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'marker_url', 'is_active') # Fields shown in the entity list
     list_filter = ('is_active',)         # Fields you can filter by in the entity list
-    prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {'slug': ('name',)}
     actions = [make_active, make_inactive]
 #    inlines = [
 #        SubCategoryInline,
@@ -44,19 +46,19 @@ class CategoryAdmin(admin.ModelAdmin):
 class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'slug', 'marker_url', 'is_active') # Fields shown in the entity list
     list_filter = ('is_active', 'category',)         # Fields you can filter by in the entity list
-    prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {'slug': ('name',)}
     actions = [make_active, make_inactive]
 
 
 class TagCollectionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__',) # Fields shown in the entity list
-    prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class EntityTagAdmin(admin.ModelAdmin):
     list_display = ('__unicode__',) # Fields shown in the entity list
     list_filter = ('collection',)          # Fields you can filter by in the entity list
-    prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class MapSourceAdmin(admin.ModelAdmin):
@@ -131,10 +133,10 @@ admin.site.register(User, MacadjanUserAdmin)
 
 class EntityAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'alias', 'main_subcategory', 'modification_date', 'is_active') # Fields shown in the entity list
-    filter_vertical = ('subcategories', 'tags',)   # Fields that use a selection widget instead a multi select
-    list_filter = ('is_active', 'subcategories',)         # Fields you can filter by in the entity list
-    search_fields = ('name', 'alias',)       # Fields searched by the input bux in the entity list
-    prepopulated_fields = {"slug": ("name",)}
+    filter_vertical = ('subcategories', 'tags',)  # Fields that use a selection widget instead a multi select
+    list_filter = ('is_active', 'subcategories',) # Fields you can filter by in the entity list
+    search_fields = ('name', 'alias',) # Fields searched by the input bux in the entity list
+    prepopulated_fields = {'slug': ('name',)}
     actions = [make_active, make_inactive, 'geolocalize']
 
     def geolocalize(self, request, queryset):
@@ -146,6 +148,100 @@ class EntityAdmin(admin.ModelAdmin):
 
 
     # TODO: it would be good to have also categories in list_filter, but currently the admin only supports
-    # real fields, not properties or methods or fields in other tables. We could add a "category" field to
+    # real fields, not properties or methods or fields in other tables. We could add a 'category' field to
     # Entity class, and sincronize it with signals. To think later...
 
+
+    # Restrictions for users with map source. Ideas taken from
+    # http://www.alextreme.org/misc/sub_admin.py
+
+    def _auto_hide_map_source(self, request):
+        '''
+        Map source users can not see map_source fields.
+        '''
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        if not user.is_superuser and profile and profile.map_source:
+            self.exclude = ['map_source']
+        else:
+            self.exclude = []
+
+    def add_view(self, request, form_url='', extra_context = None):
+        '''
+        Hide map_source in the add page in the admin.
+        '''
+        self._auto_hide_map_source(request)
+        return super(EntityAdmin, self).add_view(request, form_url, extra_context)
+
+    def change_view(self, request, object_id, form_url='', extra_context = None):
+        '''
+        Hide map_source in the change page in the admin.
+        '''
+        self._auto_hide_map_source(request)
+        return super(EntityAdmin, self).change_view(request, object_id, form_url, extra_context)
+
+    def changelist_view(self, request, extra_content = None):
+        '''
+        Hide map source filter in the change list page in the admin.
+        '''
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        self.list_filter = tuple(set(self.list_filter) - set(('map_source',)))
+        if user.is_superuser or not profile or not profile.map_source:
+            self.list_filter = self.list_filter + (('map_source',))
+        return super(EntityAdmin, self).changelist_view(request, extra_content)
+
+    def history_view(self, request, object_id, extra_context = None):
+        '''
+        Although we wouldn't have permission to view this object, the history view
+        for an object does show the name of the object anyway.
+        '''
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        if not user.is_superuser and profile and profile.map_source:
+            obj = get_object_or_404(self.model, pk = object_id)
+            if obj.map_source != profile.map_source:
+                raise Http404('No %s matches the given query.' % self.model._meta.object_name)
+        return super(EntityAdmin, self).history_view(request, object_id, extra_context = None)
+
+    def save_model(self, request, obj, form, change):
+        '''
+        When the user hits Save on an add/modify admin page, automatically set map_source.
+        '''
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        if not user.is_superuser and profile and profile.map_source:
+            if change and obj.map_source != profile.map_source:
+                raise Http404('No such object')
+            else:
+                obj.map_source = profile.map_source
+        obj.save()
+
+    def queryset(self, request):
+        '''
+        Called when the user hits the overview page.
+        Limit the objects shown in the main list to only ones from user map source.
+        '''
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        if not user.is_superuser and profile and profile.map_source:
+            queryset = self.model.objects.filter(map_source = profile.map_source)
+        else:
+            queryset = self.model.objects.all()
+        return queryset
+
+    def has_change_permission(self, request, obj = None):
+        '''
+        Called in various places in contrib.admin to determine if the user has permission to change this object.
+        The user has no permission if the map_source is different.
+        '''
+        has_class_permission = super(EntityAdmin, self).has_change_permission(request, obj)
+        if not has_class_permission:
+            return False
+        if obj is not None:
+            user = request.user
+            profile = MacadjanUserProfile.objects.get_for_user(user)
+            if not user.is_superuser and profile and profile.map_source:
+                if obj.map_source != profile.map_source:
+                    return False
+        return True
