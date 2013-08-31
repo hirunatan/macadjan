@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-17 07:56+0200\n"
-"PO-Revision-Date: 2012-10-16 13:35\n"
+"PO-Revision-Date: 2013-06-10 01:14\n"
 "Last-Translator:   <desatonao@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -196,35 +196,35 @@ msgstr "Axuda para Finanzas"
 
 #: models.py:108
 msgid "Ayuda para Valores sociales y medioambientales"
-msgstr ""
+msgstr "Axuda para Valores sociais e medioambientais"
 
 #: models.py:110
 msgid "Ayuda para Forma de acceso"
-msgstr ""
+msgstr "Axuda para Forma de aceso"
 
 #: models.py:112
 msgid "Ayuda para Redes de las que forma parte"
-msgstr ""
+msgstr "Axuda para Redes das que forma parte"
 
 #: models.py:114
 msgid "Ayuda para Otras entidades con las que colabora"
-msgstr ""
+msgstr "Axuda para Outras entidades coas que colabora"
 
 #: models.py:116
 msgid "Ayuda para Proyectos en marcha"
-msgstr ""
+msgstr "Axuda para Proxectos en marcha"
 
 #: models.py:118
 msgid "Ayuda para Necesidades"
-msgstr ""
+msgstr "Axuda para Necesidades"
 
 #: models.py:120
 msgid "Ayuda para Qué ofrece"
-msgstr ""
+msgstr "Axuda para Ofertas"
 
 #: models.py:122
 msgid "Ayuda para Información adicional"
-msgstr ""
+msgstr "Axuda para Información adicional"
 
 #: models.py:134
 msgid "info sitio"
