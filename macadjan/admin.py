@@ -166,6 +166,22 @@ class EntityAdmin(admin.ModelAdmin):
         else:
             self.exclude = []
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        '''
+        Admin users that have a profile with a not null map_source, get it as a
+        default value when creating entities, although they can change it later.
+        '''
+        formfield = super(EntityAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+        user = request.user
+        profile = MacadjanUserProfile.objects.get_for_user(user)
+        if db_field.name != 'map_source' or not user.is_superuser \
+           or not profile or not profile.map_source:
+            return formfield
+
+        kwargs['initial'] = profile.map_source
+        return db_field.formfield(**kwargs)
+
     def add_view(self, request, form_url='', extra_context = None):
         '''
         Hide map_source in the add page in the admin.
