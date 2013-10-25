@@ -5,7 +5,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponse
+
+import csv
 
 from .models import *
 #from .async_tasks import *
@@ -137,7 +139,11 @@ class EntityAdmin(admin.ModelAdmin):
     list_filter = ('is_active', 'subcategories',) # Fields you can filter by in the entity list
     search_fields = ('name', 'alias',) # Fields searched by the input bux in the entity list
     prepopulated_fields = {'slug': ('name',)}
-    actions = [make_active, make_inactive, 'geolocalize']
+    actions = [make_active, make_inactive, 'geolocalize', 'export_csv']
+
+    # TODO: it would be good to have also categories in list_filter, but currently the admin only supports
+    # real fields, not properties or methods or fields in other tables. We could add a 'category' field to
+    # Entity class, and sincronize it with signals. To think later...
 
     def geolocalize(self, request, queryset):
         #for obj in queryset:
@@ -146,11 +152,89 @@ class EntityAdmin(admin.ModelAdmin):
 
     geolocalize.short_description = _(u'Geolocalizar todos los seleccionados')
 
+    def export_csv(self, request, queryset):
+        response = HttpResponse(mimetype='text/csv')
+        response['Content-Disposition'] = 'attachment; filename = entities.csv'
 
-    # TODO: it would be good to have also categories in list_filter, but currently the admin only supports
-    # real fields, not properties or methods or fields in other tables. We could add a 'category' field to
-    # Entity class, and sincronize it with signals. To think later...
+        writer = csv.writer(response, dialect=csv.excel)
 
+        columns = [column.encode('utf-8') for column in self.get_export_csv_columns()]
+        writer.writerow(columns)
+        for entity in queryset.all():
+            fields = [field.encode('utf-8') for field in self.get_export_csv_fields(entity)]
+            writer.writerow(fields)
+            for subcategory in entity.subcategories.all():
+                if subcategory == entity.main_subcategory:
+                    continue
+                category_pos = self.get_category_pos()
+                row = [''] * category_pos
+                row.append((u'%s - %s' % (subcategory.category.name, subcategory.name)).encode('utf-8'))
+                row.extend([''] * (len(columns) - category_pos - 1))
+                writer.writerow(row)
+
+        writer.writerow(['','']) # write a final empty row, to mark the end for the importer
+
+        return response
+
+    export_csv.short_description = _(u'Exportar a un fichero csv')
+
+    def get_export_csv_columns(self):
+        # Subclasses may redefine this to add more columns.
+        return [
+            _(u'Nombre'),
+            _(u'Resumen'),
+            _(u'Tipo de entidad'),
+            _(u'Categorías'),
+            _(u'Agrupada dentro de'),
+            _(u'Dirección (calle y nº)'),
+            _(u'Dirección (resto)'),
+            _(u'C.P.'),
+            _(u'Población'),
+            _(u'Provincia'),
+            _(u'Zona'),
+            _(u'Latitud'),
+            _(u'Longitud'),
+            _(u'Teléfono 1'),
+            _(u'Teléfono 2'),
+            _(u'Fax'),
+            _(u'Correo electrónico 1'),
+            _(u'Correo electrónico 2'),
+            _(u'Web 1'),
+            _(u'Web 2'),
+            _(u'Persona de contacto'),
+            _(u'Fecha última actualización'),
+        ]
+
+    def get_export_csv_fields(self, entity):
+        # Subclasses may redefine this to add more fields.
+        return [
+            entity.name,
+            entity.summary,
+            entity.entity_type.name,
+            '%s - %s' % (entity.main_subcategory.category.name, entity.main_subcategory.name),
+            '',
+            entity.address_1,
+            entity.address_2,
+            entity.zipcode,
+            entity.city,
+            entity.province,
+            entity.zone,
+            unicode(entity.latitude) if entity.latitude else '',
+            unicode(entity.longitude) if entity.longitude else '',
+            entity.contact_phone_1,
+            entity.contact_phone_2,
+            entity.fax,
+            entity.email,
+            entity.email_2,
+            entity.web,
+            entity.web_2,
+            entity.contact_person,
+            entity.modification_date.strftime('%d/%m/%Y'),
+        ]
+
+    def get_category_pos(self):
+        # Return the position (starting from 0) of the category in the list of columns.
+        return 3
 
     # Restrictions for users with map source. Ideas taken from
     # http://www.alextreme.org/misc/sub_admin.py
