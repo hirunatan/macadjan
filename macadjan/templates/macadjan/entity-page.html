@@ -62,10 +62,6 @@
                 <p><strong>{% trans "Web 2:" %} </strong><a href="{{ entity.web_2 }}" target="_blank">{{ entity.web_2 }}</a></p>
                 {% endif %}
 
-                {% if entity.contact_person %}
-                <p><strong>{% trans "Persona de contacto:" %} </strong>{{ entity.contact_person }}</p>
-                {% endif %}
-
                 {% if entity.active_subcategories.all %}
                 <h3>{% trans "Categorías:" %}</h3>
                 <ul>

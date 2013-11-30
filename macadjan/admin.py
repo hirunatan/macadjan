@@ -91,7 +91,7 @@ class SiteInfoAdmin(admin.ModelAdmin):
             'address_2_field_enabled','zipcode_field_enabled','city_field_enabled','province_field_enabled',
             'country_field_enabled','zone_field_enabled','latitude_field_enabled','longitude_field_enabled',
             'contact_phone_1_field_enabled','contact_phone_2_field_enabled','fax_field_enabled','email_field_enabled',
-            'email_2_field_enabled','web_field_enabled','web_2_field_enabled','contact_person_field_enabled',
+            'email_2_field_enabled','web_field_enabled','web_2_field_enabled',
             'creation_year_field_enabled','legal_form_field_enabled','description_field_enabled','goals_field_enabled',
             'finances_field_enabled','social_values_field_enabled','how_to_access_field_enabled',
             'networks_member_field_enabled','networks_works_with_field_enabled','ongoing_projects_field_enabled',
@@ -201,7 +201,6 @@ class EntityAdmin(admin.ModelAdmin):
             _(u'Correo electrónico 2'),
             _(u'Web 1'),
             _(u'Web 2'),
-            _(u'Persona de contacto'),
             _(u'Fecha última actualización'),
         ]
 
@@ -228,7 +227,6 @@ class EntityAdmin(admin.ModelAdmin):
             entity.email_2,
             entity.web,
             entity.web_2,
-            entity.contact_person,
             entity.modification_date.strftime('%d/%m/%Y'),
         ]
 

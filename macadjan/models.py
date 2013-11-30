@@ -160,8 +160,6 @@ proponer cambios.
             verbose_name = _(u'Web 1.'))
     web_2_field_enabled = models.BooleanField(null = False, blank = True, default = True,
             verbose_name = _(u'Web 2.'))
-    contact_person_field_enabled = models.BooleanField(null = False, blank = True, default = True,
-            verbose_name = _(u'Persona de contacto.'))
     creation_year_field_enabled = models.BooleanField(null = False, blank = True, default = True,
             verbose_name = _(u'Año de creación.'))
     legal_form_field_enabled = models.BooleanField(null = False, blank = True, default = True,
@@ -633,9 +631,6 @@ class Entity(models.Model):
     web_2 = models.URLField(null = False, blank = True, default = '',
             verbose_name = _(u'Web 2'),
             help_text = _(u'Se puede poner una segunda página web.'))
-    contact_person = models.CharField(max_length = 100, null = False, blank = True, default = '',
-            verbose_name = _(u'Persona contacto'),
-            help_text = _(u'Nombre de al menos una persona por quien preguntar.'))
 
     # Accounting info (source may be NULL in internal operations, but you must fill it in the forms; dates are updated automatically on save)
     creation_date = models.DateTimeField(null = False, blank = True,

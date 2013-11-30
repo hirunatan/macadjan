@@ -536,10 +536,6 @@ msgstr ""
 msgid "Se puede poner una segunda página web."
 msgstr ""
 
-#: models.py:460
-msgid "Persona contacto"
-msgstr ""
-
 #: models.py:461
 msgid "Nombre de al menos una persona por quien preguntar."
 msgstr ""
@@ -659,10 +655,6 @@ msgstr ""
 
 #: templates/macadjan/entity-page.html:57
 msgid "Web 2:"
-msgstr ""
-
-#: templates/macadjan/entity-page.html:61
-msgid "Persona de contacto:"
 msgstr ""
 
 #: templates/macadjan/entity-page.html:65
